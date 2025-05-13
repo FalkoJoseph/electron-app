@@ -18,6 +18,7 @@ const Titlebar = () => {
   const titlebarActionsRight = useTitlebarStore((state) => state.actionsRight);
   const title = useTitlebarStore((state) => state.title);
   const subtitle = useTitlebarStore((state) => state.subtitle);
+  const hasBackground = useTitlebarStore((state) => state.hasBackground);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
   const [leftActionsWidth, setLeftActionsWidth] = useState(0);
@@ -50,8 +51,9 @@ const Titlebar = () => {
   }, [titlebarActionsLeft, titlebarActionsRight]);
 
   const titlebarStyle = clsx([
-    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-center text-sm text-black/80 transition-shadow duration-100 border-b border-black/10 hover:shadow/5 bg-white/80 backdrop-blur-lg",
-    "dark:text-white/80 dark:border-black/60 dark:bg-neutral-700/80",
+    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-center text-sm text-black/80 transition-shadow duration-100 border-b border-black/10",
+    hasBackground && "bg-white/80 backdrop-blur-lg dark:bg-neutral-700/80",
+    "dark:text-white/80 dark:border-black/60",
   ]);
 
   return (

@@ -11,19 +11,20 @@ import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 import Titlebar from "@/components/system/Titlebar/Titlebar";
 
 const Window = ({ children }: { children: React.ReactNode }) => {
-  const mounted = useWindowStore((state) => state.mounted);
-  const background = useWindowStore((state) => state.background);
-  const hasPadding = useWindowStore((state) => state.hasPadding);
-  const titlebarHeight = useTitlebarStore((state) => state.height);
-  const sidebarWidth = useSidebarStore((state) => state.width);
+  const windowMounted = useWindowStore((state) => state.mounted);
+  const windowBackground = useWindowStore((state) => state.background);
+  const windowHasBackground = useWindowStore((state) => state.hasBackground);
+  const sidebarWidthLeft = useSidebarStore((state) => state.widthLeft);
+  const sidebarWidthRight = useSidebarStore((state) => state.widthRight);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
+  const sidebarIsResizing = useSidebarStore((state) => state.isResizing);
   const titlebarVisible = useTitlebarStore((state) => state.visible);
-  const windowStyle = clsx(["relative h-full"]);
+  const titlebarHeight = useTitlebarStore((state) => state.height);
 
   const innerWindowStyle = clsx(
     ["h-full overflow-hidden overflow-y-auto"],
-    [background],
+    windowHasBackground && [windowBackground],
   );
 
   useEffect(() => {
@@ -35,11 +36,16 @@ const Window = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
       animate={{
-        paddingLeft: sidebarOpenLeft ? sidebarWidth : 0,
-        paddingRight: sidebarOpenRight ? sidebarWidth : 0,
+        paddingLeft: sidebarOpenLeft ? sidebarWidthLeft : 0,
+        paddingRight: sidebarOpenRight ? sidebarWidthRight : 0,
       }}
-      className="relative w-full h-full"
-      transition={{ duration: mounted ? 0.15 : 0, ease: "linear" }}
+      className={clsx("relative w-full h-full", {
+        "z-20": !sidebarOpenLeft,
+      })}
+      transition={{
+        duration: windowMounted && !sidebarIsResizing ? 0.15 : 0,
+        ease: "linear",
+      }}
     >
       {titlebarVisible && (
         <div className="relative">
@@ -50,9 +56,9 @@ const Window = ({ children }: { children: React.ReactNode }) => {
       <SidebarActions align="left" />
 
       <div
-        className={windowStyle}
+        className="relative h-full"
         style={{
-          paddingTop: hasPadding ? `${titlebarHeight}px` : 0,
+          paddingTop: `${titlebarHeight}px`,
         }}
       >
         <div className={innerWindowStyle}>{children}</div>

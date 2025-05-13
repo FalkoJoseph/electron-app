@@ -3,7 +3,11 @@ import "react-resizable/css/styles.css";
 
 import clsx from "clsx";
 
-import useSidebarStore from "@/stores/sidebar.store";
+import useSidebarStore, {
+  setSidebarResizing,
+  setSidebarWidthLeft,
+  setSidebarWidthRight,
+} from "@/stores/sidebar.store";
 import useTitlebarStore from "@/stores/titlebar.store";
 import useWindowStore from "@/stores/window.store";
 
@@ -12,28 +16,41 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ align }: SidebarProps) => {
-  const backgroundBlur = useWindowStore((state) => state.backgroundBlur);
   const mounted = useWindowStore((state) => state.mounted);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const titlebarVisible = useTitlebarStore((state) => state.visible);
 
-  const sidebarWidth = useSidebarStore((state) => state.width);
+  const widthLeft = useSidebarStore((state) => state.widthLeft);
+  const widthRight = useSidebarStore((state) => state.widthRight);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
   const minWidth = useSidebarStore((state) => state.minWidth);
   const maxWidth = useSidebarStore((state) => state.maxWidth);
 
+  const currentWidth = align === "left" ? widthLeft : widthRight;
+
   const handleResize = (
     _: React.SyntheticEvent,
     { size }: { size: { width: number } },
   ) => {
-    useSidebarStore.setState({ width: size.width });
+    if (align === "left") {
+      setSidebarWidthLeft(size.width);
+    } else {
+      setSidebarWidthRight(size.width);
+    }
+  };
+
+  const handleResizeStart = () => {
+    setSidebarResizing(true);
+  };
+
+  const handleResizeStop = () => {
+    setSidebarResizing(false);
   };
 
   const sidebarStyle = clsx(
     "absolute top-0 h-full border-black/10 dark:border-black/60",
-    mounted && "transition duration-100 ease-linear",
-    [backgroundBlur],
+    mounted && "transition duration-50 ease-linear",
     align === "left" && "left-0 border-r",
     align === "right" && "right-0 border-l",
     align === "left" && !sidebarOpenLeft && "opacity-0",
@@ -45,28 +62,32 @@ const Sidebar = ({ align }: SidebarProps) => {
   const resizeHandle = (
     <div
       className={clsx(
-        "absolute top-0 no-drag h-full w-1 cursor-col-resize bg-red-500 hover:bg-blue-500",
-        align === "left" ? "right-0" : "left-0",
+        "absolute top-0 h-full w-[20px] cursor-col-resize no-drag",
+        align === "left" ? "-right-[10px]" : "-left-[10px]",
       )}
     />
   );
 
   return (
     <Resizable
+      axis={align === "right" ? "x" : "x"}
       draggableOpts={{ enableUserSelectHack: false }}
       handle={resizeHandle}
       height={0}
       maxConstraints={[maxWidth, 0]}
       minConstraints={[minWidth, 0]}
-      style={{ width: sidebarWidth }}
-      width={sidebarWidth}
+      resizeHandles={align === "right" ? ["w"] : ["e"]}
+      style={{ width: currentWidth }}
+      width={currentWidth}
       onResize={handleResize}
+      onResizeStart={handleResizeStart}
+      onResizeStop={handleResizeStop}
     >
       <div
         className={sidebarStyle}
         style={
           align === "left"
-            ? { paddingTop: titlebarVisible ? `${titlebarHeight}px` : "50px" }
+            ? { paddingTop: titlebarVisible ? `${titlebarHeight}px` : "53px" }
             : undefined
         }
       >

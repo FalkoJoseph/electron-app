@@ -17,6 +17,14 @@
 
 .btn-icon {
   @apply w-10 p-0;
+
+  &:active {
+    @apply scale-95;
+  }
+
+  & svg {
+    @apply text-gray-600 group-active:text-gray-900 dark:text-white/50 dark:group-active:text-white;
+  }
 }
 
 .btn-default {

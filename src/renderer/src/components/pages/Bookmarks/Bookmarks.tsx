@@ -5,21 +5,21 @@ import { setTitlebarTitle } from "@/stores/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
 
-const Home = () => {
+const Bookmarks = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTitlebarTitle("Dashboard");
+    setTitlebarTitle("Bookmarks");
   }, []);
 
   return (
     <div className="p-5">
-      <h1>Dashboard</h1>
-      <Button variant="primary" onClick={() => navigate("/bookmarks")}>
-        Bookmarks
+      <h1>Bookmarks</h1>
+      <Button variant="primary" onClick={() => navigate("/")}>
+        Home
       </Button>
     </div>
   );
 };
 
-export default Home;
+export default Bookmarks;

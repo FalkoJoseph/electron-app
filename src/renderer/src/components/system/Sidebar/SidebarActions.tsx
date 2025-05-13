@@ -38,7 +38,7 @@ const SidebarActions = ({ align }: SidebarProps) => {
       ref={containerRef}
       className={sidebarActionsStyle}
       style={{
-        top: isTitlebarVisible ? Math.floor(titlebarHeight / 2) - offset : 12,
+        top: isTitlebarVisible ? Math.floor(titlebarHeight / 2) - offset : 10,
       }}
     >
       {align === "left" && actionsLeft && (

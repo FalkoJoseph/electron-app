@@ -13,7 +13,10 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button className={clsx("btn", `btn-${variant}`, `btn-${size}`)} {...props}>
+    <button
+      className={clsx("btn group", `btn-${variant}`, `btn-${size}`)}
+      {...props}
+    >
       {children}
     </button>
   );

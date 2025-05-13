@@ -68,6 +68,8 @@ body {
   }
 }
 
+/* Resizable */
+
 .react-resizable {
-  @apply absolute;
+  @apply absolute z-10;
 }

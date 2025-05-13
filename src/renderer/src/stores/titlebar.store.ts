@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface State {
   actionsLeft: React.ReactNode[] | null;
   actionsRight: React.ReactNode[] | null;
+  hasBackground: boolean;
   height: number;
   subtitle: string | null;
   title: string | null;
@@ -13,11 +14,12 @@ interface State {
 const initialState: State = {
   actionsLeft: [],
   actionsRight: [],
+  hasBackground: false,
   height: 0,
   subtitle: null,
   title: null,
   trafficLightPosition: null,
-  visible: false,
+  visible: true,
 };
 
 const useTitlebarStore = create<State>(() => ({
@@ -25,7 +27,14 @@ const useTitlebarStore = create<State>(() => ({
 }));
 
 export const setTitlebarVisible = (visible: boolean) => {
-  useTitlebarStore.setState({ visible });
+  useTitlebarStore.setState({
+    height: visible ? useTitlebarStore.getState().height : 0,
+    visible,
+  });
+};
+
+export const setTitlebarBackground = (hasBackground: boolean) => {
+  useTitlebarStore.setState({ hasBackground });
 };
 
 export const setTrafficLightPosition = (position: { x: number; y: number }) => {

@@ -2,15 +2,13 @@ import { create } from "zustand";
 
 interface State {
   background: string;
-  backgroundBlur: string;
-  hasPadding: boolean;
+  hasBackground: boolean;
   mounted: boolean;
 }
 
 const initialState: State = {
   background: "bg-white dark:bg-neutral-800/80",
-  backgroundBlur: "backdrop-blur-lg",
-  hasPadding: true,
+  hasBackground: false,
   mounted: false,
 };
 
@@ -22,8 +20,8 @@ export const setWindowMounted = (mounted: boolean) => {
   useWindowStore.setState({ mounted });
 };
 
-export const setWindowPadding = (hasPadding: boolean) => {
-  useWindowStore.setState({ hasPadding });
+export const setWindowBackground = (hasBackground: boolean) => {
+  useWindowStore.setState({ hasBackground });
 };
 
 export default useWindowStore;
