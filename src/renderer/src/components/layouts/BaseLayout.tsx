@@ -8,7 +8,6 @@ export const BaseLayout = () => {
     <>
       <div className="h-screen">
         <Sidebar align="left" />
-        <SidebarActions align="left" />
 
         <Outlet />
 

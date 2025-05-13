@@ -5,6 +5,9 @@ interface State {
   actionsRight: React.ReactNode[] | null;
   isOpenLeft: boolean;
   isOpenRight: boolean;
+  maxWidth: number;
+  minWidth: number;
+  width: number;
 }
 
 const initialState: State = {
@@ -12,6 +15,9 @@ const initialState: State = {
   actionsRight: [],
   isOpenLeft: false,
   isOpenRight: false,
+  maxWidth: 300,
+  minWidth: 150,
+  width: 200,
 };
 
 const useSidebarStore = create<State>(() => ({

@@ -6,7 +6,6 @@ import useSidebarStore, {
   setSidebarOpenRight,
 } from "@/stores/sidebar.store";
 import {
-  setTitlebarActionsLeft,
   setTitlebarActionsRight,
   setTitlebarTitle,
   setTitlebarVisible,
@@ -45,12 +44,6 @@ const Home = () => {
             fill="currentColor"
           />
         </svg>
-      </Button>,
-    ]);
-
-    setTitlebarActionsLeft([
-      <Button key="reset" size="large" variant="default">
-        New
       </Button>,
     ]);
 
