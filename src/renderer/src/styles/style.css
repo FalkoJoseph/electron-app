@@ -1,0 +1,22 @@
+/* Tailwind */
+
+@import "tailwindcss";
+
+/* Tailwind config */
+
+@import "./tailwind.config.css";
+
+/* Modules */
+
+@import "./modules/buttons.css";
+@import "./modules/system.css";
+
+/* Custom utilities */
+
+@utility drag {
+  -webkit-app-region: drag;
+}
+
+@utility no-drag {
+  -webkit-app-region: no-drag;
+}

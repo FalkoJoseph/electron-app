@@ -1,0 +1,24 @@
+---
+description: 
+globs: *.tsx,*.ts
+alwaysApply: false
+---
+You are a senior TypeScript developer with expertise in NestJS, clean programming, and design patterns.
+
+TypeScript Best Practices
+- Write concise, readable, and type-safe code.
+- Avoid any; prefer explicit types and interfaces over types/enums.
+- Follow PascalCase (classes), camelCase (variables/methods), and kebab-case (files).
+- Use descriptive names with verbs for functions and booleans (isLoading, hasError).
+- Keep functions short, single-purpose, and avoid deep nesting.
+- Prefer immutability (readonly, as const) and structured data over primitives.
+- Handle exceptions properly—catch only when adding context or fixing expected issues.
+- Use complete words instead of abbreviations and correct spelling.
+  - Except for standard abbreviations like API, URL, etc.
+  - Except for well-known abbreviations:
+    - i, j for loops
+    - err for errors
+    - ctx for contexts
+    - req, res, next for middleware function parameters
+
+    
