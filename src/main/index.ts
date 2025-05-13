@@ -11,6 +11,7 @@ function createWindow(): void {
     height: 670,
     show: false,
     titleBarStyle: "hidden",
+    vibrancy: "sidebar",
     width: 900,
     ...(process.platform === "linux" ? { icon } : {}),
     webPreferences: {
@@ -33,7 +34,10 @@ function createWindow(): void {
   if (is.dev && process.env["ELECTRON_RENDERER_URL"]) {
     mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
   } else {
-    mainWindow.loadFile(join(__dirname, "../renderer/index.html"));
+    // In production, we need to use hash-based routing
+    mainWindow.loadFile(join(__dirname, "../renderer/index.html"), {
+      hash: "/",
+    });
   }
 }
 

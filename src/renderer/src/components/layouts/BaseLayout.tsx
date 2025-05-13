@@ -1,20 +1,19 @@
 import { Outlet } from "react-router";
 
-import Titlebar from "@/components/system/Titlebar/Titlebar";
+import Sidebar from "@/components/system/Sidebar/Sidebar";
+import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 
 export const BaseLayout = () => {
   return (
     <>
-      <Titlebar />
-
       <div className="h-screen">
-        <div className="w-[200px] absolute left-0 top-0 h-full z-10 bg-red-500">
-          sidebar left
-        </div>
+        <Sidebar align="left" />
+        <SidebarActions align="left" />
+
         <Outlet />
-        <div className="w-[200px] absolute right-0 top-0 h-full z-10">
-          sidebar right
-        </div>
+
+        <Sidebar align="right" />
+        <SidebarActions align="right" />
       </div>
     </>
   );

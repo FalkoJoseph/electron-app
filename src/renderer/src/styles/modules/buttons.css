@@ -1,5 +1,5 @@
 .btn {
-  @apply no-drag text-xxs relative cursor-default rounded-md px-3 py-1 leading-none font-normal transition duration-100 ease-in-out;
+  @apply no-drag text-xxs relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 py-1 leading-none font-normal transition duration-100 ease-in-out;
 
   &:focus {
     @apply outline-none;
@@ -8,6 +8,15 @@
   &:disabled {
     @apply cursor-not-allowed opacity-50;
   }
+}
+
+.btn-large,
+.btn-icon {
+  @apply h-8;
+}
+
+.btn-icon {
+  @apply w-10 p-0;
 }
 
 .btn-default {
@@ -19,5 +28,5 @@
 }
 
 .btn-transparent {
-  @apply bg-transparent text-black/70 hover:bg-black/10 active:bg-black/20 active:text-black/50 dark:text-white/70 dark:hover:bg-white/10 dark:active:bg-white/20 dark:active:text-white/50;
+  @apply bg-transparent text-black/70 hover:bg-black/5 active:bg-black/10 active:text-black/50 dark:text-white/70 dark:hover:bg-white/10 dark:active:bg-white/20 dark:active:text-white/50;
 }
