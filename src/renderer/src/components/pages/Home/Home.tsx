@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTitlebarTitle("Welcome");
+    setTitlebarTitle(<p className="text-system font-bold">Electron App</p>);
   }, []);
 
   return (

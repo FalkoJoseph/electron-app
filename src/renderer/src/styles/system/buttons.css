@@ -1,5 +1,5 @@
 .btn {
-  @apply no-drag text-xxs relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 py-1 leading-none font-normal transition duration-100 ease-in-out;
+  @apply no-drag text-system relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 py-1 leading-none font-normal transition duration-100 ease-in-out;
 
   &:focus {
     @apply outline-none;

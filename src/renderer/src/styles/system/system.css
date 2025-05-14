@@ -6,7 +6,7 @@ body {
 
 /* Text */
 
-@utility text-xxs {
+@utility text-system {
   @apply text-[0.8rem];
 }
 

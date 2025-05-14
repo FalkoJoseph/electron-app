@@ -3,10 +3,11 @@ import { create } from "zustand";
 interface State {
   actionsLeft: React.ReactNode[] | null;
   actionsRight: React.ReactNode[] | null;
+  align: "left" | "center";
   borderOnScroll: boolean;
   height: number;
   subtitle: string | null;
-  title: string | null;
+  title: React.ReactNode | null;
   trafficLightPosition: { x: number; y: number } | null;
   visible: boolean;
 }
@@ -14,6 +15,7 @@ interface State {
 const initialState: State = {
   actionsLeft: [],
   actionsRight: [],
+  align: "center",
   borderOnScroll: false,
   height: 0,
   subtitle: null,
@@ -34,7 +36,11 @@ export const setTrafficLightPosition = (position: { x: number; y: number }) => {
   useTitlebarStore.setState({ trafficLightPosition: position });
 };
 
-export const setTitlebarTitle = (title: string | null) => {
+export const setTitlebarAlign = (align: "left" | "center") => {
+  useTitlebarStore.setState({ align });
+};
+
+export const setTitlebarTitle = (title: React.ReactNode | null) => {
   useTitlebarStore.setState({ title });
 };
 

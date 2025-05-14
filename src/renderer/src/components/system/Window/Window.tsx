@@ -36,8 +36,8 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     "inner-window",
     ["h-full overflow-hidden overflow-y-auto"],
     windowBackground !== "transparent" && [windowBackgroundStyle],
-    sidebarOpenLeft && "border-l border-l-black/15 dark:border-l-black/60",
-    sidebarOpenRight && "border-r border-r-black/15 dark:border-r-black/60",
+    sidebarOpenLeft && "border-l border-l-black/17 dark:border-l-black/60",
+    sidebarOpenRight && "border-r border-r-black/17 dark:border-r-black/60",
   );
 
   useEffect(() => {

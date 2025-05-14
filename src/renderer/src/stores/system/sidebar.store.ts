@@ -3,6 +3,8 @@ import { create } from "zustand";
 interface State {
   actionsLeft: React.ReactNode[] | null;
   actionsRight: React.ReactNode[] | null;
+  hasLeft: boolean;
+  hasRight: boolean;
   isOpenLeft: boolean;
   isOpenRight: boolean;
   isResizing: boolean;
@@ -15,6 +17,8 @@ interface State {
 const initialState: State = {
   actionsLeft: [],
   actionsRight: [],
+  hasLeft: false,
+  hasRight: false,
   isOpenLeft: false,
   isOpenRight: false,
   isResizing: false,
@@ -28,12 +32,28 @@ const useSidebarStore = create<State>(() => ({
   ...initialState,
 }));
 
+export const setSidebarLeft = (hasLeft: boolean) => {
+  useSidebarStore.setState({ hasLeft });
+};
+
+export const setSidebarRight = (hasRight: boolean) => {
+  useSidebarStore.setState({ hasRight });
+};
+
 export const setSidebarOpenLeft = (isOpenLeft: boolean) => {
-  useSidebarStore.setState({ isOpenLeft });
+  const hasLeft = useSidebarStore.getState().hasLeft;
+
+  if (hasLeft) {
+    useSidebarStore.setState({ isOpenLeft });
+  }
 };
 
 export const setSidebarOpenRight = (isOpenRight: boolean) => {
-  useSidebarStore.setState({ isOpenRight });
+  const hasRight = useSidebarStore.getState().hasRight;
+
+  if (hasRight) {
+    useSidebarStore.setState({ isOpenRight });
+  }
 };
 
 export const setSidebarActionsLeft = (actionsLeft: React.ReactNode[]) => {

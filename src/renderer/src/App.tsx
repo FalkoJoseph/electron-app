@@ -2,11 +2,12 @@ import { useEffect } from "react";
 
 import useSidebarStore, {
   setSidebarActionsLeft,
+  setSidebarLeft,
   setSidebarOpenLeft,
-  setSidebarOpenRight,
 } from "@/stores/system/sidebar.store";
 import {
   setTitlebarActionsRight,
+  setTitlebarAlign,
   setTitlebarVisible,
 } from "@/stores/system/titlebar.store";
 import { setWindowBackground } from "@/stores/system/window.store";
@@ -16,13 +17,18 @@ import Button from "@/components/system/Button/Button";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
-  const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
 
   useEffect(() => {
+    // Window
     setWindowBackground("dark");
+
+    // Titlebar
     setTitlebarVisible(true);
+    setTitlebarAlign("center");
+
+    // Sidebar
+    setSidebarLeft(true);
     setSidebarOpenLeft(true);
-    setSidebarOpenRight(false);
   }, []);
 
   useEffect(() => {
@@ -38,14 +44,9 @@ export const useApp = () => {
     ]);
 
     setTitlebarActionsRight([
-      <Button
-        key="chat"
-        size="large"
-        variant="default"
-        onClick={() => setSidebarOpenRight(!sidebarOpenRight)}
-      >
+      <Button key="chat" size="large" variant="default">
         Chat
       </Button>,
     ]);
-  }, [sidebarOpenLeft, sidebarOpenRight]);
+  }, [sidebarOpenLeft]);
 };

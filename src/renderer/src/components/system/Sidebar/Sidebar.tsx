@@ -5,6 +5,8 @@ import "react-resizable/css/styles.css";
 import clsx from "clsx";
 
 import useSidebarStore, {
+  setSidebarLeft,
+  setSidebarOpenLeft,
   setSidebarResizing,
   setSidebarWidthLeft,
   setSidebarWidthRight,
@@ -56,6 +58,24 @@ const Sidebar = ({ align }: SidebarProps) => {
       document.body.style.cursor = "";
     };
   }, [isResizing, getResizeCursor]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "KeyS" && event.altKey && event.metaKey) {
+        event.preventDefault();
+        setSidebarOpenLeft(!sidebarOpenLeft);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [sidebarOpenLeft]);
+
+  useEffect(() => {
+    if (align === "left") {
+      setSidebarLeft(true);
+    }
+  }, [align]);
 
   const handleResize = (
     _: React.SyntheticEvent,
