@@ -1,5 +1,5 @@
 .btn {
-  @apply no-drag text-system relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 py-1 leading-none font-normal transition duration-100 ease-in-out;
+  @apply no-drag text-system relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 py-1 leading-none font-normal;
 
   &:focus {
     @apply outline-none;
@@ -16,7 +16,7 @@
 }
 
 .btn-icon {
-  @apply w-10 p-0;
+  @apply w-8 p-0;
 
   &:active {
     @apply scale-95;
@@ -28,11 +28,11 @@
 }
 
 .btn-default {
-  @apply bg-control shadow-3d active:bg-primary active:shadow-3d-active text-black active:text-white disabled:active:bg-white/10 dark:text-white;
+  @apply shadow-border dark:shadow-inset bg-white bg-gradient-to-t from-neutral-50 to-white text-black active:from-neutral-200 active:to-neutral-200 dark:from-neutral-500 dark:to-neutral-500 dark:text-white dark:active:from-neutral-500/90 dark:active:to-neutral-500/90;
 }
 
 .btn-primary {
-  @apply bg-primary shadow-3d-active active:bg-primary-dark text-white;
+  @apply shadow-bottom dark:shadow-inset bg-black bg-gradient-to-t from-blue-600 to-blue-500 text-white active:from-blue-600/90 active:to-blue-500/90 dark:bg-white;
 }
 
 .btn-transparent {

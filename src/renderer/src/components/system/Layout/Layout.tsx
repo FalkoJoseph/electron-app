@@ -17,7 +17,6 @@ export const Layout = () => {
     <>
       <div className="h-screen">
         {hasLeftSidebar && <Sidebar align="left" />}
-        {hasLeftSidebar && <SidebarActions align="left" />}
 
         <Window>
           <Outlet />

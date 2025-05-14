@@ -62,16 +62,16 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
   }, [titlebarActionsLeft, titlebarActionsRight, isFullscreen]);
 
   const titlebarStyle = clsx([
-    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-sm text-black/80 transition-[border-bottom-color] duration-200 dark:text-white/80",
+    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-sm text-black/80 transition-[shadow, background-color] duration-180 dark:text-white/80",
     windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-700",
     windowBackground === "light" && "bg-white dark:bg-neutral-700",
     windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
-    sidebarOpenLeft && "border-l border-l-black/17 dark:border-l-black/60",
-    sidebarOpenRight && "border-r border-r-black/17 dark:border-r-black/60",
+    sidebarOpenLeft && "border-l border-l-black/20 dark:border-l-black/60",
+    sidebarOpenRight && "border-r border-r-black/20 dark:border-r-black/60",
     borderOnScroll
       ? isScrolled
-        ? "border-b border-black/15 dark:border-black/60 titlebar-shadow"
-        : "border-b border-b-transparent"
+        ? "shadow-x-y bg-neutral-200 dark:bg-neutral-800"
+        : "shadow-x"
       : "border-b border-black/15 dark:border-black/60",
   ]);
 

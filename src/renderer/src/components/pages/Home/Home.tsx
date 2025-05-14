@@ -13,13 +13,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-5">
-      <p>Electron App for macOS</p>
-
-      <Button variant="primary" onClick={() => navigate("/bookmarks")}>
-        Bookmarks
-      </Button>
-
+    <div className="flex flex-col p-5 gap-2">
+      <div>
+        <Button variant="primary" onClick={() => navigate("/bookmarks")}>
+          Show bookmarks
+        </Button>
+      </div>
+      <div>
+        <Button variant="default">Chat</Button>
+      </div>
       <div className="w-100 h-200"></div>
     </div>
   );

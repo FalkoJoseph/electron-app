@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface State {
-  actionsLeft: React.ReactNode[] | null;
-  actionsRight: React.ReactNode[] | null;
+  actionsLeft: [React.ReactNode, React.ReactNode?] | null;
+  actionsRight: [React.ReactNode, React.ReactNode?] | null;
   hasLeft: boolean;
   hasRight: boolean;
   isOpenLeft: boolean;
@@ -15,8 +15,8 @@ interface State {
 }
 
 const initialState: State = {
-  actionsLeft: [],
-  actionsRight: [],
+  actionsLeft: null,
+  actionsRight: null,
   hasLeft: false,
   hasRight: false,
   isOpenLeft: false,
@@ -57,11 +57,23 @@ export const setSidebarOpenRight = (isOpenRight: boolean) => {
 };
 
 export const setSidebarActionsLeft = (actionsLeft: React.ReactNode[]) => {
-  useSidebarStore.setState({ actionsLeft });
+  const limitedActions = actionsLeft.slice(0, 2) as [
+    React.ReactNode,
+    React.ReactNode?,
+  ];
+  useSidebarStore.setState({
+    actionsLeft: limitedActions.length > 0 ? limitedActions : null,
+  });
 };
 
 export const setSidebarActionsRight = (actionsRight: React.ReactNode[]) => {
-  useSidebarStore.setState({ actionsRight });
+  const limitedActions = actionsRight.slice(0, 2) as [
+    React.ReactNode,
+    React.ReactNode?,
+  ];
+  useSidebarStore.setState({
+    actionsRight: limitedActions.length > 0 ? limitedActions : null,
+  });
 };
 
 export const setSidebarWidthLeft = (widthLeft: number) => {

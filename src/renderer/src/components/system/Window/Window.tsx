@@ -20,6 +20,7 @@ const MIN_WINDOW_WIDTH = 800;
 const Window = ({ children }: { children: React.ReactNode }) => {
   const windowMounted = useWindowStore((state) => state.mounted);
   const windowBackground = useWindowStore((state) => state.background);
+  const hasLeftSidebar = useSidebarStore((state) => state.hasLeft);
   const sidebarWidthLeft = useSidebarStore((state) => state.widthLeft);
   const sidebarWidthRight = useSidebarStore((state) => state.widthRight);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
@@ -88,18 +89,24 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     }
   }, [sidebarOpenLeft, sidebarOpenRight, isResizing]);
 
+  const hasTitlebarShadow =
+    windowBackground === "default" ||
+    windowBackground === "light" ||
+    windowBackground === "dark";
+
   const windowBackgroundStyle = clsx(
     windowBackground === "default" && "bg-white dark:bg-neutral-700",
     windowBackground === "light" && "bg-white dark:bg-neutral-700",
     windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
+    hasTitlebarShadow && "shadow-x",
   );
 
   const innerWindowStyle = clsx(
     "inner-window",
     ["h-full overflow-hidden overflow-y-auto"],
     windowBackground !== "transparent" && [windowBackgroundStyle],
-    sidebarOpenLeft && "border-l border-l-black/17 dark:border-l-black/60",
-    sidebarOpenRight && "border-r border-r-black/17 dark:border-r-black/60",
+    sidebarOpenLeft && "border-l border-l-black/20 dark:border-l-black/60",
+    sidebarOpenRight && "border-r border-r-black/20 dark:border-r-black/60",
   );
 
   useEffect(() => {
@@ -123,7 +130,7 @@ const Window = ({ children }: { children: React.ReactNode }) => {
         "z-20": !sidebarOpenLeft,
       })}
       transition={{
-        duration: windowMounted && !sidebarIsResizing ? 0.15 : 0,
+        duration: windowMounted && !sidebarIsResizing ? 0.18 : 0,
         ease: "linear",
       }}
     >
@@ -133,7 +140,7 @@ const Window = ({ children }: { children: React.ReactNode }) => {
         </div>
       )}
 
-      <SidebarActions align="left" />
+      {hasLeftSidebar && <SidebarActions align="left" />}
 
       <div
         className="relative h-full"

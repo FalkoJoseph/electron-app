@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { RiShare2Line } from "@remixicon/react";
+
 import useSidebarStore, {
   setSidebarActionsLeft,
   setSidebarLeft,
@@ -45,8 +47,8 @@ export const useApp = () => {
     ]);
 
     setTitlebarActionsRight([
-      <Button key="chat" size="large" variant="default">
-        Chat
+      <Button key="sidebar" size="icon" variant="transparent">
+        <RiShare2Line className="size-5" />
       </Button>,
     ]);
   }, [sidebarOpenLeft, sidebarOpenRight]);
