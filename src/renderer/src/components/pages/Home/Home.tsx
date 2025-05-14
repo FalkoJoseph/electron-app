@@ -9,12 +9,12 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTitlebarTitle("Dashboard");
+    setTitlebarTitle("Welcome");
   }, []);
 
   return (
     <div className="p-5">
-      <h1>Dashboard</h1>
+      <h1>Welcome</h1>
       <Button variant="primary" onClick={() => navigate("/bookmarks")}>
         Bookmarks
       </Button>
