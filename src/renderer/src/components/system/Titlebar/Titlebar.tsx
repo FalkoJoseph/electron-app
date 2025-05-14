@@ -4,23 +4,29 @@ import clsx from "clsx";
 
 import TitlebarItem from "./TitlebarItem";
 
-import { useTitlebarHeight } from "@/hooks/useTitlebarHeight.hook";
-import { useTrafficLight } from "@/hooks/useTrafficLight.hook";
+import { useTitlebarHeight } from "@/hooks/system/useTitlebarHeight.hook";
+import { useTrafficLight } from "@/hooks/system/useTrafficLight.hook";
 
 import useSidebarStore from "@/stores/sidebar.store";
 import useTitlebarStore, {
   setTrafficLightPosition,
 } from "@/stores/titlebar.store";
+import useWindowStore from "@/stores/window.store";
 
-const Titlebar = () => {
+interface TitlebarProps {
+  isScrolled: boolean;
+}
+
+const Titlebar = ({ isScrolled }: TitlebarProps) => {
+  const windowBackground = useWindowStore((state) => state.background);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const titlebarActionsLeft = useTitlebarStore((state) => state.actionsLeft);
   const titlebarActionsRight = useTitlebarStore((state) => state.actionsRight);
   const title = useTitlebarStore((state) => state.title);
   const subtitle = useTitlebarStore((state) => state.subtitle);
-  const hasBackground = useTitlebarStore((state) => state.hasBackground);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
+  const borderOnScroll = useTitlebarStore((state) => state.borderOnScroll);
   const [leftActionsWidth, setLeftActionsWidth] = useState(0);
   const [rightActionsWidth, setRightActionsWidth] = useState(0);
 
@@ -51,9 +57,17 @@ const Titlebar = () => {
   }, [titlebarActionsLeft, titlebarActionsRight]);
 
   const titlebarStyle = clsx([
-    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-center text-sm text-black/80 transition-shadow duration-100 border-b border-black/10",
-    hasBackground && "bg-white/80 backdrop-blur-lg dark:bg-neutral-700/80",
-    "dark:text-white/80 dark:border-black/60",
+    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-center text-sm text-black/80 transition duration-200 dark:text-white/80",
+    windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-800",
+    windowBackground === "light" && "bg-white dark:bg-neutral-700",
+    windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
+    sidebarOpenLeft && "border-l border-l-black/15 dark:border-l-black/60",
+    sidebarOpenRight && "border-r border-r-black/15 dark:border-r-black/60",
+    borderOnScroll
+      ? isScrolled
+        ? "border-b border-black/15 dark:border-black/60 titlebar-shadow"
+        : "border-b border-b-transparent"
+      : "border-b border-black/15 dark:border-black/60",
   ]);
 
   return (
@@ -89,14 +103,12 @@ const Titlebar = () => {
               : "0px",
         }}
       >
-        <TitlebarItem align="right">
-          {titlebarActionsRight &&
-            titlebarActionsRight.map((action, index) => (
-              <TitlebarItem key={index} align="right">
-                {action}
-              </TitlebarItem>
-            ))}
-        </TitlebarItem>
+        {titlebarActionsRight &&
+          titlebarActionsRight.map((action, index) => (
+            <TitlebarItem key={index} align="right">
+              {action}
+            </TitlebarItem>
+          ))}
       </div>
     </div>
   );

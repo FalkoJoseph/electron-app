@@ -1,11 +1,11 @@
 import { Outlet } from "react-router";
 
-import { useApp } from "@/App";
+import { useApp } from "@/app";
 import Sidebar from "@/components/system/Sidebar/Sidebar";
 import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 import Window from "@/components/system/Window/Window";
 
-export const BaseLayout = () => {
+export const Layout = () => {
   useApp();
 
   return (
@@ -24,4 +24,4 @@ export const BaseLayout = () => {
   );
 };
 
-export default BaseLayout;
+export default Layout;

@@ -7,7 +7,7 @@ import useSidebarStore, {
 } from "@/stores/sidebar.store";
 import {
   setTitlebarActionsRight,
-  setTitlebarBackground,
+  setTitlebarVisible,
 } from "@/stores/titlebar.store";
 import { setWindowBackground } from "@/stores/window.store";
 
@@ -19,8 +19,8 @@ export const useApp = () => {
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
 
   useEffect(() => {
-    setTitlebarBackground(true);
-    setWindowBackground(true);
+    setWindowBackground("light");
+    setTitlebarVisible(true);
     setSidebarOpenLeft(true);
     setSidebarOpenRight(true);
   }, []);

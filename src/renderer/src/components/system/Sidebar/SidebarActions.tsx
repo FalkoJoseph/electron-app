@@ -29,7 +29,7 @@ const SidebarActions = ({ align }: SidebarProps) => {
   const sidebarActionsStyle = clsx(
     "absolute z-50",
     `sidebar-actions-${align}`,
-    align === "left" && "left-22",
+    align === "left" && "left-21",
     align === "right" && "right-3",
   );
 

@@ -22,9 +22,9 @@ const Sidebar = ({ align }: SidebarProps) => {
   const [isResizing, setIsResizing] = useState(false);
 
   const mounted = useWindowStore((state) => state.mounted);
+  const windowBackground = useWindowStore((state) => state.background);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const titlebarVisible = useTitlebarStore((state) => state.visible);
-
   const widthLeft = useSidebarStore((state) => state.widthLeft);
   const widthRight = useSidebarStore((state) => state.widthRight);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
@@ -67,7 +67,6 @@ const Sidebar = ({ align }: SidebarProps) => {
       setSidebarWidthRight(size.width);
     }
 
-    // Update min/max states
     setIsAtMin(size.width <= minWidth);
     setIsAtMax(size.width >= maxWidth);
   };
@@ -82,16 +81,24 @@ const Sidebar = ({ align }: SidebarProps) => {
     setIsResizing(false);
   };
 
-  const sidebarStyle = clsx(
-    "absolute top-0 h-full border-black/10 dark:border-black/60",
+  const leftSidebarIsClosed =
+    windowBackground === "transparent" && align === "left" && !sidebarOpenLeft;
+
+  const rightSidebarIsClosed =
+    windowBackground === "transparent" &&
+    align === "right" &&
+    !sidebarOpenRight;
+
+  const sidebarStyle = clsx([
+    "absolute top-0 h-full",
     mounted && "transition duration-50 ease-linear",
-    align === "left" && "left-0 border-r",
-    align === "right" && "right-0 border-l",
-    align === "left" && !sidebarOpenLeft && "opacity-0",
-    align === "right" && !sidebarOpenRight && "opacity-0",
+    align === "left" && "left-0",
+    align === "right" && "right-0",
     align === "left" && sidebarOpenLeft && "drag",
     align === "right" && sidebarOpenRight && "drag",
-  );
+    leftSidebarIsClosed && "opacity-0",
+    rightSidebarIsClosed && "opacity-0",
+  ]);
 
   const resizeHandle = (
     <div

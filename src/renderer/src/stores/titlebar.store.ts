@@ -3,7 +3,7 @@ import { create } from "zustand";
 interface State {
   actionsLeft: React.ReactNode[] | null;
   actionsRight: React.ReactNode[] | null;
-  hasBackground: boolean;
+  borderOnScroll: boolean;
   height: number;
   subtitle: string | null;
   title: string | null;
@@ -14,12 +14,12 @@ interface State {
 const initialState: State = {
   actionsLeft: [],
   actionsRight: [],
-  hasBackground: false,
+  borderOnScroll: false,
   height: 0,
   subtitle: null,
   title: null,
   trafficLightPosition: null,
-  visible: true,
+  visible: false,
 };
 
 const useTitlebarStore = create<State>(() => ({
@@ -27,14 +27,7 @@ const useTitlebarStore = create<State>(() => ({
 }));
 
 export const setTitlebarVisible = (visible: boolean) => {
-  useTitlebarStore.setState({
-    height: visible ? useTitlebarStore.getState().height : 0,
-    visible,
-  });
-};
-
-export const setTitlebarBackground = (hasBackground: boolean) => {
-  useTitlebarStore.setState({ hasBackground });
+  useTitlebarStore.setState({ visible });
 };
 
 export const setTrafficLightPosition = (position: { x: number; y: number }) => {
@@ -59,6 +52,10 @@ export const setTitlebarActionsRight = (component: React.ReactNode) => {
 
 export const setTitlebarHeight = (height: number) => {
   useTitlebarStore.setState({ height });
+};
+
+export const setTitlebarBorderOnScroll = (borderOnScroll: boolean) => {
+  useTitlebarStore.setState({ borderOnScroll });
 };
 
 export default useTitlebarStore;

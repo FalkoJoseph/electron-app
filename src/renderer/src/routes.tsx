@@ -1,8 +1,7 @@
-import BaseLayout from "@/components/layouts/BaseLayout";
-
 import Bookmarks from "@/components/pages/Bookmarks/Bookmarks";
 import Home from "@/components/pages/Home/Home";
 import NotFound from "@/components/pages/NotFound/NotFound";
+import Layout from "@/components/system/Layout/Layout";
 
 const routes = [
   {
@@ -17,7 +16,7 @@ const routes = [
         path: "bookmarks",
       },
     ],
-    element: <BaseLayout />,
+    element: <Layout />,
     path: "/",
   },
   { element: <NotFound />, path: "*" },

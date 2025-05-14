@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
+import { setTitlebarBorderOnScroll } from "./titlebar.store";
+
 interface State {
-  background: string;
-  hasBackground: boolean;
+  background: "transparent" | "light" | "dark" | "default";
   mounted: boolean;
 }
 
 const initialState: State = {
-  background: "bg-white dark:bg-neutral-800/80",
-  hasBackground: false,
+  background: "light",
   mounted: false,
 };
 
@@ -20,8 +20,11 @@ export const setWindowMounted = (mounted: boolean) => {
   useWindowStore.setState({ mounted });
 };
 
-export const setWindowBackground = (hasBackground: boolean) => {
-  useWindowStore.setState({ hasBackground });
+export const setWindowBackground = (
+  background: "light" | "dark" | "transparent" | "default",
+) => {
+  useWindowStore.setState({ background });
+  setTitlebarBorderOnScroll(background !== "default");
 };
 
 export default useWindowStore;

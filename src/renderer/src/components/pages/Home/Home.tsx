@@ -14,10 +14,13 @@ const Home = () => {
 
   return (
     <div className="p-5">
-      <h1>Welcome</h1>
+      <p>Electron App for macOS</p>
+
       <Button variant="primary" onClick={() => navigate("/bookmarks")}>
         Bookmarks
       </Button>
+
+      <div className="w-100 h-200"></div>
     </div>
   );
 };
