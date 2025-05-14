@@ -9,12 +9,12 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     autoHideMenuBar: true,
     height: 600,
-    minHeight: 400,
+    minHeight: 250,
     minWidth: 600,
     show: false,
     titleBarStyle: "hidden",
     vibrancy: "sidebar",
-    width: 900,
+    width: 800,
     ...(process.platform === "linux" ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, "../preload/index.js"),
@@ -81,6 +81,16 @@ app.whenReady().then(() => {
   ipcMain.handle("get-fullscreen-state", () => {
     const windows = BrowserWindow.getAllWindows();
     return windows[0]?.isFullScreen() ?? false;
+  });
+
+  // Handle window resize request
+  ipcMain.on("resize-window", (_, width: number) => {
+    const windows = BrowserWindow.getAllWindows();
+    const window = windows[0];
+    if (window) {
+      const [, currentHeight] = window.getSize();
+      window.setSize(width, currentHeight);
+    }
   });
 
   createWindow();

@@ -22,7 +22,7 @@ const initialState: State = {
   isOpenLeft: false,
   isOpenRight: false,
   isResizing: false,
-  maxWidth: 500,
+  maxWidth: 300,
   minWidth: 180,
   widthLeft: 200,
   widthRight: 200,

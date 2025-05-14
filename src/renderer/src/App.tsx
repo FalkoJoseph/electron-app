@@ -17,6 +17,7 @@ import Button from "@/components/system/Button/Button";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
+  const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
 
   useEffect(() => {
     // Window
@@ -48,5 +49,5 @@ export const useApp = () => {
         Chat
       </Button>,
     ]);
-  }, [sidebarOpenLeft]);
+  }, [sidebarOpenLeft, sidebarOpenRight]);
 };

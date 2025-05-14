@@ -5,12 +5,17 @@ import { motion } from "motion/react";
 
 import { useFullscreen } from "@/hooks/system/useFullscreen.hook";
 
-import useSidebarStore from "@/stores/system/sidebar.store";
+import useSidebarStore, {
+  setSidebarOpenLeft,
+  setSidebarOpenRight,
+} from "@/stores/system/sidebar.store";
 import useTitlebarStore from "@/stores/system/titlebar.store";
 import useWindowStore, { setWindowMounted } from "@/stores/system/window.store";
 
 import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 import Titlebar from "@/components/system/Titlebar/Titlebar";
+
+const MIN_WINDOW_WIDTH = 800;
 
 const Window = ({ children }: { children: React.ReactNode }) => {
   const windowMounted = useWindowStore((state) => state.mounted);
@@ -23,8 +28,65 @@ const Window = ({ children }: { children: React.ReactNode }) => {
   const titlebarVisible = useTitlebarStore((state) => state.visible);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  const [wasLeftSidebarOpen, setWasLeftSidebarOpen] = useState(false);
+  const [wasRightSidebarOpen, setWasRightSidebarOpen] = useState(false);
 
   useFullscreen();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isResizing) return;
+
+      const windowWidth = window.innerWidth;
+
+      if (windowWidth < MIN_WINDOW_WIDTH) {
+        if (sidebarOpenLeft) {
+          setWasLeftSidebarOpen(true);
+          setSidebarOpenLeft(false);
+        }
+        if (sidebarOpenRight) {
+          setWasRightSidebarOpen(true);
+          setSidebarOpenRight(false);
+        }
+      } else {
+        if (wasLeftSidebarOpen) {
+          setSidebarOpenLeft(true);
+          setWasLeftSidebarOpen(false);
+        }
+        if (wasRightSidebarOpen) {
+          setSidebarOpenRight(true);
+          setWasRightSidebarOpen(false);
+        }
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [
+    sidebarOpenLeft,
+    sidebarOpenRight,
+    isResizing,
+    wasLeftSidebarOpen,
+    wasRightSidebarOpen,
+  ]);
+
+  useEffect(() => {
+    if (isResizing) return;
+
+    const windowWidth = window.innerWidth;
+    const requiredWidth = MIN_WINDOW_WIDTH;
+
+    if (
+      windowWidth < MIN_WINDOW_WIDTH &&
+      requiredWidth > windowWidth &&
+      (sidebarOpenLeft || sidebarOpenRight)
+    ) {
+      setIsResizing(true);
+      window.api.resizeWindow(requiredWidth);
+      setTimeout(() => setIsResizing(false), 100);
+    }
+  }, [sidebarOpenLeft, sidebarOpenRight, isResizing]);
 
   const windowBackgroundStyle = clsx(
     windowBackground === "default" && "bg-white dark:bg-neutral-700",

@@ -9,6 +9,9 @@ const api = {
       callback(isFullscreen);
     });
   },
+  resizeWindow: (width: number) => {
+    ipcRenderer.send("resize-window", width);
+  },
   updateTrafficLightPosition: (position: { x: number; y: number }) => {
     ipcRenderer.send("update-traffic-light-position", position);
   },
