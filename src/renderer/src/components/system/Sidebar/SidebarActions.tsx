@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 import clsx from "clsx";
 
-import useSidebarStore from "@/stores/sidebar.store";
-import useTitlebarStore from "@/stores/titlebar.store";
+import useSidebarStore from "@/stores/system/sidebar.store";
+import useTitlebarStore from "@/stores/system/titlebar.store";
+import useWindowStore from "@/stores/system/window.store";
 
 import TitlebarItem from "@/components/system/Titlebar/TitlebarItem";
 
@@ -16,6 +17,7 @@ const SidebarActions = ({ align }: SidebarProps) => {
   const actionsRight = useSidebarStore((state) => state.actionsRight);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const isTitlebarVisible = useTitlebarStore((state) => state.visible);
+  const isFullscreen = useWindowStore((state) => state.isFullscreen);
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
 
@@ -29,7 +31,7 @@ const SidebarActions = ({ align }: SidebarProps) => {
   const sidebarActionsStyle = clsx(
     "absolute z-50",
     `sidebar-actions-${align}`,
-    align === "left" && "left-21",
+    align === "left" && (isFullscreen ? "left-2.5" : "left-21"),
     align === "right" && "right-3",
   );
 

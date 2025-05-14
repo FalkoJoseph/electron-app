@@ -3,6 +3,12 @@ import { contextBridge, ipcRenderer } from "electron";
 
 // Custom APIs for renderer
 const api = {
+  getFullscreenState: () => ipcRenderer.invoke("get-fullscreen-state"),
+  onFullscreenChange: (callback: (isFullscreen: boolean) => void) => {
+    ipcRenderer.on("window-fullscreen-change", (_, isFullscreen) => {
+      callback(isFullscreen);
+    });
+  },
   updateTrafficLightPosition: (position: { x: number; y: number }) => {
     ipcRenderer.send("update-traffic-light-position", position);
   },

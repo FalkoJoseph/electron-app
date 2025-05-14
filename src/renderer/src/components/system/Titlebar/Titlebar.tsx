@@ -7,11 +7,11 @@ import TitlebarItem from "./TitlebarItem";
 import { useTitlebarHeight } from "@/hooks/system/useTitlebarHeight.hook";
 import { useTrafficLight } from "@/hooks/system/useTrafficLight.hook";
 
-import useSidebarStore from "@/stores/sidebar.store";
+import useSidebarStore from "@/stores/system/sidebar.store";
 import useTitlebarStore, {
   setTrafficLightPosition,
-} from "@/stores/titlebar.store";
-import useWindowStore from "@/stores/window.store";
+} from "@/stores/system/titlebar.store";
+import useWindowStore from "@/stores/system/window.store";
 
 interface TitlebarProps {
   isScrolled: boolean;
@@ -19,6 +19,7 @@ interface TitlebarProps {
 
 const Titlebar = ({ isScrolled }: TitlebarProps) => {
   const windowBackground = useWindowStore((state) => state.background);
+  const isFullscreen = useWindowStore((state) => state.isFullscreen);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const titlebarActionsLeft = useTitlebarStore((state) => state.actionsLeft);
   const titlebarActionsRight = useTitlebarStore((state) => state.actionsRight);
@@ -45,7 +46,7 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
     const rightActions = document.querySelector(".sidebar-actions-right");
 
     if (leftActions && leftActions.getBoundingClientRect().width > 0) {
-      const trafficLightWidth = 85;
+      const trafficLightWidth = isFullscreen ? 10 : 85;
       setLeftActionsWidth(
         leftActions.getBoundingClientRect().width + trafficLightWidth,
       );
@@ -54,11 +55,11 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
       const gap = 8;
       setRightActionsWidth(rightActions.getBoundingClientRect().width + gap);
     }
-  }, [titlebarActionsLeft, titlebarActionsRight]);
+  }, [titlebarActionsLeft, titlebarActionsRight, isFullscreen]);
 
   const titlebarStyle = clsx([
-    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-center text-sm text-black/80 transition duration-200 dark:text-white/80",
-    windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-800",
+    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-center text-sm text-black/80 transition-[border-bottom-color] duration-200 dark:text-white/80",
+    windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-700",
     windowBackground === "light" && "bg-white dark:bg-neutral-700",
     windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
     sidebarOpenLeft && "border-l border-l-black/15 dark:border-l-black/60",

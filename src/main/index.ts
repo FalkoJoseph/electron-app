@@ -8,7 +8,9 @@ function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     autoHideMenuBar: true,
-    height: 670,
+    height: 600,
+    minHeight: 400,
+    minWidth: 600,
     show: false,
     titleBarStyle: "hidden",
     vibrancy: "sidebar",
@@ -27,6 +29,15 @@ function createWindow(): void {
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
     return { action: "deny" };
+  });
+
+  // Handle fullscreen changes
+  mainWindow.on("enter-full-screen", () => {
+    mainWindow.webContents.send("window-fullscreen-change", true);
+  });
+
+  mainWindow.on("leave-full-screen", () => {
+    mainWindow.webContents.send("window-fullscreen-change", false);
   });
 
   // HMR for renderer base on electron-vite cli.
@@ -64,6 +75,12 @@ app.whenReady().then(() => {
     windows.forEach((window) => {
       window.setWindowButtonPosition(position);
     });
+  });
+
+  // Handle get fullscreen state request
+  ipcMain.handle("get-fullscreen-state", () => {
+    const windows = BrowserWindow.getAllWindows();
+    return windows[0]?.isFullScreen() ?? false;
   });
 
   createWindow();

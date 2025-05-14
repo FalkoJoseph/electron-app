@@ -6,17 +6,9 @@
 
 @import "./tailwind.config.css";
 
+/* System */
+
+@import "./system/buttons.css";
+@import "./system/system.css";
+
 /* Modules */
-
-@import "./modules/buttons.css";
-@import "./modules/system.css";
-
-/* Custom utilities */
-
-@utility drag {
-  -webkit-app-region: drag;
-}
-
-@utility no-drag {
-  -webkit-app-region: no-drag;
-}

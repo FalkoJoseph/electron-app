@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import { setTitlebarTitle } from "@/stores/titlebar.store";
+import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
 

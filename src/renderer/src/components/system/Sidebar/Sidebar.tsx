@@ -8,9 +8,9 @@ import useSidebarStore, {
   setSidebarResizing,
   setSidebarWidthLeft,
   setSidebarWidthRight,
-} from "@/stores/sidebar.store";
-import useTitlebarStore from "@/stores/titlebar.store";
-import useWindowStore from "@/stores/window.store";
+} from "@/stores/system/sidebar.store";
+import useTitlebarStore from "@/stores/system/titlebar.store";
+import useWindowStore from "@/stores/system/window.store";
 
 interface SidebarProps {
   align: "left" | "right";
@@ -96,6 +96,8 @@ const Sidebar = ({ align }: SidebarProps) => {
     align === "right" && "right-0",
     align === "left" && sidebarOpenLeft && "drag",
     align === "right" && sidebarOpenRight && "drag",
+    align === "left" && "z-10",
+    align === "right" && !sidebarOpenRight && "-z-10",
     leftSidebarIsClosed && "opacity-0",
     rightSidebarIsClosed && "opacity-0",
   ]);
@@ -103,8 +105,8 @@ const Sidebar = ({ align }: SidebarProps) => {
   const resizeHandle = (
     <div
       className={clsx(
-        "absolute top-0 h-full w-[20px] no-drag",
-        align === "left" ? "-right-[10px]" : "-left-[10px]",
+        "absolute top-0 h-full w-[10px] no-drag",
+        align === "left" ? "-right-[5px]" : "-left-[5px]",
       )}
       style={{ cursor: isResizing ? getResizeCursor() : "col-resize" }}
     />

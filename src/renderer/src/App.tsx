@@ -4,12 +4,12 @@ import useSidebarStore, {
   setSidebarActionsLeft,
   setSidebarOpenLeft,
   setSidebarOpenRight,
-} from "@/stores/sidebar.store";
+} from "@/stores/system/sidebar.store";
 import {
   setTitlebarActionsRight,
   setTitlebarVisible,
-} from "@/stores/titlebar.store";
-import { setWindowBackground } from "@/stores/window.store";
+} from "@/stores/system/titlebar.store";
+import { setWindowBackground } from "@/stores/system/window.store";
 
 import IconSidebar from "@/assets/svg/IconSidebar";
 import Button from "@/components/system/Button/Button";
@@ -19,10 +19,10 @@ export const useApp = () => {
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
 
   useEffect(() => {
-    setWindowBackground("light");
+    setWindowBackground("dark");
     setTitlebarVisible(true);
     setSidebarOpenLeft(true);
-    setSidebarOpenRight(true);
+    setSidebarOpenRight(false);
   }, []);
 
   useEffect(() => {

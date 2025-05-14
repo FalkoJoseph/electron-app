@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { motion } from "motion/react";
 
-import useSidebarStore from "@/stores/sidebar.store";
-import useTitlebarStore from "@/stores/titlebar.store";
-import useWindowStore, { setWindowMounted } from "@/stores/window.store";
+import { useFullscreen } from "@/hooks/system/useFullscreen.hook";
+
+import useSidebarStore from "@/stores/system/sidebar.store";
+import useTitlebarStore from "@/stores/system/titlebar.store";
+import useWindowStore, { setWindowMounted } from "@/stores/system/window.store";
 
 import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 import Titlebar from "@/components/system/Titlebar/Titlebar";
@@ -22,8 +24,10 @@ const Window = ({ children }: { children: React.ReactNode }) => {
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  useFullscreen();
+
   const windowBackgroundStyle = clsx(
-    windowBackground === "default" && "bg-white dark:bg-neutral-800",
+    windowBackground === "default" && "bg-white dark:bg-neutral-700",
     windowBackground === "light" && "bg-white dark:bg-neutral-700",
     windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
   );

@@ -1,14 +1,16 @@
 import { create } from "zustand";
 
-import { setTitlebarBorderOnScroll } from "./titlebar.store";
+import { setTitlebarBorderOnScroll } from "@/stores/system/titlebar.store";
 
 interface State {
   background: "transparent" | "light" | "dark" | "default";
+  isFullscreen: boolean;
   mounted: boolean;
 }
 
 const initialState: State = {
   background: "light",
+  isFullscreen: false,
   mounted: false,
 };
 
@@ -25,6 +27,10 @@ export const setWindowBackground = (
 ) => {
   useWindowStore.setState({ background });
   setTitlebarBorderOnScroll(background !== "default");
+};
+
+export const setWindowFullscreen = (isFullscreen: boolean) => {
+  useWindowStore.setState({ isFullscreen });
 };
 
 export default useWindowStore;

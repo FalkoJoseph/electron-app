@@ -5,7 +5,9 @@ interface IElectronAPI extends ElectronAPI {
 }
 
 interface IAPI {
+  getFullscreenState: () => Promise<boolean>;
   updateTrafficLightPosition: (position: { x: number; y: number }) => void;
+  onFullscreenChange: (callback: (isFullscreen: boolean) => void) => void;
 }
 
 declare global {

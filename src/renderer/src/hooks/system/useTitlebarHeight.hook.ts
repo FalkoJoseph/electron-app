@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { setTitlebarHeight } from "@/stores/titlebar.store";
+import { setTitlebarHeight } from "@/stores/system/titlebar.store";
 
 export const useTitlebarHeight = () => {
   useEffect(() => {
