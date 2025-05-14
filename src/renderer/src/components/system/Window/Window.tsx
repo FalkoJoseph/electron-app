@@ -15,7 +15,7 @@ import useWindowStore, { setWindowMounted } from "@/stores/system/window.store";
 import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 import Titlebar from "@/components/system/Titlebar/Titlebar";
 
-const MIN_WINDOW_WIDTH = 800;
+const MIN_WINDOW_WIDTH = 700;
 
 const Window = ({ children }: { children: React.ReactNode }) => {
   const windowMounted = useWindowStore((state) => state.mounted);

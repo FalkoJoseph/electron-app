@@ -14,7 +14,7 @@ function createWindow(): void {
     show: false,
     titleBarStyle: "hidden",
     vibrancy: "sidebar",
-    width: 800,
+    width: 700,
     ...(process.platform === "linux" ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, "../preload/index.js"),
