@@ -71,12 +71,10 @@ const InputText = ({
         <div
           className={clsx(
             "absolute right-2 top-1/2 -translate-y-1/2 transition-[scale,opacity] ease-in-out duration-200  rounded-full size-3.5 flex items-center justify-center",
+            "bg-black/50 dark:bg-white/50 active:bg-black/20 dark:active:bg-white/20 text-white dark:text-black",
             value
               ? "scale-100 opacity-100"
               : "scale-80 opacity-0 pointer-events-none",
-            variant === "sidebar" && [
-              "bg-black/50 dark:bg-white/50 active:bg-black/20 dark:active:bg-white/20 text-white dark:text-black",
-            ],
           )}
           onClick={handleClear}
         >

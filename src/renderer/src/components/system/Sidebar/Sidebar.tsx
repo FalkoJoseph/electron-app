@@ -188,7 +188,7 @@ const Sidebar = ({ align }: SidebarProps) => {
           {hasSearch && (
             <div
               className={clsx([
-                "flex items-center justify-between no-drag px-3 pt-1 pb-3.5 transition-all duration-100",
+                "flex items-center justify-between no-drag px-2.5 pt-1 pb-3.5 transition-all duration-100",
                 isScrolled
                   ? "border-b border-black/20 dark:border-black/60 shadow-bottom"
                   : "border-b border-transparent",

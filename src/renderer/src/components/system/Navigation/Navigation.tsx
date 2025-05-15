@@ -53,7 +53,7 @@ interface NavigationItem {
 interface NavigationGroup {
   activeColor: ColorName | "default";
   items: NavigationItem[];
-  label: string;
+  label?: string;
 }
 
 interface NavigationProps {
@@ -90,20 +90,22 @@ const Navigation = ({ contents }: NavigationProps) => {
     <nav className="flex flex-col gap-4">
       {contents.map((group, groupIndex) => (
         <div key={groupIndex} className="flex flex-col gap-0.5 no-drag">
-          <button
-            className="group flex items-center justify-between gap-4 px-5 text-xxs font-semibold text-black/30 dark:text-white/40"
-            onClick={() => toggleGroup(groupIndex)}
-          >
-            {group.label}
-
-            <motion.div
-              animate={{ rotate: expandedGroups[groupIndex] ? 90 : 0 }}
-              className="text-black group-hover:opacity-30 opacity-0 transition-opacity duration-100 group-active:opacity-60 dark:text-white"
-              transition={{ duration: 0.2 }}
+          {group.label && (
+            <button
+              className="group flex items-center justify-between gap-4 px-5 text-xxs font-semibold text-black/30 dark:text-white/40"
+              onClick={() => toggleGroup(groupIndex)}
             >
-              <RiArrowRightSLine className="size-5" />
-            </motion.div>
-          </button>
+              {group.label}
+
+              <motion.div
+                animate={{ rotate: expandedGroups[groupIndex] ? 90 : 0 }}
+                className="text-black group-hover:opacity-30 opacity-0 transition-opacity duration-100 group-active:opacity-60 dark:text-white"
+                transition={{ duration: 0.2 }}
+              >
+                <RiArrowRightSLine className="size-5" />
+              </motion.div>
+            </button>
+          )}
 
           <motion.div
             animate={{ height: expandedGroups[groupIndex] ? "auto" : 0 }}
