@@ -9,11 +9,13 @@ const routes = [
       {
         element: <Home />,
         path: "",
+        title: "home",
       },
       // Add your routes here
       {
         element: <Bookmarks />,
         path: "bookmarks",
+        title: "bookmarks",
       },
     ],
     element: <Layout />,

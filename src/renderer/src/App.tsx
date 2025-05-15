@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 
-import { RiShare2Line } from "@remixicon/react";
+import { RiBookmarkLine, RiHome5Line, RiShare2Line } from "@remixicon/react";
 
 import useSidebarStore, {
   setSidebarActionsLeft,
+  setSidebarContentLeft,
   setSidebarLeft,
   setSidebarOpenLeft,
 } from "@/stores/system/sidebar.store";
@@ -17,12 +18,35 @@ import { setWindowBackground } from "@/stores/system/window.store";
 
 import IconSidebar from "@/assets/svg/IconSidebar";
 import Button from "@/components/system/Button/Button";
+import Navigation, {
+  type ColorName,
+} from "@/components/system/Navigation/Navigation";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
 
   useEffect(() => {
+    // Navigation
+    const navigation = [
+      {
+        activeColor: "blue" as ColorName,
+        items: [
+          {
+            icon: <RiHome5Line />,
+            label: "Home",
+            path: "/",
+          },
+          {
+            icon: <RiBookmarkLine />,
+            label: "Bookmarks",
+            path: "bookmarks",
+          },
+        ],
+        label: "Contents",
+      },
+    ];
+
     // Window
     setWindowBackground("dark");
 
@@ -34,6 +58,7 @@ export const useApp = () => {
     // Sidebar
     setSidebarLeft(true);
     setSidebarOpenLeft(true);
+    setSidebarContentLeft(<Navigation contents={navigation} />);
   }, []);
 
   useEffect(() => {

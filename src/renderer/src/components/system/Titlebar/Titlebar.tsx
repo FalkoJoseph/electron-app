@@ -89,9 +89,7 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
   return (
     <div className={titlebarStyle}>
       <div
-        className={clsx([
-          titlebarAlign === "left" ? "hidden" : "w-1/3 text-center",
-        ])}
+        className={clsx([titlebarAlign === "left" && "hidden"])}
         style={{
           paddingLeft:
             !sidebarOpenLeft && titlebarActionsLeft?.length
@@ -109,7 +107,8 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
 
       <div
         className={clsx([
-          titlebarAlign === "left" ? "w-2/3" : "w-1/3 text-center",
+          "flex-1",
+          titlebarAlign === "center" && "text-center",
         ])}
         style={{
           paddingLeft:
@@ -123,7 +122,6 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
       </div>
 
       <div
-        className="w-1/3"
         style={{
           paddingRight:
             !sidebarOpenRight && titlebarActionsRight?.length

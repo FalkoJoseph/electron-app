@@ -22,6 +22,7 @@ const Sidebar = ({ align }: SidebarProps) => {
   const [isAtMin, setIsAtMin] = useState(false);
   const [isAtMax, setIsAtMax] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+  const [isTransitionComplete, setIsTransitionComplete] = useState(false);
 
   const windowBackground = useWindowStore((state) => state.background);
   const titlebarHeight = useTitlebarStore((state) => state.height);
@@ -32,6 +33,8 @@ const Sidebar = ({ align }: SidebarProps) => {
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
   const minWidth = useSidebarStore((state) => state.minWidth);
   const maxWidth = useSidebarStore((state) => state.maxWidth);
+  const contentLeft = useSidebarStore((state) => state.contentLeft);
+  const contentRight = useSidebarStore((state) => state.contentRight);
 
   const currentWidth = align === "left" ? widthLeft : widthRight;
 
@@ -76,6 +79,22 @@ const Sidebar = ({ align }: SidebarProps) => {
     }
   }, [align]);
 
+  // Handle transition timing
+  useEffect(() => {
+    if (sidebarOpenLeft || sidebarOpenRight) {
+      const timer = setTimeout(() => {
+        setIsTransitionComplete(true);
+      }, 180);
+      return () => clearTimeout(timer);
+    } else {
+      setIsTransitionComplete(false);
+    }
+
+    return () => {
+      setIsTransitionComplete(false);
+    };
+  }, [sidebarOpenLeft, sidebarOpenRight]);
+
   const handleResize = (
     _: React.SyntheticEvent,
     { size }: { size: { width: number } },
@@ -114,8 +133,9 @@ const Sidebar = ({ align }: SidebarProps) => {
     align === "right" && "right-0",
     align === "left" && sidebarOpenLeft && "drag",
     align === "right" && sidebarOpenRight && "drag",
-    align === "left" && "z-10",
+    align === "left" && sidebarOpenLeft && isTransitionComplete && "z-10",
     align === "right" && !sidebarOpenRight && "-z-10",
+    align === "right" && sidebarOpenRight && isTransitionComplete && "z-20",
     leftSidebarIsClosed && "opacity-0",
     rightSidebarIsClosed && "opacity-0",
   ]);
@@ -153,7 +173,10 @@ const Sidebar = ({ align }: SidebarProps) => {
             : undefined
         }
       >
-        <div className="h-full overflow-y-auto">sidebar {align}</div>
+        <div className="h-full overflow-y-auto">
+          {align === "left" && contentLeft}
+          {align === "right" && contentRight}
+        </div>
       </div>
     </Resizable>
   );

@@ -10,6 +10,10 @@ body {
   @apply text-[0.8rem];
 }
 
+@utility text-xxs {
+  @apply text-[0.7rem];
+}
+
 /* Backgrounds */
 
 @utility bg-control {
@@ -40,6 +44,22 @@ body {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
+/* Resizable */
+
+.react-resizable {
+  @apply absolute;
+}
+
+/* Drag */
+
+@utility drag {
+  -webkit-app-region: drag;
+}
+
+@utility no-drag {
+  -webkit-app-region: no-drag;
+}
+
 /* Dark mode */
 
 @utility shadow-inset {
@@ -56,20 +76,4 @@ body {
       inset 0 -1px 0 0 rgba(0, 0, 0, 0.9),
       0px 3px 3px rgba(0, 0, 0, 0.1);
   }
-}
-
-/* Resizable */
-
-.react-resizable {
-  @apply absolute;
-}
-
-/* Drag */
-
-@utility drag {
-  -webkit-app-region: drag;
-}
-
-@utility no-drag {
-  -webkit-app-region: no-drag;
 }
