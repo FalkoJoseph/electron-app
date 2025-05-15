@@ -26,6 +26,7 @@ const Sidebar = ({ align }: SidebarProps) => {
   const [isAtMax, setIsAtMax] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [isTransitionComplete, setIsTransitionComplete] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const windowBackground = useWindowStore((state) => state.background);
   const titlebarHeight = useTitlebarStore((state) => state.height);
@@ -155,6 +156,11 @@ const Sidebar = ({ align }: SidebarProps) => {
     />
   );
 
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop } = event.currentTarget;
+    setIsScrolled(scrollTop > 0);
+  };
+
   return (
     <Resizable
       axis={align === "right" ? "x" : "x"}
@@ -180,7 +186,14 @@ const Sidebar = ({ align }: SidebarProps) => {
       >
         <div className="flex flex-col h-full">
           {hasSearch && (
-            <div className="flex items-center justify-between no-drag px-3 pt-1 pb-3.5">
+            <div
+              className={clsx([
+                "flex items-center justify-between no-drag px-3 pt-1 pb-3.5 transition-all duration-100",
+                isScrolled
+                  ? "border-b border-black/20 dark:border-black/60 shadow-bottom"
+                  : "border-b border-transparent",
+              ])}
+            >
               <InputText
                 iconPrefix={<RiSearchLine size={15} />}
                 placeholder={search.placeholder ?? ""}
@@ -191,7 +204,7 @@ const Sidebar = ({ align }: SidebarProps) => {
               />
             </div>
           )}
-          <div className="h-full overflow-y-auto">
+          <div className="h-full overflow-y-auto" onScroll={handleScroll}>
             {align === "left" && contentLeft}
             {align === "right" && contentRight}
           </div>
