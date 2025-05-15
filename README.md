@@ -8,6 +8,12 @@ An Electron application with React and TypeScript
 
 ## Project Setup
 
+### Setup
+
+1. Set the `name` in `package.json` to the name of the app.
+2. Set the `appId` and `productName` in `electron-builder.yml` to the name of the app.
+3. Set the `name` in `src/renderer/src/stores/app.store.ts` to the name of the app.
+
 ### Install
 
 ```bash

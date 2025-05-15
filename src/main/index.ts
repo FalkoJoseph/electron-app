@@ -3,18 +3,19 @@ import { BrowserWindow, app, ipcMain, shell } from "electron";
 import { join } from "path";
 
 import icon from "../../resources/icon.png?asset";
+import { WINDOW_DIMENSIONS } from "../shared/constants";
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     autoHideMenuBar: true,
-    height: 600,
-    minHeight: 250,
-    minWidth: 600,
+    height: WINDOW_DIMENSIONS.height,
+    minHeight: WINDOW_DIMENSIONS.minHeight,
+    minWidth: WINDOW_DIMENSIONS.minWidth,
     show: false,
     titleBarStyle: "hidden",
     vibrancy: "sidebar",
-    width: 700,
+    width: WINDOW_DIMENSIONS.width,
     ...(process.platform === "linux" ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, "../preload/index.js"),

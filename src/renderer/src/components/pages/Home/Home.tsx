@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 
-import { RiSearchLine } from "@remixicon/react";
-
+import useAppStore from "@/stores/app.store";
 import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
-import InputText from "@/components/system/InputText/InputText";
+import InputText from "@/components/system/Input/InputText";
 
 const Home = () => {
+  const appName = useAppStore((state) => state.name);
+
   useEffect(() => {
-    setTitlebarTitle("Electron App");
-  }, []);
+    setTitlebarTitle(appName);
+  }, [appName]);
 
   return (
     <div className="flex flex-col p-5 gap-2">
@@ -24,7 +25,6 @@ const Home = () => {
       </div>
       <div className="w-50">
         <InputText
-          iconPrefix={<RiSearchLine size={15} />}
           placeholder="Search"
           size="large"
           isClearable

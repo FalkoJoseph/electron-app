@@ -15,7 +15,7 @@ import useSidebarStore, {
 import useTitlebarStore from "@/stores/system/titlebar.store";
 import useWindowStore from "@/stores/system/window.store";
 
-import InputText from "@/components/system/InputText/InputText";
+import InputText from "@/components/system/Input/InputText";
 
 interface SidebarProps {
   align: "left" | "right";

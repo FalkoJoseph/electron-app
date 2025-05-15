@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 
 import { useFullscreen } from "@/hooks/system/useFullscreen.hook";
 
+import useAppStore from "@/stores/app.store";
 import useSidebarStore, {
   setSidebarOpenLeft,
   setSidebarOpenRight,
@@ -14,8 +15,6 @@ import useWindowStore, { setWindowMounted } from "@/stores/system/window.store";
 
 import SidebarActions from "@/components/system/Sidebar/SidebarActions";
 import Titlebar from "@/components/system/Titlebar/Titlebar";
-
-const MIN_WINDOW_WIDTH = 700;
 
 const Window = ({ children }: { children: React.ReactNode }) => {
   const windowMounted = useWindowStore((state) => state.mounted);
@@ -28,6 +27,7 @@ const Window = ({ children }: { children: React.ReactNode }) => {
   const sidebarIsResizing = useSidebarStore((state) => state.isResizing);
   const titlebarVisible = useTitlebarStore((state) => state.visible);
   const titlebarHeight = useTitlebarStore((state) => state.height);
+  const windowWidth = useAppStore((state) => state.windowDimensions.width);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [isWindowResizing, setIsWindowResizing] = useState(false);
@@ -41,9 +41,9 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     const handleResize = () => {
       if (isResizing) return;
 
-      const windowWidth = window.innerWidth;
+      const currentWindowWidth = window.innerWidth;
 
-      if (windowWidth < MIN_WINDOW_WIDTH) {
+      if (currentWindowWidth < windowWidth) {
         if (sidebarOpenLeft) {
           setWasLeftSidebarOpen(true);
           setSidebarOpenLeft(false);
@@ -72,6 +72,7 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     isResizing,
     wasLeftSidebarOpen,
     wasRightSidebarOpen,
+    windowWidth,
   ]);
 
   useEffect(() => {
@@ -99,19 +100,19 @@ const Window = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (isResizing) return;
 
-    const windowWidth = window.innerWidth;
-    const requiredWidth = MIN_WINDOW_WIDTH;
+    const currentWindowWidth = window.innerWidth;
+    const requiredWidth = windowWidth;
 
     if (
-      windowWidth < MIN_WINDOW_WIDTH &&
-      requiredWidth > windowWidth &&
+      currentWindowWidth < windowWidth &&
+      requiredWidth > currentWindowWidth &&
       (sidebarOpenLeft || sidebarOpenRight)
     ) {
       setIsResizing(true);
       window.api.resizeWindow(requiredWidth);
       setTimeout(() => setIsResizing(false), 100);
     }
-  }, [sidebarOpenLeft, sidebarOpenRight, isResizing]);
+  }, [sidebarOpenLeft, sidebarOpenRight, isResizing, windowWidth]);
 
   const hasTitlebarShadow =
     windowBackground === "default" ||

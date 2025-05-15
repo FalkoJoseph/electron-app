@@ -25,7 +25,6 @@ import Navigation, {
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
-  const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
 
   useEffect(() => {
     // Navigation
@@ -44,7 +43,7 @@ export const useApp = () => {
             path: "bookmarks",
           },
         ],
-        label: "Contents",
+        label: "Library",
       },
     ];
 
@@ -56,19 +55,6 @@ export const useApp = () => {
     setTitlebarSize("large");
     setTitlebarAlign("center");
 
-    // Sidebar
-    setSidebarLeft(true);
-    setSidebarOpenLeft(true);
-    setSidebarContentLeft(<Navigation contents={navigation} />);
-    setSidebarSearch({
-      handleChange: (value) => {
-        console.log("from the sidebar:", value);
-      },
-      placeholder: "Search",
-    });
-  }, []);
-
-  useEffect(() => {
     // Titlebar actions
     setTitlebarActionsRight([
       <Button key="sidebar" size="icon" variant="transparent">
@@ -76,7 +62,20 @@ export const useApp = () => {
       </Button>,
     ]);
 
-    // Sidebar actions
+    // Sidebar
+    setSidebarLeft(true);
+    setSidebarOpenLeft(true);
+    setSidebarContentLeft(<Navigation contents={navigation} />);
+    setSidebarSearch({
+      handleChange: (value) => {
+        console.log("searching:", value);
+      },
+      placeholder: "Search",
+    });
+  }, []);
+
+  // Sidebar actions
+  useEffect(() => {
     setSidebarActionsLeft([
       <Button
         key="sidebar"
@@ -87,5 +86,5 @@ export const useApp = () => {
         <IconSidebar className="size-5" />
       </Button>,
     ]);
-  }, [sidebarOpenLeft, sidebarOpenRight]);
+  }, [sidebarOpenLeft]);
 };

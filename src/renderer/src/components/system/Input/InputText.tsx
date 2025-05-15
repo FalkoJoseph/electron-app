@@ -48,12 +48,13 @@ const InputText = ({
       size === "large" && "px-3 py-[7px]",
       size === "small" && "px-1 py-[1px]",
     ],
-    iconPrefix && "pl-7",
-    isClearable && "pr-8",
+    iconPrefix && (variant === "sidebar" || size === "large") && "pl-7",
+    iconPrefix && size === "small" && "pl-6",
+    isClearable && "pr-7.5",
   ]);
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {iconPrefix && (
         <div className="absolute left-2 top-1/2 -translate-y-1/2 text-system opacity-50 pointer-events-none">
           {iconPrefix}
@@ -69,8 +70,7 @@ const InputText = ({
       {isClearable && (
         <div
           className={clsx(
-            "absolute right-2 top-1/2 -translate-y-1/2 duration-150  rounded-full size-3.5 flex items-center justify-center",
-            "transition-all ease-in-out",
+            "absolute right-2 top-1/2 -translate-y-1/2 transition-[scale,opacity] ease-in-out duration-200  rounded-full size-3.5 flex items-center justify-center",
             value
               ? "scale-100 opacity-100"
               : "scale-80 opacity-0 pointer-events-none",
