@@ -11,10 +11,11 @@ Technology
 - Tailwind 4.x
 - React 19.x
 - pnpm package manager
+- @remixicon/react
 
 General Guidelines
 - Use English for all code and documentation.
-- Follow the user’s requirements precisely.
+- Follow the user's requirements precisely.
 - Think step-by-step before coding, outlining your plan first.
 - Write clean, DRY, bug-free, and fully functional code.
 - Prioritize readability over performance.

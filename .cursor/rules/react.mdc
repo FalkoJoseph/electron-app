@@ -12,7 +12,6 @@ Code Style & Structure
 - Favor modularization over duplication.
 - Name variables descriptively (e.g., isLoading, hasError).
 - Structure files logically: components/atoms, components/molecules, helpers, services, hooks, stores.
-- Files inside helpers, services, hooks and stores are named like <name>.helper, <name>.service, <name>.hook, <name>.store
 - Use handle prefix for event functions (e.g., handleClick).
 - Use functional TSX components.
 

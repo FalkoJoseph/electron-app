@@ -91,14 +91,14 @@ const Navigation = ({ contents }: NavigationProps) => {
       {contents.map((group, groupIndex) => (
         <div key={groupIndex} className="flex flex-col gap-0.5 no-drag">
           <button
-            className="group flex items-center justify-between gap-4 px-4 text-xxs font-semibold text-black/30 dark:text-white/40"
+            className="group flex items-center justify-between gap-4 px-5 text-xxs font-semibold text-black/30 dark:text-white/40"
             onClick={() => toggleGroup(groupIndex)}
           >
             {group.label}
 
             <motion.div
               animate={{ rotate: expandedGroups[groupIndex] ? 90 : 0 }}
-              className="text-black group-hover:opacity-30 opacity-0 transition-opacity duration-100 group-active:opacity-60"
+              className="text-black group-hover:opacity-30 opacity-0 transition-opacity duration-100 group-active:opacity-60 dark:text-white"
               transition={{ duration: 0.2 }}
             >
               <RiArrowRightSLine className="size-5" />

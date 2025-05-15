@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 
+import { RiSearchLine } from "@remixicon/react";
+
 import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
+import InputText from "@/components/system/InputText/InputText";
 
 const Home = () => {
   useEffect(() => {
-    setTitlebarTitle(<p className="text-system font-bold">Electron App</p>);
+    setTitlebarTitle("Electron App");
   }, []);
 
   return (
@@ -15,7 +18,29 @@ const Home = () => {
         <Button variant="primary">Primary</Button>
       </div>
       <div>
-        <Button variant="default">Default</Button>
+        <Button size="large" variant="default">
+          Default
+        </Button>
+      </div>
+      <div className="w-50">
+        <InputText
+          iconPrefix={<RiSearchLine size={15} />}
+          placeholder="Search"
+          size="large"
+          isClearable
+          isRounded
+          onChange={(value) => {
+            console.log("from the home:", value);
+          }}
+        />
+      </div>
+      <div className="w-50">
+        <InputText
+          placeholder="Enter your name"
+          onChange={(value) => {
+            console.log("from the home:", value);
+          }}
+        />
       </div>
       <div className="w-100 h-200"></div>
     </div>

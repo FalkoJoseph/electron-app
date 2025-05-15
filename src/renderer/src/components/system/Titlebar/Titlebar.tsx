@@ -26,7 +26,6 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
   const titlebarActionsRight = useTitlebarStore((state) => state.actionsRight);
   const titlebarAlign = useTitlebarStore((state) => state.align);
   const title = useTitlebarStore((state) => state.title);
-  const subtitle = useTitlebarStore((state) => state.subtitle);
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
   const sidebarOpenRight = useSidebarStore((state) => state.isOpenRight);
   const borderOnScroll = useTitlebarStore((state) => state.borderOnScroll);
@@ -117,8 +116,12 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
               : "0px",
         }}
       >
-        {title && <>{title}</>}
-        {subtitle && <p className="text-system opacity-70">{subtitle}</p>}
+        {title &&
+          (typeof title === "string" ? (
+            <p className="text-system font-bold">{title}</p>
+          ) : (
+            title
+          ))}
       </div>
 
       <div

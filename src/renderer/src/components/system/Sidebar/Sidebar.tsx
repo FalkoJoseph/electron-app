@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Resizable } from "react-resizable";
 import "react-resizable/css/styles.css";
 
+import { RiSearchLine } from "@remixicon/react";
 import clsx from "clsx";
 
 import useSidebarStore, {
@@ -13,6 +14,8 @@ import useSidebarStore, {
 } from "@/stores/system/sidebar.store";
 import useTitlebarStore from "@/stores/system/titlebar.store";
 import useWindowStore from "@/stores/system/window.store";
+
+import InputText from "@/components/system/InputText/InputText";
 
 interface SidebarProps {
   align: "left" | "right";
@@ -35,6 +38,8 @@ const Sidebar = ({ align }: SidebarProps) => {
   const maxWidth = useSidebarStore((state) => state.maxWidth);
   const contentLeft = useSidebarStore((state) => state.contentLeft);
   const contentRight = useSidebarStore((state) => state.contentRight);
+  const search = useSidebarStore((state) => state.search);
+  const hasSearch = useSidebarStore((state) => state.hasSearch);
 
   const currentWidth = align === "left" ? widthLeft : widthRight;
 
@@ -173,9 +178,23 @@ const Sidebar = ({ align }: SidebarProps) => {
             : undefined
         }
       >
-        <div className="h-full overflow-y-auto">
-          {align === "left" && contentLeft}
-          {align === "right" && contentRight}
+        <div className="flex flex-col h-full">
+          {hasSearch && (
+            <div className="flex items-center justify-between no-drag px-3 pt-1 pb-3.5">
+              <InputText
+                iconPrefix={<RiSearchLine size={15} />}
+                placeholder={search.placeholder ?? ""}
+                variant="sidebar"
+                isClearable
+                isRounded
+                onChange={search.handleChange}
+              />
+            </div>
+          )}
+          <div className="h-full overflow-y-auto">
+            {align === "left" && contentLeft}
+            {align === "right" && contentRight}
+          </div>
         </div>
       </div>
     </Resizable>

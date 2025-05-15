@@ -7,8 +7,7 @@ interface State {
   borderOnScroll: boolean;
   height: number;
   size: "small" | "large";
-  subtitle: string | null;
-  title: React.ReactNode | null;
+  title: React.ReactNode | string | null;
   trafficLightPosition: { x: number; y: number } | null;
   visible: boolean;
 }
@@ -20,7 +19,6 @@ const initialState: State = {
   borderOnScroll: false,
   height: 0,
   size: "small",
-  subtitle: null,
   title: null,
   trafficLightPosition: null,
   visible: false,
@@ -46,12 +44,8 @@ export const setTitlebarSize = (size: "small" | "large") => {
   useTitlebarStore.setState({ size });
 };
 
-export const setTitlebarTitle = (title: React.ReactNode | null) => {
+export const setTitlebarTitle = (title: React.ReactNode | string | null) => {
   useTitlebarStore.setState({ title });
-};
-
-export const setTitlebarSubtitle = (subtitle: string | null) => {
-  useTitlebarStore.setState({ subtitle });
 };
 
 export const setTitlebarActionsLeft = (component: React.ReactNode) => {

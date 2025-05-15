@@ -7,6 +7,7 @@ import useSidebarStore, {
   setSidebarContentLeft,
   setSidebarLeft,
   setSidebarOpenLeft,
+  setSidebarSearch,
 } from "@/stores/system/sidebar.store";
 import {
   setTitlebarActionsRight,
@@ -59,9 +60,23 @@ export const useApp = () => {
     setSidebarLeft(true);
     setSidebarOpenLeft(true);
     setSidebarContentLeft(<Navigation contents={navigation} />);
+    setSidebarSearch({
+      handleChange: (value) => {
+        console.log("from the sidebar:", value);
+      },
+      placeholder: "Search",
+    });
   }, []);
 
   useEffect(() => {
+    // Titlebar actions
+    setTitlebarActionsRight([
+      <Button key="sidebar" size="icon" variant="transparent">
+        <RiShare2Line className="size-5" />
+      </Button>,
+    ]);
+
+    // Sidebar actions
     setSidebarActionsLeft([
       <Button
         key="sidebar"
@@ -70,12 +85,6 @@ export const useApp = () => {
         onClick={() => setSidebarOpenLeft(!sidebarOpenLeft)}
       >
         <IconSidebar className="size-5" />
-      </Button>,
-    ]);
-
-    setTitlebarActionsRight([
-      <Button key="sidebar" size="icon" variant="transparent">
-        <RiShare2Line className="size-5" />
       </Button>,
     ]);
   }, [sidebarOpenLeft, sidebarOpenRight]);

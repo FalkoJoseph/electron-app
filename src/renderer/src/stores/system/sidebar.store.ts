@@ -1,5 +1,10 @@
 import { create } from "zustand";
 
+interface Search {
+  placeholder: string | null;
+  handleChange: (value: string) => void;
+}
+
 interface State {
   actionsLeft: [React.ReactNode, React.ReactNode?] | null;
   actionsRight: [React.ReactNode, React.ReactNode?] | null;
@@ -7,11 +12,13 @@ interface State {
   contentRight: React.ReactNode | null;
   hasLeft: boolean;
   hasRight: boolean;
+  hasSearch: boolean;
   isOpenLeft: boolean;
   isOpenRight: boolean;
   isResizing: boolean;
   maxWidth: number;
   minWidth: number;
+  search: Search;
   widthLeft: number;
   widthRight: number;
 }
@@ -23,11 +30,16 @@ const initialState: State = {
   contentRight: null,
   hasLeft: false,
   hasRight: false,
+  hasSearch: false,
   isOpenLeft: false,
   isOpenRight: false,
   isResizing: false,
   maxWidth: 280,
   minWidth: 180,
+  search: {
+    handleChange: () => {},
+    placeholder: "",
+  },
   widthLeft: 200,
   widthRight: 200,
 };
@@ -98,6 +110,10 @@ export const setSidebarWidthRight = (widthRight: number) => {
 
 export const setSidebarResizing = (isResizing: boolean) => {
   useSidebarStore.setState({ isResizing });
+};
+
+export const setSidebarSearch = (search: Search) => {
+  useSidebarStore.setState({ hasSearch: true, search });
 };
 
 export default useSidebarStore;
