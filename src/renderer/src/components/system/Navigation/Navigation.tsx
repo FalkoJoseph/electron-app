@@ -74,7 +74,7 @@ const Navigation = ({ contents }: NavigationProps) => {
       "flex items-center rounded-md gap-1.5 px-2 py-[0.35rem] text-system",
       (location.pathname === path || location.pathname === `/${path}`) && [
         activeColor === "default"
-          ? "bg-black/10"
+          ? "bg-black/10 dark:bg-white/10"
           : COLOR_MAP[activeColor].bg + " text-white",
       ],
     );
@@ -91,7 +91,7 @@ const Navigation = ({ contents }: NavigationProps) => {
       {contents.map((group, groupIndex) => (
         <div key={groupIndex} className="flex flex-col gap-0.5 no-drag">
           <button
-            className="group flex items-center justify-between gap-4 px-4 text-xxs font-semibold text-neutral-400"
+            className="group flex items-center justify-between gap-4 px-4 text-xxs font-semibold text-black/30 dark:text-white/40"
             onClick={() => toggleGroup(groupIndex)}
           >
             {group.label}

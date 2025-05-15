@@ -128,7 +128,7 @@ const Sidebar = ({ align }: SidebarProps) => {
     !sidebarOpenRight;
 
   const sidebarStyle = clsx([
-    "absolute top-0 h-full",
+    "absolute top-0 h-full transition-opacity duration-100",
     align === "left" && "left-0",
     align === "right" && "right-0",
     align === "left" && sidebarOpenLeft && "drag",

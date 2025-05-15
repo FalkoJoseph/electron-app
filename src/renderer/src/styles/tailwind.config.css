@@ -19,6 +19,10 @@
 
 @layer base {
   a {
-    @apply cursor-default select-none;
+    @apply no-user-drag cursor-default;
+  }
+
+  img {
+    @apply no-user-drag;
   }
 }

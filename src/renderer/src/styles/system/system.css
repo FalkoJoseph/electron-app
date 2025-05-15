@@ -50,6 +50,12 @@ body {
   @apply absolute;
 }
 
+/* Select */
+
+@utility no-user-drag {
+  -webkit-user-drag: none;
+}
+
 /* Drag */
 
 @utility drag {
