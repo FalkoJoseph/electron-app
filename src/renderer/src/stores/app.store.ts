@@ -8,6 +8,7 @@ interface State {
 }
 
 const initialState: State = {
+  // Important: also edit the `productName` and `appId` in `/electron-builder.yml`
   name: "Electron App",
   windowDimensions: WINDOW_DIMENSIONS,
 };
