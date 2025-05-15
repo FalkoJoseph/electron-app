@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import clsx from "clsx";
 import { motion } from "motion/react";
@@ -30,8 +30,10 @@ const Window = ({ children }: { children: React.ReactNode }) => {
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+  const [isWindowResizing, setIsWindowResizing] = useState(false);
   const [wasLeftSidebarOpen, setWasLeftSidebarOpen] = useState(false);
   const [wasRightSidebarOpen, setWasRightSidebarOpen] = useState(false);
+  const resizeTimeoutRef = useRef<number | undefined>(undefined);
 
   useFullscreen();
 
@@ -71,6 +73,28 @@ const Window = ({ children }: { children: React.ReactNode }) => {
     wasLeftSidebarOpen,
     wasRightSidebarOpen,
   ]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWindowResizing(true);
+
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+
+      resizeTimeoutRef.current = window.setTimeout(() => {
+        setIsWindowResizing(false);
+      }, 150);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (isResizing) return;
@@ -130,7 +154,8 @@ const Window = ({ children }: { children: React.ReactNode }) => {
         "z-20": !sidebarOpenLeft,
       })}
       transition={{
-        duration: windowMounted && !sidebarIsResizing ? 0.18 : 0,
+        duration:
+          windowMounted && !sidebarIsResizing && !isWindowResizing ? 0.18 : 0,
         ease: "linear",
       }}
     >

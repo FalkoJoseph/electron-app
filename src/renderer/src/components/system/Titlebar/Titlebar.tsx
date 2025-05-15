@@ -20,6 +20,7 @@ interface TitlebarProps {
 const Titlebar = ({ isScrolled }: TitlebarProps) => {
   const windowBackground = useWindowStore((state) => state.background);
   const isFullscreen = useWindowStore((state) => state.isFullscreen);
+  const titlebarSize = useTitlebarStore((state) => state.size);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const titlebarActionsLeft = useTitlebarStore((state) => state.actionsLeft);
   const titlebarActionsRight = useTitlebarStore((state) => state.actionsRight);
@@ -37,13 +38,17 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
 
   useEffect(() => {
     setTrafficLightPosition({
-      x: 17,
+      x: titlebarSize === "small" ? 10 : 17,
       y: Math.floor(titlebarHeight / 2) - 8,
     });
-  }, [titlebarHeight]);
+  }, [titlebarHeight, titlebarSize]);
 
   useEffect(() => {
-    const trafficLightWidth = isFullscreen ? 10 : 85;
+    const trafficLightWidth = isFullscreen
+      ? 10
+      : titlebarSize === "small"
+        ? 78
+        : 80;
     const leftActions = document.querySelector(".sidebar-actions-left");
     const rightActions = document.querySelector(".sidebar-actions-right");
 
@@ -59,15 +64,21 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
       const gap = 8;
       setRightActionsWidth(rightActions.getBoundingClientRect().width + gap);
     }
-  }, [titlebarActionsLeft, titlebarActionsRight, isFullscreen]);
+  }, [titlebarActionsLeft, titlebarActionsRight, isFullscreen, titlebarSize]);
 
   const titlebarStyle = clsx([
-    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between px-2.5 py-2.5 text-sm text-black/80 transition-[shadow, background-color] duration-180 dark:text-white/80",
+    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between text-sm text-black/80 transition-[background-color] duration-200 dark:text-white/80",
     windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-700",
     windowBackground === "light" && "bg-white dark:bg-neutral-700",
     windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
-    sidebarOpenLeft && "border-l border-l-black/20 dark:border-l-black/60",
-    sidebarOpenRight && "border-r border-r-black/20 dark:border-r-black/60",
+    titlebarSize === "small" && "p-1",
+    titlebarSize === "large" && "px-2.5 py-2.5",
+    sidebarOpenLeft
+      ? "border-l border-l-black/20 dark:border-l-black/60"
+      : "border-l border-l-transparent",
+    sidebarOpenRight
+      ? "border-r border-r-black/20 dark:border-r-black/60"
+      : "border-r border-r-transparent",
     borderOnScroll
       ? isScrolled
         ? "shadow-x-y bg-neutral-200 dark:bg-neutral-800"

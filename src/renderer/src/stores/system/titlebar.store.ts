@@ -6,6 +6,7 @@ interface State {
   align: "left" | "center";
   borderOnScroll: boolean;
   height: number;
+  size: "small" | "large";
   subtitle: string | null;
   title: React.ReactNode | null;
   trafficLightPosition: { x: number; y: number } | null;
@@ -18,6 +19,7 @@ const initialState: State = {
   align: "center",
   borderOnScroll: false,
   height: 0,
+  size: "small",
   subtitle: null,
   title: null,
   trafficLightPosition: null,
@@ -38,6 +40,10 @@ export const setTrafficLightPosition = (position: { x: number; y: number }) => {
 
 export const setTitlebarAlign = (align: "left" | "center") => {
   useTitlebarStore.setState({ align });
+};
+
+export const setTitlebarSize = (size: "small" | "large") => {
+  useTitlebarStore.setState({ size });
 };
 
 export const setTitlebarTitle = (title: React.ReactNode | null) => {

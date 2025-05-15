@@ -23,7 +23,6 @@ const Sidebar = ({ align }: SidebarProps) => {
   const [isAtMax, setIsAtMax] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
 
-  const mounted = useWindowStore((state) => state.mounted);
   const windowBackground = useWindowStore((state) => state.background);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const titlebarVisible = useTitlebarStore((state) => state.visible);
@@ -111,7 +110,6 @@ const Sidebar = ({ align }: SidebarProps) => {
 
   const sidebarStyle = clsx([
     "absolute top-0 h-full",
-    mounted && "transition duration-50 ease-linear",
     align === "left" && "left-0",
     align === "right" && "right-0",
     align === "left" && sidebarOpenLeft && "drag",

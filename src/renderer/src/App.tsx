@@ -10,6 +10,7 @@ import useSidebarStore, {
 import {
   setTitlebarActionsRight,
   setTitlebarAlign,
+  setTitlebarSize,
   setTitlebarVisible,
 } from "@/stores/system/titlebar.store";
 import { setWindowBackground } from "@/stores/system/window.store";
@@ -27,6 +28,7 @@ export const useApp = () => {
 
     // Titlebar
     setTitlebarVisible(true);
+    setTitlebarSize("large");
     setTitlebarAlign("center");
 
     // Sidebar

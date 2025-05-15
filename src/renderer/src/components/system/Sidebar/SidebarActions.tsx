@@ -17,6 +17,7 @@ const SidebarActions = ({ align }: SidebarProps) => {
   const actionsRight = useSidebarStore((state) => state.actionsRight);
   const titlebarHeight = useTitlebarStore((state) => state.height);
   const isTitlebarVisible = useTitlebarStore((state) => state.visible);
+  const titlebarSize = useTitlebarStore((state) => state.size);
   const isFullscreen = useWindowStore((state) => state.isFullscreen);
   const containerRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState(0);
@@ -28,10 +29,16 @@ const SidebarActions = ({ align }: SidebarProps) => {
     }
   }, [actionsLeft, actionsRight]);
 
+  const sidebarActionIndent = isFullscreen
+    ? "left-2.5"
+    : titlebarSize === "small"
+      ? "left-19"
+      : "left-21";
+
   const sidebarActionsStyle = clsx(
     "absolute z-50",
     `sidebar-actions-${align}`,
-    align === "left" && (isFullscreen ? "left-2.5" : "left-21"),
+    align === "left" && sidebarActionIndent,
     align === "right" && "right-3",
   );
 
