@@ -28,7 +28,7 @@ export const useApp = () => {
 
     // Titlebar
     setTitlebarVisible(true);
-    setTitlebarSize("large");
+    setTitlebarSize("small");
     setTitlebarAlign("center");
 
     // Sidebar
