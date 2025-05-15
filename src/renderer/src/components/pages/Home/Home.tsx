@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 
-import useAppStore from "@/stores/app.store";
 import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
 import InputText from "@/components/system/Input/InputText";
 
 const Home = () => {
-  const appName = useAppStore((state) => state.name);
-
   useEffect(() => {
-    setTitlebarTitle(appName);
-  }, [appName]);
+    setTitlebarTitle("Home");
+  }, []);
 
   return (
     <div className="flex flex-col p-5 gap-2">
