@@ -27,11 +27,15 @@
   }
 }
 
-.btn-default {
+@source inline("btn-default");
+@source inline("btn-primary");
+@source inline("btn-transparent");
+
+@utility btn-default {
   @apply shadow-border dark:shadow-inset bg-white bg-gradient-to-t from-neutral-50 to-white text-black active:from-neutral-200 active:to-neutral-200 dark:from-neutral-500 dark:to-neutral-500 dark:text-white dark:active:from-neutral-500/90 dark:active:to-neutral-500/90;
 }
 
-.btn-primary {
+@utility btn-primary {
   @apply shadow-bottom dark:shadow-inset bg-black bg-gradient-to-t from-blue-600 to-blue-500 text-white active:from-blue-600/90 active:to-blue-500/90 dark:bg-white;
 
   & svg,
@@ -40,6 +44,6 @@
   }
 }
 
-.btn-transparent {
+@utility btn-transparent {
   @apply bg-transparent text-black/70 hover:bg-black/5 active:bg-black/10 active:text-black/50 dark:text-white/70 dark:hover:bg-white/10 dark:active:bg-white/20 dark:active:text-white/50;
 }

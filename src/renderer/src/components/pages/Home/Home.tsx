@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { RiAddLine, RiCalendarLine } from "@remixicon/react";
+import Select from "@renderer/components/system/Select/Select";
 
 import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
@@ -38,6 +39,25 @@ const Home = () => {
       </div>
       <div>
         <Switch />
+      </div>
+      <div>
+        <Select>
+          <option value="default">Primary</option>
+          <option value="secondary">Secondary</option>
+          <option value="tertiary">Tertiary</option>
+        </Select>
+      </div>
+      <div>
+        <Select variant="default">
+          <option value="default">Dark</option>
+          <option value="secondary">Light</option>
+        </Select>
+      </div>
+      <div>
+        <Select width="full">
+          <option value="default">Full</option>
+          <option value="secondary">Auto</option>
+        </Select>
       </div>
       <div className="w-50">
         <InputText
