@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
 import { RiAddLine, RiCalendarLine } from "@remixicon/react";
-import Select from "@renderer/components/system/Select/Select";
 
 import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
 import InputText from "@/components/system/Input/InputText";
+import Select from "@/components/system/Select/Select";
 import Switch from "@/components/system/Switch/Switch";
 
 const Home = () => {
