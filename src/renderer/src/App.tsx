@@ -37,6 +37,10 @@ export const useApp = () => {
     const navigation = [
       {
         activeColor: "blue" as ColorName,
+        dragAndDrop: {
+          enableGroupDrag: false,
+          enableItemDrag: true,
+        },
         items: [
           {
             icon: <RiHome5Line />,

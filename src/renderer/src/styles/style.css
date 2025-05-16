@@ -4,7 +4,11 @@
 
 /* Tailwind config */
 
-@import "./tailwind.config.css";
+@import "./config.tailwind.css";
+
+/* Shadcn */
+
+@import "./config.shadcn.css";
 
 /* System */
 

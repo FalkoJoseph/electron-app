@@ -12,6 +12,7 @@ interface InputTextProps {
   isClearable?: boolean;
   isMultiline?: boolean;
   isRounded?: boolean;
+  minHeight?: number;
   placeholder: string;
   size?: "small" | "large";
   variant?: "default" | "sidebar" | "search";
@@ -25,10 +26,12 @@ const InputText = ({
   isClearable,
   isMultiline,
   isRounded,
+  minHeight = 50,
   placeholder,
   size = "small",
   variant = "default",
   onChange,
+  ...props
 }: InputTextProps) => {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -47,15 +50,16 @@ const InputText = ({
   useEffect(() => {
     const adjustTextareaHeight = () => {
       if (textareaRef.current && isAutosize) {
-        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height = `${minHeight}px`;
         textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
       }
     };
 
     adjustTextareaHeight();
-  }, [value, isAutosize]);
+  }, [value, isAutosize, minHeight]);
 
-  const isNative = variant === "default" || variant === "sidebar";
+  const isNative =
+    variant === "default" || variant === "sidebar" || variant === "search";
 
   const inputStyle = clsx([
     "w-full",
@@ -64,17 +68,19 @@ const InputText = ({
     isNative && "text-system",
     isRounded && "rounded-md",
     variant === "sidebar" && [
-      "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none focus:ring-3 focus:ring-blue-500/50 dark:focus:ring-white/20",
+      "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none dark:text-white focus:ring-3 focus:ring-blue-500/50 dark:focus:ring-white/20",
     ],
     variant === "search" && [
-      "bg-white border-[0.5px] p-1 border-black/15 dark:border-white/15 dark:focus:bg-white/5 focus:bg-black/5 focus:border-blue-500/70 dark:border-transparent focus:outline-none focus:ring-3 focus:ring-blue-500/50",
+      "bg-white border-[0.5px] p-1 border-black/15 dark:border-white/10 dark:bg-white/2 dark:focus:bg-white/5 focus:bg-black/5 focus:border-blue-500/70 dark:border-transparent focus:outline-none focus:ring-3 focus:ring-blue-500/50",
     ],
     variant === "default" && [
       "bg-white text-black shadow-border-dark focus:outline-none dark:bg-white/8 focus:ring-3 focus:ring-blue-500/50 dark:shadow-x-y-inset dark:text-white",
       size === "large" && "px-3 py-[7px]",
       size === "small" && "px-1 py-[1px]",
     ],
-    iconPrefix && (variant === "sidebar" || size === "large") && "pl-7",
+    iconPrefix &&
+      (variant === "sidebar" || variant === "search" || size === "large") &&
+      "pl-7",
     iconPrefix && size === "small" && "pl-6",
     isClearable && "pr-7.5",
   ]);
@@ -88,6 +94,7 @@ const InputText = ({
       )}
       {isMultiline ? (
         <textarea
+          {...props}
           ref={textareaRef}
           className={inputStyle}
           placeholder={placeholder}
@@ -98,6 +105,7 @@ const InputText = ({
       ) : (
         <>
           <input
+            {...props}
             ref={inputRef}
             className={inputStyle}
             placeholder={placeholder}

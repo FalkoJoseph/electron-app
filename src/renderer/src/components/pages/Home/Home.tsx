@@ -6,6 +6,7 @@ import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
 import InputText from "@/components/system/Input/InputText";
+import Switch from "@/components/system/Switch/Switch";
 
 const Home = () => {
   useEffect(() => {
@@ -35,6 +36,9 @@ const Home = () => {
           <RiAddLine size={22} />
         </Button>
       </div>
+      <div>
+        <Switch />
+      </div>
       <div className="w-50">
         <InputText
           iconPrefix={<RiCalendarLine size={15} />}
@@ -57,8 +61,8 @@ const Home = () => {
       </div>
       <div className="w-50">
         <InputText
-          className="h-20"
-          placeholder="Description"
+          minHeight={50}
+          placeholder="Message (multiline)"
           isClearable
           isMultiline
           onChange={(value) => {
@@ -68,7 +72,8 @@ const Home = () => {
       </div>
       <div className="w-50">
         <InputText
-          className="h-20"
+          className="h-30"
+          isAutosize={false}
           placeholder="Message"
           size="large"
           isMultiline
