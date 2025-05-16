@@ -16,14 +16,14 @@
 }
 
 .btn-icon {
-  @apply w-8 p-0;
+  @apply w-10 p-0;
 
   &:active {
     @apply scale-95;
   }
 
   & svg {
-    @apply text-gray-600 group-active:text-gray-900 dark:text-white/50 dark:group-active:text-white;
+    @apply text-gray-500 group-active:text-gray-900 dark:text-white/50 dark:group-active:text-white;
   }
 }
 
@@ -33,6 +33,11 @@
 
 .btn-primary {
   @apply shadow-bottom dark:shadow-inset bg-black bg-gradient-to-t from-blue-600 to-blue-500 text-white active:from-blue-600/90 active:to-blue-500/90 dark:bg-white;
+
+  & svg,
+  &:active svg {
+    @apply text-white;
+  }
 }
 
 .btn-transparent {

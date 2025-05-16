@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import { RiAddLine, RiCalendarLine } from "@remixicon/react";
+
 import { setTitlebarTitle } from "@/stores/system/titlebar.store";
 
 import Button from "@/components/system/Button/Button";
@@ -7,7 +9,7 @@ import InputText from "@/components/system/Input/InputText";
 
 const Home = () => {
   useEffect(() => {
-    setTitlebarTitle("Home");
+    setTitlebarTitle("");
   }, []);
 
   return (
@@ -16,13 +18,27 @@ const Home = () => {
         <Button variant="primary">Primary</Button>
       </div>
       <div>
+        <Button variant="default">Default</Button>
+      </div>
+      <div>
         <Button size="large" variant="default">
-          Default
+          Large
+        </Button>
+      </div>
+      <div>
+        <Button size="large" variant="transparent">
+          Transparent
+        </Button>
+      </div>
+      <div>
+        <Button size="icon" variant="default">
+          <RiAddLine size={22} />
         </Button>
       </div>
       <div className="w-50">
         <InputText
-          placeholder="Search"
+          iconPrefix={<RiCalendarLine size={15} />}
+          placeholder="Date"
           size="large"
           isClearable
           isRounded
@@ -33,7 +49,30 @@ const Home = () => {
       </div>
       <div className="w-50">
         <InputText
-          placeholder="Enter your name"
+          placeholder="Name"
+          onChange={(value) => {
+            console.log("from the home:", value);
+          }}
+        />
+      </div>
+      <div className="w-50">
+        <InputText
+          className="h-20"
+          placeholder="Description"
+          isClearable
+          isMultiline
+          onChange={(value) => {
+            console.log("from the home:", value);
+          }}
+        />
+      </div>
+      <div className="w-50">
+        <InputText
+          className="h-20"
+          placeholder="Message"
+          size="large"
+          isMultiline
+          isRounded
           onChange={(value) => {
             console.log("from the home:", value);
           }}

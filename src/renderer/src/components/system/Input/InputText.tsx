@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { RiCloseLine } from "@remixicon/react";
 import clsx from "clsx";
 
+import { CustomCaret } from "./CustomCaret";
+
 interface InputTextProps {
+  className?: string;
   iconPrefix?: React.ReactNode;
+  isAutosize?: boolean;
   isClearable?: boolean;
+  isMultiline?: boolean;
   isRounded?: boolean;
   placeholder: string;
   size?: "small" | "large";
-  variant?: "default" | "sidebar";
+  variant?: "default" | "sidebar" | "search";
   onChange?: (value: string) => void;
 }
 
 const InputText = ({
+  className,
   iconPrefix,
+  isAutosize = true,
   isClearable,
+  isMultiline,
   isRounded,
   placeholder,
   size = "small",
@@ -23,6 +31,8 @@ const InputText = ({
   onChange,
 }: InputTextProps) => {
   const [value, setValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleChange = (newValue: string) => {
     setValue(newValue);
@@ -34,14 +44,30 @@ const InputText = ({
     onChange?.("");
   };
 
+  useEffect(() => {
+    const adjustTextareaHeight = () => {
+      if (textareaRef.current && isAutosize) {
+        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      }
+    };
+
+    adjustTextareaHeight();
+  }, [value, isAutosize]);
+
   const isNative = variant === "default" || variant === "sidebar";
 
   const inputStyle = clsx([
     "w-full",
+    !isMultiline ? "caret-transparent" : "caret-blue-500 resize-none",
+    className,
     isNative && "text-system",
     isRounded && "rounded-md",
     variant === "sidebar" && [
       "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none focus:ring-3 focus:ring-blue-500/50 dark:focus:ring-white/20",
+    ],
+    variant === "search" && [
+      "bg-white border-[0.5px] p-1 border-black/15 dark:border-white/15 dark:focus:bg-white/5 focus:bg-black/5 focus:border-blue-500/70 dark:border-transparent focus:outline-none focus:ring-3 focus:ring-blue-500/50",
     ],
     variant === "default" && [
       "bg-white text-black shadow-border-dark focus:outline-none dark:bg-white/8 focus:ring-3 focus:ring-blue-500/50 dark:shadow-x-y-inset dark:text-white",
@@ -60,21 +86,37 @@ const InputText = ({
           {iconPrefix}
         </div>
       )}
-      <input
-        className={inputStyle}
-        placeholder={placeholder}
-        type="text"
-        value={value}
-        onChange={(e) => handleChange(e.target.value)}
-      />
+      {isMultiline ? (
+        <textarea
+          ref={textareaRef}
+          className={inputStyle}
+          placeholder={placeholder}
+          style={{ minHeight: "1.5rem" }}
+          value={value}
+          onChange={(e) => handleChange(e.target.value)}
+        />
+      ) : (
+        <>
+          <input
+            ref={inputRef}
+            className={inputStyle}
+            placeholder={placeholder}
+            type="text"
+            value={value}
+            onChange={(e) => handleChange(e.target.value)}
+          />
+          <CustomCaret inputRef={inputRef} />
+        </>
+      )}
       {isClearable && (
         <div
           className={clsx(
-            "absolute right-2 top-1/2 -translate-y-1/2 transition-[scale,opacity] ease-in-out duration-200  rounded-full size-3.5 flex items-center justify-center",
+            "absolute right-2 transition-[scale,opacity] ease-in-out duration-200  rounded-full size-3.5 flex items-center justify-center",
             "bg-black/50 dark:bg-white/50 active:bg-black/20 dark:active:bg-white/20 text-white dark:text-black",
             value
               ? "scale-100 opacity-100"
               : "scale-80 opacity-0 pointer-events-none",
+            isMultiline ? "top-2" : " top-1/2 -translate-y-1/2",
           )}
           onClick={handleClear}
         >

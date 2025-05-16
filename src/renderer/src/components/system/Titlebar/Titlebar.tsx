@@ -118,7 +118,14 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
       >
         {title &&
           (typeof title === "string" ? (
-            <p className="text-system font-bold">{title}</p>
+            <p
+              className={clsx([
+                "text-system font-bold",
+                titlebarAlign === "left" && "pl-2",
+              ])}
+            >
+              {title}
+            </p>
           ) : (
             title
           ))}

@@ -9,7 +9,7 @@ const TitlebarItem = ({ align = "left", children }: TitlebarItemProps) => {
   return (
     <div
       className={clsx(
-        "flex items-center justify-center gap-2",
+        "flex items-center justify-center gap-2 no-drag",
         align === "left" && "justify-start",
         align === "right" && "justify-end",
       )}

@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
-import { RiBookmarkLine, RiHome5Line, RiShare2Line } from "@remixicon/react";
+import {
+  RiBookmarkLine,
+  RiHome5Line,
+  RiSearchLine,
+  RiShare2Line,
+} from "@remixicon/react";
 
 import useSidebarStore, {
   setSidebarActionsLeft,
@@ -19,6 +24,7 @@ import { setWindowBackground } from "@/stores/system/window.store";
 
 import IconSidebar from "@/assets/svg/IconSidebar";
 import Button from "@/components/system/Button/Button";
+import InputText from "@/components/system/Input/InputText";
 import Navigation, {
   type ColorName,
 } from "@/components/system/Navigation/Navigation";
@@ -53,13 +59,24 @@ export const useApp = () => {
     // Titlebar
     setTitlebarVisible(true);
     setTitlebarSize("large");
-    setTitlebarAlign("center");
+    setTitlebarAlign("left");
 
     // Titlebar actions
     setTitlebarActionsRight([
       <Button key="sidebar" size="icon" variant="transparent">
-        <RiShare2Line className="size-5" />
+        <RiShare2Line size="22" />
       </Button>,
+      <InputText
+        key="search"
+        iconPrefix={<RiSearchLine size={15} />}
+        placeholder="Search"
+        variant="search"
+        isClearable
+        isRounded
+        onChange={(value) => {
+          console.log("searching:", value);
+        }}
+      />,
     ]);
 
     // Sidebar
