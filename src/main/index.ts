@@ -5,15 +5,17 @@ import { join } from "path";
 import icon from "../../resources/icon.png?asset";
 import { WINDOW_DIMENSIONS } from "../shared/constants";
 
-// Initialize context menu
-(async () => {
+async function initializeContextMenu() {
   const contextMenu = (await import("electron-context-menu")).default;
   contextMenu({
     showInspectElement: is.dev,
     showCopyImage: false,
     showSaveImage: false,
   });
-})();
+}
+
+// Call it where needed
+initializeContextMenu();
 
 function createWindow(): void {
   // Create the browser window.
