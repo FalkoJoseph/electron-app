@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Resizable } from "react-resizable";
 import "react-resizable/css/styles.css";
 
-import { RiSearchLine } from "@remixicon/react";
 import clsx from "clsx";
+import { Search } from "lucide-react";
 
 import useSidebarStore, {
   setSidebarLeft,
@@ -39,10 +39,12 @@ const Sidebar = ({ align }: SidebarProps) => {
   const maxWidth = useSidebarStore((state) => state.maxWidth);
   const contentLeft = useSidebarStore((state) => state.contentLeft);
   const contentRight = useSidebarStore((state) => state.contentRight);
+  const hasSearchLeft = useSidebarStore((state) => state.hasSearchLeft);
+  const hasSearchRight = useSidebarStore((state) => state.hasSearchRight);
   const search = useSidebarStore((state) => state.search);
-  const hasSearch = useSidebarStore((state) => state.hasSearch);
 
   const currentWidth = align === "left" ? widthLeft : widthRight;
+  const hasSearch = align === "left" ? hasSearchLeft : hasSearchRight;
 
   const getResizeCursor = useCallback(() => {
     if (align === "left") {
@@ -188,14 +190,16 @@ const Sidebar = ({ align }: SidebarProps) => {
           {hasSearch && (
             <div
               className={clsx([
-                "flex items-center justify-between no-drag px-2.5 pt-1 pb-3.5 transition-all duration-100",
+                "flex items-center justify-between no-drag px-2.5 pb-3.5 transition-all duration-100",
+                align === "left" && "pt-1",
+                align === "right" && "pt-2.5",
                 isScrolled
                   ? "border-b border-black/20 dark:border-black/60 shadow-bottom"
                   : "border-b border-transparent",
               ])}
             >
               <InputText
-                iconPrefix={<RiSearchLine size={15} />}
+                iconPrefix={<Search size={15} />}
                 placeholder={search.placeholder ?? ""}
                 variant="sidebar"
                 isClearable

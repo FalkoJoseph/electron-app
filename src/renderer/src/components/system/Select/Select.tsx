@@ -1,15 +1,19 @@
 import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
 import clsx from "clsx";
 
+import { ColorName } from "@/types/colors";
+
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   children: React.ReactNode;
-  variant?: "default" | "primary";
+  color?: ColorName;
+  variant?: "default" | "accent";
   width?: "full" | "auto";
 }
 
 const Select = ({
   children,
-  variant = "primary",
+  color,
+  variant = "accent",
   width = "auto",
   ...props
 }: SelectProps) => {
@@ -24,7 +28,7 @@ const Select = ({
         className={clsx(
           "w-full btn appearance-none min-w-12 pl-2.5! pr-6.5!",
           variant === "default" && "hover:btn-default",
-          variant === "primary" && "btn-default",
+          variant === "accent" && "btn-default",
         )}
         {...props}
       >
@@ -36,15 +40,17 @@ const Select = ({
             "size-[15px] rounded",
             variant === "default" &&
               "bg-neutral-200 border-[0.5px] border-black/10 dark:border-transparent dark:bg-white/10 group-hover:bg-transparent group-hover:border-transparent",
-            variant === "primary" &&
-              "bg-gradient-to-t from-blue-600 to-blue-500 text-white dark:shadow-inset",
+            variant === "accent" &&
+              "bg-gradient-to-t  text-white dark:shadow-inset",
+            variant === "accent" && !color && "btn-primary",
+            variant === "accent" && color && `btn-${color}`,
           )}
         >
           <div
             className={clsx(
               "relative -top-[2px]",
               variant === "default" && "left-[0.5px]",
-              variant === "primary" && "left-[0.8px]",
+              variant === "accent" && "left-[0.8px]",
             )}
           >
             <RiArrowUpSLine className="-mb-2" size={13.2} />

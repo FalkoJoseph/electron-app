@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 interface Search {
   placeholder: string | null;
+  position?: "left" | "right";
   handleChange: (value: string) => void;
 }
 
@@ -12,7 +13,8 @@ interface State {
   contentRight: React.ReactNode | null;
   hasLeft: boolean;
   hasRight: boolean;
-  hasSearch: boolean;
+  hasSearchLeft: boolean;
+  hasSearchRight: boolean;
   isOpenLeft: boolean;
   isOpenRight: boolean;
   isResizing: boolean;
@@ -30,7 +32,8 @@ const initialState: State = {
   contentRight: null,
   hasLeft: false,
   hasRight: false,
-  hasSearch: false,
+  hasSearchLeft: false,
+  hasSearchRight: false,
   isOpenLeft: false,
   isOpenRight: false,
   isResizing: false,
@@ -113,7 +116,18 @@ export const setSidebarResizing = (isResizing: boolean) => {
 };
 
 export const setSidebarSearch = (search: Search) => {
-  useSidebarStore.setState({ hasSearch: true, search });
+  const position = search.position ?? "left";
+  if (position === "left") {
+    useSidebarStore.setState({
+      hasSearchLeft: true,
+      search: { ...search, position },
+    });
+  } else {
+    useSidebarStore.setState({
+      hasSearchRight: true,
+      search: { ...search, position },
+    });
+  }
 };
 
 export default useSidebarStore;

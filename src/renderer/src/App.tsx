@@ -1,12 +1,6 @@
 import { useEffect } from "react";
 
-import {
-  RiBookmarkLine,
-  RiHome5Line,
-  RiListUnordered,
-  RiSearchLine,
-  RiShare2Line,
-} from "@remixicon/react";
+import { Award, Box, Columns3, Search, Share } from "lucide-react";
 
 import useSidebarStore, {
   setSidebarActionsLeft,
@@ -15,6 +9,7 @@ import useSidebarStore, {
   setSidebarOpenLeft,
   setSidebarSearch,
 } from "@/stores/system/sidebar.store";
+import useThemeStore, { setPrimaryColor } from "@/stores/system/theme.store";
 import {
   setTitlebarActionsRight,
   setTitlebarAlign,
@@ -26,42 +21,16 @@ import { setWindowBackground } from "@/stores/system/window.store";
 import IconSidebar from "@/assets/svg/IconSidebar";
 import Button from "@/components/system/Button/Button";
 import InputText from "@/components/system/Input/InputText";
-import Navigation, {
-  type ColorName,
-} from "@/components/system/Navigation/Navigation";
+import Navigation from "@/components/system/Navigation/Navigation";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
+  const primaryColor = useThemeStore((state) => state.primaryColor);
 
+  // Initial setup - only runs once
   useEffect(() => {
-    // Navigation
-    const navigation = [
-      {
-        activeColor: "blue" as ColorName,
-        dragAndDrop: {
-          enableGroupDrag: true,
-          enableItemDrag: true,
-        },
-        items: [
-          {
-            icon: <RiHome5Line />,
-            label: "Components",
-            path: "/",
-          },
-          {
-            icon: <RiBookmarkLine />,
-            label: "Bookmarks",
-            path: "bookmarks",
-          },
-          {
-            icon: <RiListUnordered />,
-            label: "Credits",
-            path: "credits",
-          },
-        ],
-        label: "Library",
-      },
-    ];
+    // Default color
+    setPrimaryColor("blue");
 
     // Window
     setWindowBackground("dark");
@@ -74,11 +43,11 @@ export const useApp = () => {
     // Titlebar actions
     setTitlebarActionsRight([
       <Button key="sidebar" size="icon" variant="transparent">
-        <RiShare2Line size="22" />
+        <Share size="20" />
       </Button>,
       <InputText
         key="search"
-        iconPrefix={<RiSearchLine size={15} />}
+        iconPrefix={<Search size={15} />}
         placeholder="Search"
         variant="search"
         isClearable
@@ -92,7 +61,6 @@ export const useApp = () => {
     // Sidebar
     setSidebarLeft(true);
     setSidebarOpenLeft(true);
-    setSidebarContentLeft(<Navigation contents={navigation} />);
     setSidebarSearch({
       handleChange: (value) => {
         console.log("searching:", value);
@@ -101,7 +69,40 @@ export const useApp = () => {
     });
   }, []);
 
-  // Sidebar actions
+  // Navigation - only runs when the primary color changes
+  useEffect(() => {
+    const navigation = [
+      {
+        activeColor: primaryColor,
+        dragAndDrop: {
+          enableGroupDrag: true,
+          enableItemDrag: true,
+        },
+        items: [
+          {
+            icon: <Box />,
+            label: "Components",
+            path: "/",
+          },
+          {
+            icon: <Columns3 />,
+            label: "Split view",
+            path: "split-view",
+          },
+          {
+            icon: <Award />,
+            label: "Credits",
+            path: "credits",
+          },
+        ],
+        label: "Library",
+      },
+    ];
+
+    setSidebarContentLeft(<Navigation contents={navigation} />);
+  }, [primaryColor]);
+
+  // Sidebar actions - only runs when the sidebar left is opened or closed
   useEffect(() => {
     setSidebarActionsLeft([
       <Button

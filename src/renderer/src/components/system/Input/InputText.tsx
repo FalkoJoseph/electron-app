@@ -60,17 +60,17 @@ const InputText = ({
 
   const inputStyle = clsx([
     "w-full",
-    !isMultiline ? "caret-transparent" : "caret-blue-500 resize-none",
+    !isMultiline ? "caret-transparent" : "caret-primary-500 resize-none",
     className,
     isRounded && "rounded-md",
     variant === "sidebar" && [
-      "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none dark:text-white focus:ring-3 focus:ring-blue-500/50 dark:focus:ring-white/20",
+      "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none dark:text-white focus:ring-3 focus:ring-primary-500/50 dark:focus:ring-white/20",
     ],
     variant === "search" && [
-      "bg-white border-[0.5px] p-1 border-black/15 dark:border-white/10 dark:bg-white/2 dark:focus:bg-white/5 focus:bg-black/5 focus:border-blue-500/70 dark:border-transparent focus:outline-none focus:ring-3 focus:ring-blue-500/50",
+      "bg-white border-[0.5px] p-1 border-black/15 dark:border-white/10 dark:bg-white/2 dark:focus:bg-white/5 focus:bg-black/5 focus:border-primary-500/70 dark:border-transparent focus:outline-none focus:ring-3 focus:ring-primary-500/50",
     ],
     variant === "default" && [
-      "bg-white text-black shadow-border-dark focus:outline-none dark:bg-white/8 focus:ring-3 focus:ring-blue-500/50 dark:shadow-x-y-inset dark:text-white",
+      "bg-white text-black shadow-border-dark focus:outline-none dark:bg-white/8 focus:ring-3 focus:ring-primary-500/50 dark:shadow-x-y-inset dark:text-white",
       size === "large" && "px-3 py-[7px]",
       size === "small" && "px-1 py-[1px]",
     ],

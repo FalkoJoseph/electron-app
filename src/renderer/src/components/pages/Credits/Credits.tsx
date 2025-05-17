@@ -9,10 +9,20 @@ const Credits = () => {
 
   return (
     <div className="p-5">
-      <ul className="list-disc list-inside space-y-1">
+      <ul className="list-disc list-inside space-y-1 [&>li]:underline [&>li]:underline-offset-1 [&>li>a]:cursor-pointer">
         <li>
           <a href="https://electronjs.org" rel="noreferrer" target="_blank">
             Electron
+          </a>
+        </li>
+        <li>
+          <a href="https://vitejs.dev" rel="noreferrer" target="_blank">
+            Vite
+          </a>
+        </li>
+        <li>
+          <a href="https://typescriptlang.org" rel="noreferrer" target="_blank">
+            TypeScript
           </a>
         </li>
         <li>
@@ -26,8 +36,8 @@ const Credits = () => {
           </a>
         </li>
         <li>
-          <a href="https://remixicon.com" rel="noreferrer" target="_blank">
-            Remix Icon
+          <a href="https://lucide.dev" rel="noreferrer" target="_blank">
+            Lucide Icons
           </a>
         </li>
         <li>
@@ -66,11 +76,6 @@ const Credits = () => {
         <li>
           <a href="https://reactrouter.com" rel="noreferrer" target="_blank">
             React Router
-          </a>
-        </li>
-        <li>
-          <a href="https://typescriptlang.org" rel="noreferrer" target="_blank">
-            TypeScript
           </a>
         </li>
       </ul>

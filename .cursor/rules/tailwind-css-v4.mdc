@@ -50,8 +50,8 @@ tags:
 ## Theme Configuration
 
 - **CSS theme variables**: All design tokens are available as CSS variables
-  - Namespace format: `--category-name` (e.g., `--color-blue-500`, `--font-sans`)
-  - Access in CSS: `var(--color-blue-500)`
+  - Namespace format: `--category-name` (e.g., `--color-primary-500`, `--font-sans`)
+  - Access in CSS: `var(--color-primary-500)`
   - Available namespaces:
     - `--color-*` : Color utilities like `bg-red-500` and `text-sky-300`
     - `--font-*` : Font family utilities like `font-sans`

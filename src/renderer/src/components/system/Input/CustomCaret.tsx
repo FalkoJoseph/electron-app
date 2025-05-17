@@ -190,7 +190,7 @@ export function CustomCaret({ inputRef }: CustomCaretProps) {
               ? [0, 1, 1]
               : 0,
       }}
-      className="bg-blue-500 absolute pointer-events-none w-[2px] rounded-full"
+      className="bg-primary-500 absolute pointer-events-none w-[2px] rounded-full"
       initial={{ opacity: isMouseDown || isInteracting ? 1 : 0 }}
       style={{
         height: caretPosition.height,

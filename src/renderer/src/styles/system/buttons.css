@@ -1,5 +1,5 @@
 .btn {
-  @apply no-drag relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 py-1 leading-none font-normal;
+  @apply no-drag relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 pt-[2px] pb-[3px] leading-4 font-normal;
 
   &:focus {
     @apply outline-none;
@@ -22,21 +22,22 @@
     @apply scale-95;
   }
 
+  &.btn-default svg {
+    @apply text-gray-700 dark:text-white;
+  }
+
   & svg {
     @apply text-gray-500 group-active:text-gray-900 dark:text-white/50 dark:group-active:text-white;
   }
 }
 
-@source inline("btn-default");
-@source inline("btn-primary");
-@source inline("btn-transparent");
-
+/* We need to use a utility class here because we need to apply the same class to the select element */
 @utility btn-default {
   @apply shadow-border dark:shadow-inset bg-white bg-gradient-to-t from-neutral-50 to-white text-black active:from-neutral-200 active:to-neutral-200 dark:from-neutral-500 dark:to-neutral-500 dark:text-white dark:active:from-neutral-500/90 dark:active:to-neutral-500/90;
 }
 
-@utility btn-primary {
-  @apply shadow-bottom dark:shadow-inset bg-black bg-gradient-to-t from-blue-600 to-blue-500 text-white active:from-blue-600/90 active:to-blue-500/90 dark:bg-white;
+.btn-accent {
+  @apply shadow-bottom dark:shadow-inset bg-black bg-gradient-to-t text-white dark:bg-white;
 
   & svg,
   &:active svg {
@@ -44,6 +45,79 @@
   }
 }
 
-@utility btn-transparent {
+.btn-transparent {
   @apply bg-transparent text-black/70 hover:bg-black/5 active:bg-black/10 active:text-black/50 dark:text-white/70 dark:hover:bg-white/10 dark:active:bg-white/20 dark:active:text-white/50;
+}
+
+/* Dynamic color variants */
+.btn-primary {
+  @apply from-primary-600 to-primary-500 active:to-primary-500/90 active:from-primary-600/90;
+}
+
+.btn-blue {
+  @apply from-blue-600 to-blue-500 active:from-blue-600/90 active:to-blue-500/90;
+}
+
+.btn-red {
+  @apply from-red-600 to-red-500 active:from-red-600/90 active:to-red-500/90;
+}
+
+.btn-green {
+  @apply from-green-600 to-green-500 active:from-green-600/90 active:to-green-500/90;
+}
+
+.btn-purple {
+  @apply from-purple-600 to-purple-500 active:from-purple-600/90 active:to-purple-500/90;
+}
+
+.btn-yellow {
+  @apply from-yellow-600 to-yellow-500 active:from-yellow-600/90 active:to-yellow-500/90;
+}
+
+.btn-orange {
+  @apply from-orange-600 to-orange-500 active:from-orange-600/90 active:to-orange-500/90;
+}
+
+.btn-sky {
+  @apply from-sky-600 to-sky-500 active:from-sky-600/90 active:to-sky-500/90;
+}
+
+.btn-pink {
+  @apply from-pink-600 to-pink-500 active:from-pink-600/90 active:to-pink-500/90;
+}
+
+.btn-lime {
+  @apply from-lime-600 to-lime-500 active:from-lime-600/90 active:to-lime-500/90;
+}
+
+.btn-amber {
+  @apply from-amber-600 to-amber-500 active:from-amber-600/90 active:to-amber-500/90;
+}
+
+.btn-emerald {
+  @apply from-emerald-600 to-emerald-500 active:from-emerald-600/90 active:to-emerald-500/90;
+}
+
+.btn-fuchsia {
+  @apply from-fuchsia-600 to-fuchsia-500 active:from-fuchsia-600/90 active:to-fuchsia-500/90;
+}
+
+.btn-rose {
+  @apply from-rose-600 to-rose-500 active:from-rose-600/90 active:to-rose-500/90;
+}
+
+.btn-cyan {
+  @apply from-cyan-600 to-cyan-500 active:from-cyan-600/90 active:to-cyan-500/90;
+}
+
+.btn-teal {
+  @apply from-teal-600 to-teal-500 active:from-teal-600/90 active:to-teal-500/90;
+}
+
+.btn-violet {
+  @apply from-violet-600 to-violet-500 active:from-violet-600/90 active:to-violet-500/90;
+}
+
+.btn-indigo {
+  @apply from-indigo-600 to-indigo-500 active:from-indigo-600/90 active:to-indigo-500/90;
 }
