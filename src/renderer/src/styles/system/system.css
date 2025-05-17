@@ -1,7 +1,7 @@
 /* Body */
 
 body {
-  @apply cursor-default overflow-hidden text-sm text-black select-none dark:text-white;
+  @apply text-system cursor-default overflow-hidden text-black select-none dark:text-white;
 }
 
 /* Text */

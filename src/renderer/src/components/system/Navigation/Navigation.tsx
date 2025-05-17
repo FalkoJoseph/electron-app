@@ -114,7 +114,7 @@ const SortableNavigationItem = ({
     (location.pathname === item.path || location.pathname === `/${item.path}`);
 
   const navigationItemStyle = clsx(
-    "flex items-center rounded-md gap-1.5 px-2 py-[0.35rem] text-system focus:outline-none",
+    "flex items-center rounded-md gap-1.5 px-2 py-[0.35rem] focus:outline-none",
     isActive && [
       activeColor === "default"
         ? "bg-black/10 dark:bg-white/10"
@@ -341,7 +341,7 @@ const Navigation = ({ contents }: NavigationProps) => {
             </div>
           ) : activeItem ? (
             <div className="p-2">
-              <div className="flex items-center gap-1.5 text-system">
+              <div className="flex items-center gap-1.5">
                 <div className="[&>svg]:size-4 [&>svg]:text-blue-500">
                   {activeItem.icon}
                 </div>

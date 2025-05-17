@@ -58,14 +58,10 @@ const InputText = ({
     adjustTextareaHeight();
   }, [value, isAutosize, minHeight]);
 
-  const isNative =
-    variant === "default" || variant === "sidebar" || variant === "search";
-
   const inputStyle = clsx([
     "w-full",
     !isMultiline ? "caret-transparent" : "caret-blue-500 resize-none",
     className,
-    isNative && "text-system",
     isRounded && "rounded-md",
     variant === "sidebar" && [
       "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none dark:text-white focus:ring-3 focus:ring-blue-500/50 dark:focus:ring-white/20",
@@ -88,7 +84,7 @@ const InputText = ({
   return (
     <div className="relative w-full">
       {iconPrefix && (
-        <div className="absolute left-2 top-1/2 -translate-y-1/2 text-system opacity-50 pointer-events-none">
+        <div className="absolute left-2 top-1/2 -translate-y-1/2 opacity-60 pointer-events-none">
           {iconPrefix}
         </div>
       )}

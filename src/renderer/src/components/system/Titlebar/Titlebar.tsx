@@ -66,7 +66,7 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
   }, [titlebarActionsLeft, titlebarActionsRight, isFullscreen, titlebarSize]);
 
   const titlebarStyle = clsx([
-    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between text-sm text-black/80 transition-[background-color] duration-200 dark:text-white/80",
+    "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between text-black/80 transition-[background-color] duration-200 dark:text-white/80",
     windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-700",
     windowBackground === "light" && "bg-white dark:bg-neutral-700",
     windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
@@ -120,7 +120,7 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
           (typeof title === "string" ? (
             <p
               className={clsx([
-                "text-system font-bold",
+                "font-bold",
                 titlebarAlign === "left" && "pl-2",
               ])}
             >

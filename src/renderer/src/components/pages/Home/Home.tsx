@@ -11,7 +11,9 @@ import Switch from "@/components/system/Switch/Switch";
 
 const Home = () => {
   useEffect(() => {
-    setTitlebarTitle("");
+    setTitlebarTitle(
+      <p className="text-sm font-semibold pl-2 opacity-85">Components</p>,
+    );
   }, []);
 
   return (

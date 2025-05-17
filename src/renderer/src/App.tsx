@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import {
   RiBookmarkLine,
   RiHome5Line,
+  RiListUnordered,
   RiSearchLine,
   RiShare2Line,
 } from "@remixicon/react";
@@ -38,19 +39,24 @@ export const useApp = () => {
       {
         activeColor: "blue" as ColorName,
         dragAndDrop: {
-          enableGroupDrag: false,
+          enableGroupDrag: true,
           enableItemDrag: true,
         },
         items: [
           {
             icon: <RiHome5Line />,
-            label: "Home",
+            label: "Components",
             path: "/",
           },
           {
             icon: <RiBookmarkLine />,
             label: "Bookmarks",
             path: "bookmarks",
+          },
+          {
+            icon: <RiListUnordered />,
+            label: "Credits",
+            path: "credits",
           },
         ],
         label: "Library",
