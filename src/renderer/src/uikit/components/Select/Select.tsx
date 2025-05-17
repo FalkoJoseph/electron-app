@@ -1,5 +1,5 @@
-import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
 import clsx from "clsx";
+import { ChevronsUpDown } from "lucide-react";
 
 import { ColorName } from "@/uikit/types/colors";
 
@@ -48,13 +48,12 @@ const Select = ({
         >
           <div
             className={clsx(
-              "relative -top-[2px]",
-              variant === "default" && "left-[0.5px]",
-              variant === "accent" && "left-[0.8px]",
+              "relative",
+              variant === "default" && "left-[0.5px] top-[0.5px]",
+              variant === "accent" && "left-[0.8px] top-[1px]",
             )}
           >
-            <RiArrowUpSLine className="-mb-2" size={13.2} />
-            <RiArrowDownSLine size={13.2} />
+            <ChevronsUpDown size={13} />
           </div>
         </div>
       </div>

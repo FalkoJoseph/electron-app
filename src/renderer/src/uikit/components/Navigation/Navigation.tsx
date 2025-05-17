@@ -17,8 +17,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { RiArrowRightSLine } from "@remixicon/react";
 import clsx from "clsx";
+import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 
 import { COLOR_MAP, ColorName } from "@/uikit/types/colors";
@@ -159,7 +159,7 @@ const SortableNavigationGroup = ({
             className="text-black group-hover:opacity-30 opacity-0 transition-opacity duration-100 group-active:opacity-60 dark:text-white"
             transition={{ duration: 0.2 }}
           >
-            <RiArrowRightSLine className="size-5" />
+            <ChevronRight className="size-5" />
           </motion.div>
         </button>
       )}

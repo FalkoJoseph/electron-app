@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-import { RiCloseLine } from "@remixicon/react";
 import clsx from "clsx";
+import { X } from "lucide-react";
 
 import { CustomCaret } from "./CustomCaret";
 
@@ -124,7 +124,7 @@ const InputText = ({
           )}
           onClick={handleClear}
         >
-          <RiCloseLine size={12} />
+          <X size={12} />
         </div>
       )}
     </div>
