@@ -12,35 +12,6 @@ import { WINDOW_DIMENSIONS } from "../shared/constants";
     showInspectElement: is.dev,
     showCopyImage: false,
     showSaveImage: false,
-    prepend: (_, params, browserWindow) => [
-      {
-        label: "Cut",
-        visible: params.isEditable,
-        click: () => {
-          if (browserWindow instanceof BrowserWindow) {
-            browserWindow.webContents.cut();
-          }
-        },
-      },
-      {
-        label: "Copy",
-        visible: params.isEditable || params.selectionText.length > 0,
-        click: () => {
-          if (browserWindow instanceof BrowserWindow) {
-            browserWindow.webContents.copy();
-          }
-        },
-      },
-      {
-        label: "Paste",
-        visible: params.isEditable,
-        click: () => {
-          if (browserWindow instanceof BrowserWindow) {
-            browserWindow.webContents.paste();
-          }
-        },
-      },
-    ],
   });
 })();
 
