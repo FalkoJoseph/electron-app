@@ -11,18 +11,15 @@ const routes = [
       {
         element: <Home />,
         path: "",
-        title: "home",
       },
       // Add your routes here
       {
         element: <SplitView />,
         path: "split-view",
-        title: "split-view",
       },
       {
         element: <Credits />,
         path: "credits",
-        title: "credits",
       },
     ],
     element: <Layout />,
