@@ -12,11 +12,11 @@
 
 .btn-large,
 .btn-icon {
-  @apply h-8;
+  @apply h-7;
 }
 
 .btn-icon {
-  @apply w-10 p-0;
+  @apply w-9 p-0;
 
   &:active {
     @apply scale-95;

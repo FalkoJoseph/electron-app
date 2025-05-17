@@ -32,7 +32,7 @@ export const useApp = () => {
     // Default color
     setPrimaryColor("blue");
 
-    // Window
+    // Window background
     setWindowBackground("dark");
 
     // Titlebar
@@ -43,7 +43,7 @@ export const useApp = () => {
     // Titlebar actions
     setTitlebarActionsRight([
       <Button key="sidebar" size="icon" variant="transparent">
-        <Share size="20" />
+        <Share size="18" />
       </Button>,
       <InputText
         key="search"
@@ -102,7 +102,7 @@ export const useApp = () => {
     setSidebarContentLeft(<Navigation contents={navigation} />);
   }, [primaryColor]);
 
-  // Sidebar actions - only runs when the sidebar left is opened or closed
+  // Sidebar actions
   useEffect(() => {
     setSidebarActionsLeft([
       <Button

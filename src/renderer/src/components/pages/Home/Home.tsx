@@ -45,7 +45,7 @@ const Home = () => {
       </div>
       <div>
         <Button size="icon" variant="default">
-          <Plus size={22} />
+          <Plus size={18} />
         </Button>
       </div>
       <div>
@@ -80,6 +80,7 @@ const Home = () => {
           <option value="violet">Violet</option>
           <option value="indigo">Indigo</option>
         </Select>
+
         <Button variant="default">Save</Button>
       </div>
       <div>
