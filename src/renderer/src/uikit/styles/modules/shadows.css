@@ -1,0 +1,60 @@
+@utility shadow-border {
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.1),
+    inset 0 0.5px 0 0 rgba(0, 0, 0, 0.02),
+    inset 0 -0.5px 0 0 rgba(0, 0, 0, 0.2),
+    0 0.5px 2px rgba(0, 0, 0, 0.1);
+}
+
+@utility shadow-inner {
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+@utility shadow-inset {
+  box-shadow:
+    inset 0 0.6px 0 0 rgba(255, 255, 255, 0.32),
+    0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+@utility shadow-inner-border {
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.2);
+}
+
+@utility shadow-border-dark {
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@utility shadow-x {
+  box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
+}
+
+@utility shadow-x-y {
+  box-shadow:
+    inset 0 -0.5px 0 0 rgba(0, 0, 0, 0.15),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+@utility shadow-bottom {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+@utility shadow-x-y-inset {
+  box-shadow:
+    inset 0 0.5px 0 0 rgba(255, 255, 255, 0.05),
+    inset 0 1px 1px 0 rgba(0, 0, 0, 0.12),
+    inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode */
+
+@utility shadow-x-y {
+  @media (prefers-color-scheme: dark) {
+    box-shadow:
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.9),
+      0px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+}

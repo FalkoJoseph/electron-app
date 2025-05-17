@@ -8,12 +8,20 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import routes from "./routes";
 import "./styles/style.css";
 
+import { useApp } from "@/App";
+
 const queryClient = new QueryClient();
 const router = createHashRouter(routes);
+
+const AppInitializer = () => {
+  useApp();
+  return null;
+};
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
+      <AppInitializer />
       <RouterProvider router={router} />
     </QueryClientProvider>
   </StrictMode>,

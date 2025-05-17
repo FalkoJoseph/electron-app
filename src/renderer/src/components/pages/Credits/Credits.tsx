@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { setTitlebarTitle } from "@/stores/system/titlebar.store";
+import { setTitlebarTitle } from "@/uikit/stores/titlebar.store";
 
 const Credits = () => {
   useEffect(() => {

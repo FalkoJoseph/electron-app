@@ -1,0 +1,19 @@
+/* Tailwind */
+
+@import "tailwindcss";
+
+/* Tailwind config */
+
+@import "./config.tailwind.css";
+
+/* Shadcn */
+
+@import "./config.shadcn.css";
+
+/* Modules */
+
+@import "./modules/base.css";
+@import "./modules/utilities.css";
+@import "./modules/buttons.css";
+@import "./modules/shadows.css";
+@import "./modules/resizable.css";

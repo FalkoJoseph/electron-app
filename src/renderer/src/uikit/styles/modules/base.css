@@ -1,0 +1,17 @@
+/* Body */
+
+body {
+  @apply text-system cursor-default overflow-hidden text-black select-none dark:text-white;
+}
+
+/* Base */
+
+@layer base {
+  a {
+    @apply no-user-drag cursor-default;
+  }
+
+  img {
+    @apply no-user-drag;
+  }
+}

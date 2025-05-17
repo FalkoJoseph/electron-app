@@ -32,6 +32,7 @@ export default tseslint.config(
       ...eslintPluginReactHooks.configs.recommended.rules,
       ...eslintPluginReactRefresh.configs.vite.rules,
       "@typescript-eslint/explicit-function-return-type": "off",
+      endOfLine: "auto",
       "perfectionist/sort-array-includes": [
         "error",
         {

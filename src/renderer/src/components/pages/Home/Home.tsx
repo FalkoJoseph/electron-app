@@ -2,14 +2,13 @@ import { useEffect } from "react";
 
 import { Calendar, Plus } from "lucide-react";
 
-import { setPrimaryColor } from "@/stores/system/theme.store";
-import useThemeStore from "@/stores/system/theme.store";
-import { setTitlebarTitle } from "@/stores/system/titlebar.store";
+import useThemeStore, { setPrimaryColor } from "@/uikit/stores/theme.store";
+import { setTitlebarTitle } from "@/uikit/stores/titlebar.store";
 
-import Button from "@/components/system/Button/Button";
-import InputText from "@/components/system/Input/InputText";
-import Select from "@/components/system/Select/Select";
-import Switch from "@/components/system/Switch/Switch";
+import { Button } from "@/uikit/components/Button";
+import { InputText } from "@/uikit/components/Input";
+import { Select } from "@/uikit/components/Select";
+import { Switch } from "@/uikit/components/Switch";
 
 const Home = () => {
   const primaryColor = useThemeStore((state) => state.primaryColor);

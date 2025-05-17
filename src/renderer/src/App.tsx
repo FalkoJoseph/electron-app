@@ -8,20 +8,21 @@ import useSidebarStore, {
   setSidebarLeft,
   setSidebarOpenLeft,
   setSidebarSearch,
-} from "@/stores/system/sidebar.store";
-import useThemeStore, { setPrimaryColor } from "@/stores/system/theme.store";
+} from "@/uikit/stores/sidebar.store";
+import useThemeStore, { setPrimaryColor } from "@/uikit/stores/theme.store";
 import {
   setTitlebarActionsRight,
   setTitlebarAlign,
   setTitlebarSize,
   setTitlebarVisible,
-} from "@/stores/system/titlebar.store";
-import { setWindowBackground } from "@/stores/system/window.store";
+} from "@/uikit/stores/titlebar.store";
+import { setWindowBackground } from "@/uikit/stores/window.store";
 
-import IconSidebar from "@/assets/svg/IconSidebar";
-import Button from "@/components/system/Button/Button";
-import InputText from "@/components/system/Input/InputText";
-import Navigation from "@/components/system/Navigation/Navigation";
+import { Button } from "@/uikit/components/Button";
+import { InputText } from "@/uikit/components/Input";
+import { Navigation } from "@/uikit/components/Navigation";
+
+import { IconSidebar } from "@/uikit/assets/svg";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);

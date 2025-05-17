@@ -1,0 +1,19 @@
+@utility text-system {
+  @apply text-[0.8rem];
+}
+
+@utility text-xxs {
+  @apply text-[0.7rem];
+}
+
+@utility no-user-drag {
+  -webkit-user-drag: none;
+}
+
+@utility drag {
+  -webkit-app-region: drag;
+}
+
+@utility no-drag {
+  -webkit-app-region: no-drag;
+}

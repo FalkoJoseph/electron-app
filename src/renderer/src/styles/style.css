@@ -1,18 +1,3 @@
-/* Tailwind */
+/* UI Kit */
 
-@import "tailwindcss";
-
-/* Tailwind config */
-
-@import "./config.tailwind.css";
-
-/* Shadcn */
-
-@import "./config.shadcn.css";
-
-/* System */
-
-@import "./system/buttons.css";
-@import "./system/system.css";
-
-/* Modules */
+@import "@/uikit/styles";
