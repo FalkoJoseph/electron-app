@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import useTitlebarStore from "@/uikit/stores/titlebar.store";
+import { useTitlebarStore } from "@/uikit/stores";
 
 export const useTrafficLight = () => {
   const trafficLightPosition = useTitlebarStore(

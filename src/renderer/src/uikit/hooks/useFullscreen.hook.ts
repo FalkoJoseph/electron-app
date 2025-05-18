@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { setWindowFullscreen } from "@/uikit/stores/window.store";
+import { setWindowFullscreen } from "@/uikit/stores";
 
 export const useFullscreen = () => {
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { setTitlebarHeight } from "@/uikit/stores/titlebar.store";
+import { setTitlebarHeight } from "@/uikit/stores";
 
 export const useTitlebarHeight = () => {
   useEffect(() => {

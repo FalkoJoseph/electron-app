@@ -6,7 +6,6 @@ import { createHashRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import routes from "./routes";
-import "./styles/style.css";
 
 import { useApp } from "@/App";
 

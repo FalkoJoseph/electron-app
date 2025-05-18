@@ -64,4 +64,4 @@ export const setTitlebarBorderOnScroll = (borderOnScroll: boolean) => {
   useTitlebarStore.setState({ borderOnScroll });
 };
 
-export default useTitlebarStore;
+export { useTitlebarStore };

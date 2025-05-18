@@ -21,7 +21,7 @@ import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 
-import { COLOR_MAP, ColorName } from "@/uikit/types/colors";
+import { COLOR_MAP, type ColorName } from "@/uikit";
 
 interface NavigationItem {
   icon: React.ReactNode | null;

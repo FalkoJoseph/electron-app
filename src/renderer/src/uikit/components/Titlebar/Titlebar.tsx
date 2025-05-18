@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 
 import clsx from "clsx";
 
-import { useTitlebarHeight } from "@/uikit/hooks/useTitlebarHeight.hook";
-import { useTrafficLight } from "@/uikit/hooks/useTrafficLight.hook";
-
-import useSidebarStore from "@/uikit/stores/sidebar.store";
-import useTitlebarStore, {
+import {
   setTrafficLightPosition,
-} from "@/uikit/stores/titlebar.store";
-import useWindowStore from "@/uikit/stores/window.store";
+  useSidebarStore,
+  useTitlebarStore,
+  useWindowStore,
+} from "@/uikit/stores";
 
-import { TitlebarItem } from "@/uikit/components/Titlebar";
+import { TitlebarItem, useTitlebarHeight, useTrafficLight } from "@/uikit";
 
 interface TitlebarProps {
   isScrolled: boolean;

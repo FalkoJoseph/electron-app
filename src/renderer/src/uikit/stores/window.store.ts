@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { setTitlebarBorderOnScroll } from "@/uikit/stores/titlebar.store";
+import { setTitlebarBorderOnScroll } from "@/uikit/stores";
 
 interface State {
   background: "transparent" | "light" | "dark" | "default";
@@ -33,4 +33,4 @@ export const setWindowFullscreen = (isFullscreen: boolean) => {
   useWindowStore.setState({ isFullscreen });
 };
 
-export default useWindowStore;
+export { useWindowStore };

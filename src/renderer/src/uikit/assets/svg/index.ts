@@ -1,1 +1,0 @@
-export { IconSidebar } from "./IconSidebar";

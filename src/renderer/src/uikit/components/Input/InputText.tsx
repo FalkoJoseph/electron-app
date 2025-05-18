@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { X } from "lucide-react";
 
-import { CustomCaret } from "./CustomCaret";
+import { CustomCaret } from "@/uikit";
 
 interface InputTextProps {
   className?: string;

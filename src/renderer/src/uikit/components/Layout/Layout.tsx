@@ -1,10 +1,10 @@
+import "@/uikit/styles/style.css";
+
 import { Outlet } from "react-router";
 
-import useSidebarStore from "@/uikit/stores/sidebar.store";
+import { useSidebarStore } from "@/uikit/stores";
 
-import { Sidebar } from "@/uikit/components/Sidebar";
-import { SidebarActions } from "@/uikit/components/Sidebar";
-import { Window } from "@/uikit/components/Window";
+import { Sidebar, SidebarActions, Window } from "@/uikit";
 
 const Layout = () => {
   const hasLeftSidebar = useSidebarStore((state) => state.hasLeft);

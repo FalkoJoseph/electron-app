@@ -3,18 +3,17 @@ import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { motion } from "motion/react";
 
-import { useFullscreen } from "@/uikit/hooks/useFullscreen.hook";
-
-import useAppStore from "@/uikit/stores/app.store";
-import useSidebarStore, {
+import {
   setSidebarOpenLeft,
   setSidebarOpenRight,
-} from "@/uikit/stores/sidebar.store";
-import useTitlebarStore from "@/uikit/stores/titlebar.store";
-import useWindowStore, { setWindowMounted } from "@/uikit/stores/window.store";
+  setWindowMounted,
+  useAppStore,
+  useSidebarStore,
+  useTitlebarStore,
+  useWindowStore,
+} from "@/uikit/stores";
 
-import { SidebarActions } from "@/uikit/components/Sidebar";
-import { Titlebar } from "@/uikit/components/Titlebar";
+import { SidebarActions, Titlebar, useFullscreen } from "@/uikit";
 
 interface WindowProps {
   children: React.ReactNode;

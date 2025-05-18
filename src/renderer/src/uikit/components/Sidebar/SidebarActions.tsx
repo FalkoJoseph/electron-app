@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 import clsx from "clsx";
 
-import useSidebarStore from "@/uikit/stores/sidebar.store";
-import useTitlebarStore from "@/uikit/stores/titlebar.store";
-import useWindowStore from "@/uikit/stores/window.store";
+import {
+  useSidebarStore,
+  useTitlebarStore,
+  useWindowStore,
+} from "@/uikit/stores";
 
-import { TitlebarItem } from "@/uikit/components/Titlebar";
+import { TitlebarItem } from "@/uikit";
 
 interface SidebarProps {
   align: "left" | "right";

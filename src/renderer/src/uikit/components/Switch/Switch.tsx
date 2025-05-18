@@ -4,8 +4,7 @@ import * as React from "react";
 
 import * as SwitchPrimitives from "@radix-ui/react-switch";
 
-import { cn } from "@/uikit/lib/utils";
-import { ColorName } from "@/uikit/types/colors";
+import { type ColorName, cn } from "@/uikit";
 
 interface SwitchProps
   extends React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root> {

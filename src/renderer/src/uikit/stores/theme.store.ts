@@ -52,4 +52,4 @@ export const setPrimaryColor = (color: ColorName) => {
   useThemeStore.setState({ primaryColor: effectiveColor });
 };
 
-export default useThemeStore;
+export { useThemeStore };

@@ -6,7 +6,7 @@ interface CustomCaretProps {
   inputRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
 }
 
-export function CustomCaret({ inputRef }: CustomCaretProps) {
+const CustomCaret = ({ inputRef }: CustomCaretProps) => {
   const [caretPosition, setCaretPosition] = useState({ height: 20, x: 0 });
   const [isReady, setIsReady] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -206,4 +206,6 @@ export function CustomCaret({ inputRef }: CustomCaretProps) {
       }}
     />
   );
-}
+};
+
+export { CustomCaret };

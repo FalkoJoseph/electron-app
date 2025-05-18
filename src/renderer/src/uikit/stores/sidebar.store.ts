@@ -130,4 +130,4 @@ export const setSidebarSearch = (search: Search) => {
   }
 };
 
-export default useSidebarStore;
+export { useSidebarStore };

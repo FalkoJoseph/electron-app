@@ -2,27 +2,23 @@ import { useEffect } from "react";
 
 import { Award, Box, Columns3, Search, Share } from "lucide-react";
 
-import useSidebarStore, {
+import {
+  setPrimaryColor,
   setSidebarActionsLeft,
   setSidebarContentLeft,
   setSidebarLeft,
   setSidebarOpenLeft,
   setSidebarSearch,
-} from "@/uikit/stores/sidebar.store";
-import useThemeStore, { setPrimaryColor } from "@/uikit/stores/theme.store";
-import {
   setTitlebarActionsRight,
   setTitlebarAlign,
   setTitlebarSize,
   setTitlebarVisible,
-} from "@/uikit/stores/titlebar.store";
-import { setWindowBackground } from "@/uikit/stores/window.store";
+  setWindowBackground,
+  useSidebarStore,
+  useThemeStore,
+} from "@/uikit/stores";
 
-import { Button } from "@/uikit/components/Button";
-import { InputText } from "@/uikit/components/Input";
-import { Navigation } from "@/uikit/components/Navigation";
-
-import { IconSidebar } from "@/uikit/assets/svg";
+import { Button, IconSidebar, InputText, Navigation } from "@/uikit";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);

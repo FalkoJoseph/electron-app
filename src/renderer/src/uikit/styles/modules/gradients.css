@@ -1,0 +1,7 @@
+@utility gradient-gray {
+  @apply from-neutral-500 to-neutral-700;
+}
+
+@utility gradient-gray-invert {
+  @apply from-neutral-500 to-neutral-700;
+}

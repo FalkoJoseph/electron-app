@@ -14,4 +14,4 @@ const useAppStore = create<State>(() => ({
   ...initialState,
 }));
 
-export default useAppStore;
+export { useAppStore };

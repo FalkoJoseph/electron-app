@@ -5,17 +5,18 @@ import "react-resizable/css/styles.css";
 import clsx from "clsx";
 import { Search } from "lucide-react";
 
-import useSidebarStore, {
+import {
   setSidebarLeft,
   setSidebarOpenLeft,
   setSidebarResizing,
   setSidebarWidthLeft,
   setSidebarWidthRight,
-} from "@/uikit/stores/sidebar.store";
-import useTitlebarStore from "@/uikit/stores/titlebar.store";
-import useWindowStore from "@/uikit/stores/window.store";
+  useSidebarStore,
+  useTitlebarStore,
+  useWindowStore,
+} from "@/uikit/stores";
 
-import { InputText } from "@/uikit/components/Input";
+import { InputText } from "@/uikit";
 
 interface SidebarProps {
   align: "left" | "right";
