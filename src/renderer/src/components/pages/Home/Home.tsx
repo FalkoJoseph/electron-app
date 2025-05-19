@@ -19,6 +19,7 @@ import {
   RadioGroup,
   RadioGroupItem,
   Select,
+  Slider,
   Switch,
 } from "@/uikit";
 
@@ -34,6 +35,39 @@ const Home = () => {
   return (
     <div className="p-5">
       <Form hasDivider>
+        <FormGroup label="Theme" subLabel="Change the theme of the app.">
+          <FormItem>
+            <Select
+              value={activeColor}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                const color = e.target.value;
+                setActiveColor(color as Parameters<typeof setActiveColor>[0]);
+              }}
+            >
+              <option value="" disabled>
+                Change accent color
+              </option>
+              <option value="blue">Blue</option>
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="purple">Purple</option>
+              <option value="yellow">Yellow</option>
+              <option value="orange">Orange</option>
+              <option value="sky">Sky</option>
+              <option value="pink">Pink</option>
+              <option value="lime">Lime</option>
+              <option value="amber">Amber</option>
+              <option value="emerald">Emerald</option>
+              <option value="fuchsia">Fuchsia</option>
+              <option value="rose">Rose</option>
+              <option value="cyan">Cyan</option>
+              <option value="teal">Teal</option>
+              <option value="violet">Violet</option>
+              <option value="indigo">Indigo</option>
+            </Select>
+          </FormItem>
+        </FormGroup>
+
         <FormGroup
           label="Buttons"
           subLabel="Buttons are used to trigger actions."
@@ -66,6 +100,29 @@ const Home = () => {
         </FormGroup>
 
         <FormGroup
+          label="Slider"
+          subLabel="Slider is used to select a value from a range."
+        >
+          <FormItem>
+            <Slider defaultValue={[35]} max={100} />
+          </FormItem>
+
+          <FormItem>
+            <Slider defaultValue={[20]} max={100} step={10} hasMarks />
+          </FormItem>
+
+          <FormItem>
+            <Slider
+              defaultValue={[50]}
+              max={100}
+              step={25}
+              hasMarks
+              markLabels={["Low", "Medium", "High", "Very High", "Max"]}
+            />
+          </FormItem>
+        </FormGroup>
+
+        <FormGroup
           label="Toggles"
           subLabel="Toggles are used to switch between two states."
         >
@@ -79,8 +136,8 @@ const Home = () => {
         </FormGroup>
 
         <FormGroup
-          label="Radio"
-          subLabel="Radio is used to select an option from a list."
+          label="Radio Vertical"
+          subLabel="Radio Vertical is used to select an option from a list."
         >
           <FormItem>
             <RadioGroup defaultValue="option-one">
@@ -91,7 +148,22 @@ const Home = () => {
         </FormGroup>
 
         <FormGroup
-          label="Horizontal with spread layout"
+          label="Radio Horizontal"
+          subLabel="Radio Horizontal is used to select an option from a list."
+        >
+          <FormItem>
+            <RadioGroup defaultValue="option-horizontal" isHorizontal>
+              <RadioGroupItem
+                value="option-horizontal"
+                label="Option Horizontal"
+              />
+              <RadioGroupItem value="option-vertical" label="Option Vertical" />
+            </RadioGroup>
+          </FormItem>
+        </FormGroup>
+
+        <FormGroup
+          label="Horizontal Spread"
           subLabel="Horizontal with spread layout is used to display items in a horizontal row with spread layout."
         >
           <FormHorizontal align="start" isSpread>
@@ -117,7 +189,7 @@ const Home = () => {
         </FormGroup>
 
         <FormGroup
-          label="Horizontal with left labels"
+          label="Horizontal Centered"
           subLabel="Horizontal with left labels is used to display items in a horizontal row with left labels."
         >
           <FormHorizontal isCentered>
@@ -146,33 +218,9 @@ const Home = () => {
         >
           <FormHorizontal>
             <FormItem>
-              <Select
-                value={activeColor}
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  const color = e.target.value;
-                  setActiveColor(color as Parameters<typeof setActiveColor>[0]);
-                }}
-              >
-                <option value="" disabled>
-                  Change accent color
-                </option>
-                <option value="blue">Blue</option>
-                <option value="red">Red</option>
-                <option value="green">Green</option>
-                <option value="purple">Purple</option>
-                <option value="yellow">Yellow</option>
-                <option value="orange">Orange</option>
-                <option value="sky">Sky</option>
-                <option value="pink">Pink</option>
-                <option value="lime">Lime</option>
-                <option value="amber">Amber</option>
-                <option value="emerald">Emerald</option>
-                <option value="fuchsia">Fuchsia</option>
-                <option value="rose">Rose</option>
-                <option value="cyan">Cyan</option>
-                <option value="teal">Teal</option>
-                <option value="violet">Violet</option>
-                <option value="indigo">Indigo</option>
+              <Select>
+                <option value="automatic">Automatic</option>
+                <option value="manual">Manual</option>
               </Select>
             </FormItem>
 

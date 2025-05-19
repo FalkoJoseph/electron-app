@@ -22,3 +22,4 @@ export { RadioGroup, RadioGroupItem } from "./components/Radio";
 export { Titlebar, TitlebarItem } from "./components/Titlebar";
 export { Window } from "./components/Window";
 export { Form, FormGroup, FormHorizontal, FormItem } from "./components/Form";
+export { Slider } from "./components/Slider";

@@ -11,11 +11,17 @@ import { cn } from "@/uikit";
 
 const RadioGroup = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
->(({ className, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> & {
+    isHorizontal?: boolean;
+  }
+>(({ className, isHorizontal, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Root
-      className={cn("grid gap-3", className)}
+      className={cn(
+        "grid gap-3",
+        isHorizontal && "flex flex-row gap-3",
+        className,
+      )}
       {...props}
       ref={ref}
     />

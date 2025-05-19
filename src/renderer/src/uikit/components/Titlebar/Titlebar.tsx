@@ -104,7 +104,7 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
 
       <div
         className={clsx([
-          "flex-1",
+          "flex-1 transition-padding duration-300",
           titlebarAlign === "center" && "text-center",
         ])}
         style={{
