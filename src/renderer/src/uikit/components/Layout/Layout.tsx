@@ -2,13 +2,16 @@ import "@/uikit/styles/style.css";
 
 import { Outlet } from "react-router";
 
-import { useSidebarStore } from "@/uikit/stores";
+import { setActiveColor, useSidebarStore, useThemeStore } from "@/uikit/stores";
 
 import { Sidebar, SidebarActions, Window } from "@/uikit";
 
 const Layout = () => {
   const hasLeftSidebar = useSidebarStore((state) => state.hasLeft);
   const hasRightSidebar = useSidebarStore((state) => state.hasRight);
+  const activeColor = useThemeStore((state) => state.activeColor);
+
+  setActiveColor(activeColor);
 
   return (
     <>

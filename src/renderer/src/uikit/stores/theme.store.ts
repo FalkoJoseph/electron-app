@@ -1,23 +1,6 @@
 import { create } from "zustand";
 
-type ColorName =
-  | "blue"
-  | "red"
-  | "green"
-  | "purple"
-  | "yellow"
-  | "orange"
-  | "sky"
-  | "pink"
-  | "lime"
-  | "amber"
-  | "emerald"
-  | "fuchsia"
-  | "rose"
-  | "cyan"
-  | "teal"
-  | "violet"
-  | "indigo";
+import { type ColorName } from "@/uikit/types";
 
 interface ThemeState {
   activeColor: ColorName;

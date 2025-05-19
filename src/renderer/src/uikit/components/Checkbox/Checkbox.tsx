@@ -5,7 +5,9 @@ import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
 
-import { ColorName, cn } from "@/uikit";
+import { type ColorName } from "@/uikit/types";
+
+import { cn } from "@/uikit";
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
@@ -26,7 +28,6 @@ const Checkbox = React.forwardRef<
           color
             ? `data-[state=checked]:btn-${color}`
             : "data-[state=checked]:btn-primary",
-          "data-[state=checked]:text-white",
           className,
         )}
         id={id}
@@ -35,9 +36,10 @@ const Checkbox = React.forwardRef<
         <CheckboxPrimitive.Indicator
           className={cn("flex items-center justify-center text-current")}
         >
-          <Check className="h-4 w-4" />
+          <Check strokeWidth={3} className="size-3.5" />
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
+
       {label && (
         <label className="pl-2 -mt-0.5" htmlFor={id}>
           {label}

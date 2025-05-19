@@ -6,7 +6,10 @@ interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const FormGroup = ({ children, label, subLabel, ...props }: FormGroupProps) => {
   return (
-    <div className="flex flex-col gap-3" {...props}>
+    <div
+      className="flex flex-col gap-3 group-[.has-divider]:pb-6 group-[.has-divider]:last:pb-0 group-[.has-divider]:last:border-b-0 group-[.has-divider]:border-b group-[.has-divider]:border-black/10 dark:group-[.has-divider]:border-white/10"
+      {...props}
+    >
       {(label || subLabel) && (
         <div className="flex flex-col gap-1 mb-2">
           {label &&

@@ -1,4 +1,4 @@
-import { type ColorName } from "./colors";
+import { type ColorName } from "@/uikit/types";
 
 export interface NavigationItem {
   icon?: React.ReactNode | null;
