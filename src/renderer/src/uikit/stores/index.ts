@@ -1,6 +1,6 @@
 export { useAppStore } from "./app.store";
 
-export { useThemeStore, setPrimaryColor } from "./theme.store";
+export { useThemeStore, setActiveColor } from "./theme.store";
 
 export {
   useSidebarStore,
@@ -37,3 +37,10 @@ export {
   setWindowBackground,
   setWindowFullscreen,
 } from "./window.store";
+
+export {
+  useNavigationStore,
+  setNavigationItems,
+  updateNavigationItems,
+  setExpandedGroups,
+} from "./navigation.store";

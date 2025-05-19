@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Calendar, Plus } from "lucide-react";
 
 import {
-  setPrimaryColor,
+  setActiveColor,
   setTitlebarTitle,
   useThemeStore,
 } from "@/uikit/stores";
@@ -20,7 +20,7 @@ import {
 } from "@/uikit";
 
 const Home = () => {
-  const primaryColor = useThemeStore((state) => state.primaryColor);
+  const activeColor = useThemeStore((state) => state.activeColor);
 
   useEffect(() => {
     setTitlebarTitle(
@@ -36,7 +36,7 @@ const Home = () => {
           subLabel="Buttons are used to trigger actions."
         >
           <div>
-            <Button variant="accent">Primary</Button>
+            <Button variant="accent">Accent</Button>
           </div>
 
           <div>
@@ -99,10 +99,10 @@ const Home = () => {
         >
           <FormHorizontal>
             <Select
-              value={primaryColor}
+              value={activeColor}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                 const color = e.target.value;
-                setPrimaryColor(color as Parameters<typeof setPrimaryColor>[0]);
+                setActiveColor(color as Parameters<typeof setActiveColor>[0]);
               }}
             >
               <option value="" disabled>

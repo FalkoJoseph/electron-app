@@ -6,9 +6,6 @@ export { useFullscreen } from "./hooks/useFullscreen.hook";
 export { useTitlebarHeight } from "./hooks/useTitlebarHeight.hook";
 export { useTrafficLight } from "./hooks/useTrafficLight.hook";
 
-// Types
-export { COLOR_MAP, type ColorName } from "./types/colors";
-
 // Assets
 export { IconSidebar } from "./assets/svg/IconSidebar";
 
@@ -16,7 +13,7 @@ export { IconSidebar } from "./assets/svg/IconSidebar";
 export { Button } from "./components/Button";
 export { InputText, CustomCaret } from "./components/Input";
 export { Layout } from "./components/Layout";
-export { Navigation } from "./components/Navigation";
+export { Navigation } from "./components/Navigation/Navigation";
 export { Select } from "./components/Select";
 export { Sidebar, SidebarActions } from "./components/Sidebar";
 export { Switch } from "./components/Switch";

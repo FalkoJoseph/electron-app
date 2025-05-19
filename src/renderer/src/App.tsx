@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Award, Box, Columns3, Search, Share } from "lucide-react";
 
 import {
-  setPrimaryColor,
+  setActiveColor,
   setSidebarActionsLeft,
   setSidebarContentLeft,
   setSidebarLeft,
@@ -22,12 +22,12 @@ import { Button, IconSidebar, InputText, Navigation } from "@/uikit";
 
 export const useApp = () => {
   const sidebarOpenLeft = useSidebarStore((state) => state.isOpenLeft);
-  const primaryColor = useThemeStore((state) => state.primaryColor);
+  const activeColor = useThemeStore((state) => state.activeColor);
 
   // Initial setup - only runs once
   useEffect(() => {
     // Default color
-    setPrimaryColor("blue");
+    setActiveColor("blue");
 
     // Window background
     setWindowBackground("dark");
@@ -70,7 +70,7 @@ export const useApp = () => {
   useEffect(() => {
     const navigation = [
       {
-        activeColor: primaryColor,
+        activeColor,
         dragAndDrop: {
           enableGroupDrag: true,
           enableItemDrag: true,
@@ -88,7 +88,12 @@ export const useApp = () => {
           },
           {
             icon: <Award />,
-            label: "Credits",
+            label: (
+              <div className="flex items-center justify-between">
+                <p>Credits</p>
+                <p className="opacity-30">12</p>
+              </div>
+            ),
             path: "credits",
           },
         ],
@@ -97,7 +102,7 @@ export const useApp = () => {
     ];
 
     setSidebarContentLeft(<Navigation contents={navigation} />);
-  }, [primaryColor]);
+  }, [activeColor]);
 
   // Sidebar actions
   useEffect(() => {

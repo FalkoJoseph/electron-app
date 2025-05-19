@@ -12,7 +12,7 @@ import { useApp } from "@/App";
 const queryClient = new QueryClient();
 const router = createHashRouter(routes);
 
-const AppInitializer = () => {
+const App = () => {
   useApp();
   return null;
 };
@@ -20,7 +20,7 @@ const AppInitializer = () => {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <AppInitializer />
+      <App />
       <RouterProvider router={router} />
     </QueryClientProvider>
   </StrictMode>,

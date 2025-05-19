@@ -21,23 +21,18 @@ import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
 
-import { COLOR_MAP, type ColorName } from "@/uikit";
+import {
+  COLOR_MAP,
+  type NavigationGroup,
+  type NavigationItem,
+} from "@/uikit/types";
 
-interface NavigationItem {
-  icon: React.ReactNode | null;
-  label: string;
-  path: string;
-}
-
-interface NavigationGroup {
-  activeColor: ColorName | "default";
-  dragAndDrop?: {
-    enableGroupDrag?: boolean;
-    enableItemDrag?: boolean;
-  };
-  items: NavigationItem[];
-  label?: string;
-}
+import {
+  setExpandedGroups,
+  setNavigationItems,
+  updateNavigationItems,
+  useNavigationStore,
+} from "@/uikit/stores";
 
 interface NavigationProps {
   contents: NavigationGroup[];
@@ -96,20 +91,22 @@ const SortableNavigationItem = ({
         ? { ...attributes, ...listeners }
         : {})}
     >
-      <div
-        className={clsx(
-          "[&>svg]:size-4",
-          isActive && activeColor !== "default"
-            ? "[&>svg]:text-white"
-            : activeColor === "default"
-              ? "[&>svg]:text-primary-500"
-              : COLOR_MAP[activeColor].text,
-        )}
-      >
-        {item.icon}
-      </div>
+      {item.icon && (
+        <div
+          className={clsx(
+            "[&>svg]:size-4",
+            isActive && activeColor !== "default"
+              ? "[&>svg]:text-white"
+              : activeColor === "default"
+                ? "[&>svg]:text-primary-500"
+                : COLOR_MAP[activeColor].text,
+          )}
+        >
+          {item.icon}
+        </div>
+      )}
 
-      {item.label}
+      <div className="flex-1">{item.label}</div>
     </Link>
   );
 };
@@ -191,11 +188,13 @@ const SortableNavigationGroup = ({
 };
 
 const Navigation = ({ contents }: NavigationProps) => {
-  const [expandedGroups, setExpandedGroups] = useState<Record<number, boolean>>(
-    Object.fromEntries(contents.map((_, index) => [index, true])),
-  );
+  const { items, expandedGroups } = useNavigationStore();
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [items, setItems] = useState(contents);
+
+  // Initialize store with contents if empty
+  if (items.length === 0) {
+    setNavigationItems(contents);
+  }
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -221,7 +220,7 @@ const Navigation = ({ contents }: NavigationProps) => {
         const newIndex = items.findIndex(
           (_, index) => `group-${index}` === over.id,
         );
-        setItems((items) => arrayMove(items, oldIndex, newIndex));
+        updateNavigationItems(arrayMove(items, oldIndex, newIndex));
       } else {
         // Handle item reordering within groups
         const activeGroupIndex = items.findIndex((group) =>
@@ -240,14 +239,12 @@ const Navigation = ({ contents }: NavigationProps) => {
             (item) => item.path === over.id,
           );
 
-          setItems((items) => {
-            const newItems = [...items];
-            newItems[activeGroupIndex] = {
-              ...group,
-              items: arrayMove(group.items, oldIndex, newIndex),
-            };
-            return newItems;
-          });
+          const newItems = [...items];
+          newItems[activeGroupIndex] = {
+            ...group,
+            items: arrayMove(group.items, oldIndex, newIndex),
+          };
+          updateNavigationItems(newItems);
         }
       }
     }
@@ -256,22 +253,12 @@ const Navigation = ({ contents }: NavigationProps) => {
   };
 
   const toggleGroup = (groupIndex: number) => {
-    setExpandedGroups((prev) => ({
-      ...prev,
-      [groupIndex]: !prev[groupIndex],
-    }));
+    const newExpandedGroups = {
+      ...expandedGroups,
+      [groupIndex]: !expandedGroups[groupIndex],
+    };
+    setExpandedGroups(newExpandedGroups);
   };
-
-  const activeGroup = activeId?.toString().startsWith("group-")
-    ? items[parseInt(activeId.split("-")[1])]
-    : null;
-
-  const activeItem =
-    activeId && !activeId.toString().startsWith("group-")
-      ? items
-          .flatMap((group) => group.items)
-          .find((item) => item.path === activeId)
-      : null;
 
   return (
     <DndContext
@@ -298,21 +285,40 @@ const Navigation = ({ contents }: NavigationProps) => {
 
       <DragOverlay>
         {activeId ? (
-          activeGroup ? (
+          activeId.toString().startsWith("group-") ? (
             <div className="pl-5 text-xxs font-semibold text-black/30 dark:text-white/40">
-              {activeGroup.label}
+              {items[parseInt(activeId.split("-")[1])].label}
             </div>
-          ) : activeItem ? (
-            <div className="p-2">
-              <div className="flex items-center gap-1.5">
-                <div className="[&>svg]:size-4 [&>svg]:text-primary-500">
-                  {activeItem.icon}
-                </div>
+          ) : (
+            (() => {
+              const activeItem = items
+                .flatMap((group) => group.items)
+                .find((item) => item.path === activeId);
+              const activeGroup = items.find((group) =>
+                group.items.some((item) => item.path === activeId),
+              );
 
-                {activeItem.label}
-              </div>
-            </div>
-          ) : null
+              return activeItem ? (
+                <div className="p-2">
+                  <div className="flex items-center gap-1.5">
+                    <div
+                      className={clsx(
+                        "[&>svg]:size-4",
+                        activeGroup?.activeColor === "default"
+                          ? "[&>svg]:text-primary-500"
+                          : activeGroup?.activeColor &&
+                              COLOR_MAP[activeGroup.activeColor].text,
+                      )}
+                    >
+                      {activeItem.icon}
+                    </div>
+
+                    <div className="flex-1">{activeItem.label}</div>
+                  </div>
+                </div>
+              ) : null;
+            })()
+          )
         ) : null}
       </DragOverlay>
     </DndContext>

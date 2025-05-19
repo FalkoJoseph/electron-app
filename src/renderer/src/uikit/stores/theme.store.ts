@@ -20,18 +20,18 @@ type ColorName =
   | "indigo";
 
 interface ThemeState {
-  primaryColor: ColorName;
+  activeColor: ColorName;
 }
 
 const initialState: ThemeState = {
-  primaryColor: "blue",
+  activeColor: "blue",
 };
 
 const useThemeStore = create<ThemeState>(() => ({
   ...initialState,
 }));
 
-export const setPrimaryColor = (color: ColorName) => {
+export const setActiveColor = (color: ColorName) => {
   // Use blue as default if color is empty
   const effectiveColor = color || "blue";
 
@@ -49,7 +49,7 @@ export const setPrimaryColor = (color: ColorName) => {
   );
 
   // Update store state
-  useThemeStore.setState({ primaryColor: effectiveColor });
+  useThemeStore.setState({ activeColor: effectiveColor });
 };
 
 export { useThemeStore };

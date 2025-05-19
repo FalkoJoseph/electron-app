@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { type ColorName } from "@/uikit";
+import { type ColorName } from "@/uikit/types";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;

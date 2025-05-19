@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { ChevronsUpDown } from "lucide-react";
 
-import { type ColorName } from "@/uikit";
+import { type ColorName } from "@/uikit/types";
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   children: React.ReactNode;
