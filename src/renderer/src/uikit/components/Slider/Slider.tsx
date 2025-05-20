@@ -23,7 +23,7 @@ const Slider = React.forwardRef<
         ref={ref}
         className={cn(
           "relative flex w-full touch-none select-none items-center disabled:opacity-50",
-          markLabels ? "min-h-6" : "min-h-4",
+          markLabels ? "min-h-6.5" : "min-h-4",
           className,
         )}
         onValueChange={props.onValueChange}
@@ -41,7 +41,7 @@ const Slider = React.forwardRef<
               <div key={index} className="relative">
                 <div className="w-0.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-600" />
                 {markLabels && markLabels[index] && (
-                  <span className="absolute left-1/2 -translate-x-1/2 top-3 text-xxs text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
+                  <span className="absolute left-1/2 -translate-x-1/2 top-4 text-xxs text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
                     {markLabels[index]}
                   </span>
                 )}
