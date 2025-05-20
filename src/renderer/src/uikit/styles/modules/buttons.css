@@ -1,4 +1,4 @@
-.btn {
+@utility btn {
   @apply no-drag relative flex cursor-default items-center justify-center gap-1 rounded-md px-3 pt-[2px] pb-[3px] leading-4 font-normal;
 
   &:focus {
@@ -10,24 +10,19 @@
   }
 }
 
-.btn-large,
-.btn-icon {
+.btn-large {
   @apply h-7;
 }
 
 .btn-icon {
-  @apply w-9 p-0;
-
-  &:active {
-    @apply scale-95;
-  }
+  @apply h-7 w-9 p-0;
 
   &.btn-default svg {
-    @apply text-gray-700 dark:text-white;
+    @apply text-neutral-600 dark:text-white;
   }
 
   & svg {
-    @apply text-gray-500 group-active:text-gray-900 dark:text-white/50 dark:group-active:text-white;
+    @apply text-neutral-500 group-active/button:text-neutral-900 dark:text-white/50 dark:group-active/button:text-white;
   }
 }
 
@@ -46,8 +41,19 @@
 }
 
 .btn-transparent {
-  @apply bg-transparent text-black/70 hover:bg-black/5 active:bg-black/10 active:text-black/50 dark:text-white/70 dark:hover:bg-white/10 dark:active:bg-white/20 dark:active:text-white/50;
+  @apply btn-transparent-active bg-transparent text-black/70 dark:text-white/70;
 }
+
+@utility btn-transparent-default {
+  @apply text-black/70 active:bg-black/10 active:text-black dark:text-white/70 dark:active:bg-white/20 dark:active:text-white;
+}
+
+@utility btn-transparent-active {
+  @apply bg-black/5 hover:bg-black/5 active:bg-black/10 active:text-black dark:bg-white/10 dark:active:bg-white/20 dark:active:text-white;
+}
+
+@source inline("btn-transparent-default");
+@source inline("btn-transparent-active");
 
 /* Dynamic color variants */
 @utility btn-primary {

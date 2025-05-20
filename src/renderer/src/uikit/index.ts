@@ -10,7 +10,7 @@ export { useTrafficLight } from "./hooks/useTrafficLight.hook";
 export { IconSidebar } from "./assets/svg/IconSidebar";
 
 // Components
-export { Button } from "./components/Button";
+export { Button, ButtonGroup } from "./components/Button";
 export { InputText, CustomCaret } from "./components/Input";
 export { Layout } from "./components/Layout";
 export { Navigation } from "./components/Navigation/Navigation";

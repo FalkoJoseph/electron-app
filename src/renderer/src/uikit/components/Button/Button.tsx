@@ -6,7 +6,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   color?: ColorName;
   size?: "small" | "large" | "icon";
-  variant?: "default" | "accent" | "transparent";
+  variant?:
+    | "default"
+    | "accent"
+    | "transparent"
+    | "transparent-active"
+    | "transparent-default";
 }
 
 const Button = ({
@@ -19,7 +24,7 @@ const Button = ({
   return (
     <button
       className={clsx(
-        "btn group",
+        "btn group/button",
         `btn-${variant}`,
         `btn-${size}`,
         color && `btn-${color}`,

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import clsx from "clsx";
-import { X } from "lucide-react";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 
 import { CustomCaret } from "@/uikit";
 
@@ -14,8 +14,13 @@ interface InputTextProps {
   isRounded?: boolean;
   minHeight?: number;
   placeholder: string;
+  min?: number;
+  max?: number;
   size?: "small" | "large";
+  type?: "text" | "number";
+  step?: number;
   variant?: "default" | "sidebar" | "search";
+  value?: string;
   onChange?: (value: string) => void;
 }
 
@@ -28,23 +33,88 @@ const InputText = ({
   isRounded,
   minHeight = 50,
   placeholder,
+  min,
+  max,
+  step = 1,
   size = "small",
+  type = "text",
   variant = "default",
+  value: controlledValue,
   onChange,
   ...props
 }: InputTextProps) => {
-  const [value, setValue] = useState("");
+  const [internalValue, setInternalValue] = useState(controlledValue || "");
   const inputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const intervalRef = useRef<number | null>(null);
+  const currentValueRef = useRef(controlledValue || "");
+
+  useEffect(() => {
+    if (controlledValue !== undefined) {
+      setInternalValue(controlledValue);
+      currentValueRef.current = controlledValue;
+    }
+  }, [controlledValue]);
+
+  const value = controlledValue !== undefined ? controlledValue : internalValue;
 
   const handleChange = (newValue: string) => {
-    setValue(newValue);
+    if (controlledValue === undefined) {
+      setInternalValue(newValue);
+    }
+    currentValueRef.current = newValue;
     onChange?.(newValue);
   };
 
   const handleClear = () => {
-    setValue("");
-    onChange?.("");
+    handleChange("");
+  };
+
+  const handleIncrement = () => {
+    const currentValue = Number(value) || 0;
+    const newValue = currentValue + step;
+    if (max !== undefined && newValue > max) return;
+    handleChange(String(newValue));
+  };
+
+  const handleDecrement = () => {
+    const currentValue = Number(value) || 0;
+    const newValue = currentValue - step;
+    if (min !== undefined && newValue < min) return;
+    handleChange(String(newValue));
+  };
+
+  const startContinuousIncrement = () => {
+    handleIncrement();
+    intervalRef.current = window.setInterval(() => {
+      const currentValue = Number(currentValueRef.current) || 0;
+      const newValue = currentValue + step;
+      if (max !== undefined && newValue > max) {
+        stopContinuousChange();
+        return;
+      }
+      handleChange(String(newValue));
+    }, 100);
+  };
+
+  const startContinuousDecrement = () => {
+    handleDecrement();
+    intervalRef.current = window.setInterval(() => {
+      const currentValue = Number(currentValueRef.current) || 0;
+      const newValue = currentValue - step;
+      if (min !== undefined && newValue < min) {
+        stopContinuousChange();
+        return;
+      }
+      handleChange(String(newValue));
+    }, 100);
+  };
+
+  const stopContinuousChange = () => {
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
   };
 
   useEffect(() => {
@@ -58,11 +128,21 @@ const InputText = ({
     adjustTextareaHeight();
   }, [value, isAutosize, minHeight]);
 
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current !== null) {
+        window.clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
   const inputStyle = clsx([
     "w-full",
     !isMultiline ? "caret-transparent" : "caret-primary-500 resize-none",
     className,
     isRounded && "rounded-md",
+    type === "number" &&
+      "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
     variant === "sidebar" && [
       "bg-black/8 border-[0.5px] p-1 border-black/8 focus:border-black/20 dark:border-transparent dark:bg-white/8 dark:shadow-x-y-inset focus:outline-none dark:text-white focus:ring-3 focus:ring-primary-500/50 dark:focus:ring-white/20",
     ],
@@ -82,7 +162,7 @@ const InputText = ({
   ]);
 
   return (
-    <div className="relative w-full">
+    <div className={clsx("relative w-full", type === "number" && "pr-6")}>
       {iconPrefix && (
         <div className="absolute left-2 top-1/2 -translate-y-1/2 opacity-60 pointer-events-none">
           {iconPrefix}
@@ -105,7 +185,10 @@ const InputText = ({
             ref={inputRef}
             className={inputStyle}
             placeholder={placeholder}
-            type="text"
+            type={type}
+            min={min}
+            max={max}
+            step={step}
             value={value}
             onChange={(e) => handleChange(e.target.value)}
           />
@@ -125,6 +208,30 @@ const InputText = ({
           onClick={handleClear}
         >
           <X size={12} />
+        </div>
+      )}
+
+      {type === "number" && (
+        <div className="absolute right-0 top-0 h-full flex flex-col items-center justify-center">
+          <button
+            onMouseDown={startContinuousIncrement}
+            onMouseUp={stopContinuousChange}
+            onTouchStart={startContinuousIncrement}
+            onTouchEnd={stopContinuousChange}
+            className="btn-default flex-1 w-4 flex items-center justify-center rounded-t-md"
+          >
+            <ChevronUp size={11} strokeWidth={3.5} />
+          </button>
+
+          <button
+            onMouseDown={startContinuousDecrement}
+            onMouseUp={stopContinuousChange}
+            onTouchStart={startContinuousDecrement}
+            onTouchEnd={stopContinuousChange}
+            className="btn-default flex-1 w-4 flex items-center justify-center rounded-b-md"
+          >
+            <ChevronDown size={11} strokeWidth={3.5} />
+          </button>
         </div>
       )}
     </div>

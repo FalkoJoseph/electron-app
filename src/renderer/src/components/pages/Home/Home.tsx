@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 
-import { Calendar, Plus } from "lucide-react";
+import {
+  AlignCenterHorizontal,
+  AlignCenterVertical,
+  AlignEndHorizontal,
+  Calendar,
+  Plus,
+} from "lucide-react";
 
 import {
   setActiveColor,
@@ -10,6 +16,7 @@ import {
 
 import {
   Button,
+  ButtonGroup,
   Checkbox,
   Form,
   FormGroup,
@@ -96,6 +103,34 @@ const Home = () => {
             <Button size="icon" variant="default">
               <Plus size={18} />
             </Button>
+          </FormItem>
+
+          <FormItem>
+            <ButtonGroup variant="transparent">
+              <Button variant="transparent-active" size="large">
+                Button 1
+              </Button>
+              <Button variant="transparent-default" size="large">
+                Button 2
+              </Button>
+              <Button variant="transparent-default" size="large">
+                Button 3
+              </Button>
+            </ButtonGroup>
+          </FormItem>
+
+          <FormItem>
+            <ButtonGroup>
+              <Button variant="default" size="icon">
+                <AlignCenterHorizontal size={18} />
+              </Button>
+              <Button variant="accent" size="icon">
+                <AlignCenterVertical size={18} />
+              </Button>
+              <Button variant="default" size="icon">
+                <AlignEndHorizontal size={18} />
+              </Button>
+            </ButtonGroup>
           </FormItem>
         </FormGroup>
 
@@ -248,6 +283,18 @@ const Home = () => {
           label="Input"
           subLabel="Input fields are used to capture user input."
         >
+          <FormItem className="w-50">
+            <InputText
+              placeholder="Number"
+              type="number"
+              min={0}
+              max={5}
+              onChange={(value) => {
+                console.log("from the home:", value);
+              }}
+            />
+          </FormItem>
+
           <FormItem className="w-50">
             <InputText
               iconPrefix={<Calendar size={15} />}
