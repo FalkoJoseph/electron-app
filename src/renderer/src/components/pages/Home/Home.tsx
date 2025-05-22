@@ -28,6 +28,10 @@ import {
   Select,
   Slider,
   Switch,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 } from "@/uikit";
 
 const Home = () => {
@@ -72,6 +76,22 @@ const Home = () => {
               <option value="violet">Violet</option>
               <option value="indigo">Indigo</option>
             </Select>
+          </FormItem>
+        </FormGroup>
+
+        <FormGroup
+          label="Tabs"
+          subLabel="Tabs are used to switch between views."
+        >
+          <FormItem>
+            <Tabs defaultValue="account">
+              <TabsList isStretch>
+                <TabsTrigger value="account">Account</TabsTrigger>
+                <TabsTrigger value="password">Password</TabsTrigger>
+              </TabsList>
+              <TabsContent value="account">account</TabsContent>
+              <TabsContent value="password">password</TabsContent>
+            </Tabs>
           </FormItem>
         </FormGroup>
 
