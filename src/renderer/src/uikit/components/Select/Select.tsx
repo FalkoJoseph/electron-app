@@ -20,7 +20,7 @@ const Select = ({
   return (
     <div
       className={clsx(
-        "group relative inline-block",
+        "group/select relative inline-block",
         width === "full" && "w-full",
       )}
     >
@@ -39,7 +39,7 @@ const Select = ({
           className={clsx(
             "size-[15px] rounded",
             variant === "default" &&
-              "bg-neutral-200 border-[0.5px] border-black/10 dark:border-transparent dark:bg-white/10 group-hover:bg-transparent group-hover:border-transparent",
+              "bg-neutral-200 border-[0.5px] border-black/10 dark:border-transparent dark:bg-white/10 group-hover/select:bg-transparent group-hover/select:border-transparent",
             variant === "accent" &&
               "bg-gradient-to-t  text-white dark:shadow-inset",
             variant === "accent" && !color && "btn-primary",

@@ -23,6 +23,7 @@ import {
   FormHorizontal,
   FormItem,
   InputText,
+  Panel,
   RadioGroup,
   RadioGroupItem,
   Select,
@@ -89,9 +90,23 @@ const Home = () => {
                 <TabsTrigger value="account">Account</TabsTrigger>
                 <TabsTrigger value="password">Password</TabsTrigger>
               </TabsList>
-              <TabsContent value="account">account</TabsContent>
-              <TabsContent value="password">password</TabsContent>
+              <TabsContent value="account">Account</TabsContent>
+              <TabsContent value="password">Password</TabsContent>
             </Tabs>
+          </FormItem>
+        </FormGroup>
+
+        <FormGroup label="Panel" hasMargin>
+          <FormItem>
+            <Panel>
+              <div className="flex justify-between items-center">
+                <p>Choose the color of the panel</p>
+                <Select variant="default">
+                  <option value="default">Dark</option>
+                  <option value="secondary">Light</option>
+                </Select>
+              </div>
+            </Panel>
           </FormItem>
         </FormGroup>
 

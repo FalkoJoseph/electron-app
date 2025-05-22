@@ -123,9 +123,9 @@ const Window = ({ children }: WindowProps) => {
     windowBackground === "dark";
 
   const windowBackgroundStyle = clsx(
-    windowBackground === "default" && "bg-white dark:bg-neutral-700",
-    windowBackground === "light" && "bg-white dark:bg-neutral-700",
-    windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
+    windowBackground === "default" && "bg-white dark:bg-zinc-700",
+    windowBackground === "light" && "bg-white dark:bg-zinc-700",
+    windowBackground === "dark" && "bg-neutral-100 dark:bg-zinc-800",
     hasTitlebarShadow && "shadow-x",
   );
 

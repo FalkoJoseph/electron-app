@@ -65,9 +65,9 @@ const Titlebar = ({ isScrolled }: TitlebarProps) => {
 
   const titlebarStyle = clsx([
     "titlebar z-40 drag absolute w-full z-10 flex items-center justify-between text-black/80 transition-[background-color] duration-200 dark:text-white/80",
-    windowBackground === "default" && "bg-neutral-100 dark:bg-neutral-700",
-    windowBackground === "light" && "bg-white dark:bg-neutral-700",
-    windowBackground === "dark" && "bg-neutral-100 dark:bg-neutral-800",
+    windowBackground === "default" && "bg-neutral-100 dark:bg-zinc-700",
+    windowBackground === "light" && "bg-white dark:bg-zinc-700",
+    windowBackground === "dark" && "bg-neutral-100 dark:bg-zinc-800",
     titlebarSize === "small" && "p-1",
     titlebarSize === "large" && "px-2.5 py-2.5",
     sidebarOpenLeft
