@@ -23,6 +23,8 @@ import {
   FormHorizontal,
   FormItem,
   InputText,
+  List,
+  ListItem,
   Panel,
   RadioGroup,
   RadioGroupItem,
@@ -106,6 +108,35 @@ const Home = () => {
                   <option value="secondary">Light</option>
                 </Select>
               </div>
+            </Panel>
+          </FormItem>
+        </FormGroup>
+
+        <FormGroup
+          label="List"
+          subLabel="List is used to display a list of items."
+        >
+          <FormItem>
+            <Panel>
+              <List>
+                <ListItem
+                  icon={<AlignCenterHorizontal size={18} />}
+                  label="List item"
+                  subLabel="Sublabel"
+                />
+
+                <ListItem
+                  icon={<AlignCenterHorizontal size={18} />}
+                  label="List item"
+                  subLabel="Sublabel"
+                />
+
+                <ListItem
+                  icon={<AlignCenterHorizontal size={18} />}
+                  label="List item"
+                  subLabel="Sublabel"
+                />
+              </List>
             </Panel>
           </FormItem>
         </FormGroup>

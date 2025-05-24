@@ -25,3 +25,4 @@ export { Form, FormGroup, FormHorizontal, FormItem } from "./components/Form";
 export { Slider } from "./components/Slider";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/Tab";
 export { Panel } from "./components/Panel";
+export { List, ListItem } from "./components/List";
