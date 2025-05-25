@@ -15,6 +15,7 @@ export type ColorName =
   | "cyan"
   | "teal"
   | "violet"
+  | "neutral"
   | "indigo";
 
 export const COLOR_MAP: Record<ColorName, { bg: string; text: string }> = {
@@ -35,4 +36,5 @@ export const COLOR_MAP: Record<ColorName, { bg: string; text: string }> = {
   teal: { bg: "bg-teal-500", text: "text-teal-500" },
   violet: { bg: "bg-violet-500", text: "text-violet-500" },
   yellow: { bg: "bg-yellow-500", text: "text-yellow-500" },
+  neutral: { bg: "bg-neutral-500", text: "text-neutral-500" },
 };

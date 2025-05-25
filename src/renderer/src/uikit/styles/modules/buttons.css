@@ -128,6 +128,10 @@
   @apply from-indigo-600 to-indigo-500 active:from-indigo-600/90 active:to-indigo-500/90;
 }
 
+@utility btn-neutral {
+  @apply from-neutral-500 to-neutral-400 active:from-neutral-600/90 active:to-neutral-500/90;
+}
+
 @source inline("{data-[state=checked]:,}btn-primary");
 @source inline("{data-[state=checked]:,}btn-blue");
 @source inline("{data-[state=checked]:,}btn-red");
@@ -146,3 +150,4 @@
 @source inline("{data-[state=checked]:,}btn-teal");
 @source inline("{data-[state=checked]:,}btn-violet");
 @source inline("{data-[state=checked]:,}btn-indigo");
+@source inline("{data-[state=checked]:,}btn-neutral");

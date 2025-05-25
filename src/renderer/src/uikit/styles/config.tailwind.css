@@ -75,6 +75,9 @@
   --color-rose-500: oklch(0.645 0.246 16.439);
   --color-rose-600: oklch(0.586 0.253 17.585);
 
+  --color-neutral-400: oklch(0.708 0 0);
+  --color-neutral-500: oklch(0.556 0 0);
+  --color-neutral-600: oklch(0.439 0 0);
   --color-neutral-700: oklch(0.371 0 0);
   --color-neutral-800: oklch(0.269 0 0);
 }

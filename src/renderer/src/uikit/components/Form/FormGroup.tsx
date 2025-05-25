@@ -20,9 +20,7 @@ const FormGroup = ({
       {...props}
     >
       {(label || subLabel) && (
-        <div
-          className={clsx("flex flex-col gap-1", hasMargin ? "ml-3" : " mb-2")}
-        >
+        <div className={clsx("flex flex-col gap-1 mb-1", hasMargin && "ml-3")}>
           {label &&
             (typeof label === "string" ? (
               <p className="font-semibold">{label}</p>

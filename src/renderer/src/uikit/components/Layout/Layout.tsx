@@ -1,5 +1,6 @@
 import "@/uikit/styles/style.css";
 
+import { useEffect } from "react";
 import { Outlet } from "react-router";
 
 import { setActiveColor, useSidebarStore, useThemeStore } from "@/uikit/stores";
@@ -11,7 +12,9 @@ const Layout = () => {
   const hasRightSidebar = useSidebarStore((state) => state.hasRight);
   const activeColor = useThemeStore((state) => state.activeColor);
 
-  setActiveColor(activeColor);
+  useEffect(() => {
+    setActiveColor(activeColor);
+  }, [activeColor]);
 
   return (
     <>

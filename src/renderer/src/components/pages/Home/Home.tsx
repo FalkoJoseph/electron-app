@@ -4,7 +4,9 @@ import {
   AlignCenterHorizontal,
   AlignCenterVertical,
   AlignEndHorizontal,
+  BatteryCharging,
   Calendar,
+  CircleUserRound,
   Plus,
 } from "lucide-react";
 
@@ -26,6 +28,7 @@ import {
   List,
   ListItem,
   Panel,
+  PanelFooter,
   RadioGroup,
   RadioGroupItem,
   Select,
@@ -78,6 +81,7 @@ const Home = () => {
               <option value="teal">Teal</option>
               <option value="violet">Violet</option>
               <option value="indigo">Indigo</option>
+              <option value="neutral">Gray</option>
             </Select>
           </FormItem>
         </FormGroup>
@@ -101,42 +105,58 @@ const Home = () => {
         <FormGroup label="Panel" hasMargin>
           <FormItem>
             <Panel>
-              <div className="flex justify-between items-center">
-                <p>Choose the color of the panel</p>
-                <Select variant="default">
-                  <option value="default">Dark</option>
-                  <option value="secondary">Light</option>
-                </Select>
-              </div>
+              <List>
+                <ListItem
+                  label="Choose the color of the panel"
+                  actions={
+                    <Select variant="default">
+                      <option value="default">Dark</option>
+                      <option value="secondary">Light</option>
+                    </Select>
+                  }
+                />
+              </List>
             </Panel>
+
+            <PanelFooter>
+              <Button variant="default">Add color...</Button>
+            </PanelFooter>
           </FormItem>
         </FormGroup>
 
         <FormGroup
           label="List"
           subLabel="List is used to display a list of items."
+          hasMargin
         >
           <FormItem>
             <Panel>
               <List>
                 <ListItem
-                  icon={<AlignCenterHorizontal size={18} />}
-                  label="List item"
-                  subLabel="Sublabel"
+                  icon={<Calendar />}
+                  iconColor="orange"
+                  label="Calendar"
+                  path="/split-view"
                 />
 
                 <ListItem
-                  icon={<AlignCenterHorizontal size={18} />}
-                  label="List item"
-                  subLabel="Sublabel"
+                  icon={<BatteryCharging />}
+                  iconColor="green"
+                  label="Energy usage"
+                  path="/credits"
                 />
 
                 <ListItem
-                  icon={<AlignCenterHorizontal size={18} />}
-                  label="List item"
-                  subLabel="Sublabel"
+                  icon={<CircleUserRound />}
+                  label="User account"
+                  rightLabel="On"
+                  path="/split-view"
                 />
               </List>
+
+              <PanelFooter isInline>
+                <Button variant="default">Add scheme...</Button>
+              </PanelFooter>
             </Panel>
           </FormItem>
         </FormGroup>
