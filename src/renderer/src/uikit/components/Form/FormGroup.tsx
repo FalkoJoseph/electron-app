@@ -16,7 +16,7 @@ const FormGroup = ({
 }: FormGroupProps) => {
   return (
     <div
-      className="flex flex-col gap-3 group-[.has-divider]:pb-6 group-[.has-divider]:last:pb-0 group-[.has-divider]:last:border-b-0 group-[.has-divider]:border-b group-[.has-divider]:border-black/10 dark:group-[.has-divider]:border-white/10"
+      className="flex flex-col gap-3 group-[.has-divider]:pb-6 group-[.has-divider]:last:pb-0 group-[.has-divider]:last:border-b-0 group-[.has-divider]:border-b group-[.has-divider]:border-black/7 dark:group-[.has-divider]:border-white/7"
       {...props}
     >
       {(label || subLabel) && (

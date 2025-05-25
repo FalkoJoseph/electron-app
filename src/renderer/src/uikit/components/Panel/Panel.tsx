@@ -11,7 +11,7 @@ interface PanelFooterProps {
 
 const Panel = ({ children }: PanelProps) => {
   return (
-    <div className="panel rounded-md bg-black/2 p-2 border border-black/5 dark:bg-white/2 dark:border-white/10 [&:has(.list)]:p-0">
+    <div className="panel overflow-hidden rounded-md bg-black/2 p-2 border border-black/5 dark:bg-white/2 dark:border-white/10 [&:has(.list)]:p-0">
       {children}
     </div>
   );

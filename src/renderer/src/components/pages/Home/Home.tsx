@@ -5,6 +5,7 @@ import {
   AlignCenterVertical,
   AlignEndHorizontal,
   BatteryCharging,
+  Box,
   Calendar,
   CircleUserRound,
   Plus,
@@ -52,6 +53,19 @@ const Home = () => {
   return (
     <div className="p-5">
       <Form hasDivider>
+        <FormGroup>
+          <Panel>
+            <List>
+              <ListItem
+                icon={<Box />}
+                iconColor="blue"
+                label="Components"
+                subLabel="Components are the building blocks of the app."
+              />
+            </List>
+          </Panel>
+        </FormGroup>
+
         <FormGroup label="Theme" subLabel="Change the theme of the app.">
           <FormItem>
             <Select
@@ -96,6 +110,7 @@ const Home = () => {
                 <TabsTrigger value="account">Account</TabsTrigger>
                 <TabsTrigger value="password">Password</TabsTrigger>
               </TabsList>
+
               <TabsContent value="account">Account</TabsContent>
               <TabsContent value="password">Password</TabsContent>
             </Tabs>
